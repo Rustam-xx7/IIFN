@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact &amp; Admissions | IIFN Performance Lab</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&amp;family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#393939",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "surface-variant": "#353535",
+                    "surface-container-high": "#2a2a2a",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "on-tertiary-container": "#747576",
+                    "error": "#ffb4ab",
+                    "on-secondary-container": "#fff1ef",
+                    "on-secondary": "#680200",
+                    "surface-container": "#20201f",
+                    "on-primary-container": "#757575",
+                    "on-background": "#e5e2e1",
+                    "secondary-fixed": "#ffdad4",
+                    "surface-container-lowest": "#0e0e0e",
+                    "surface-container-low": "#1c1b1b",
+                    "inverse-on-surface": "#313030",
+                    "secondary": "#ffb4a8",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "on-error": "#690005",
+                    "primary-fixed-dim": "#c6c6c6",
+                    "on-secondary-fixed": "#410100",
+                    "secondary-container": "#e00600",
+                    "primary": "#c6c6c6",
+                    "on-surface": "#e5e2e1",
+                    "background": "#131313",
+                    "surface-tint": "#c6c6c6",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-dim": "#131313",
+                    "outline": "#988e90",
+                    "tertiary-container": "#000000",
+                    "tertiary": "#c6c6c7",
+                    "on-primary-fixed": "#1b1b1b",
+                    "outline-variant": "#4c4546",
+                    "on-error-container": "#ffdad6",
+                    "primary-fixed": "#e2e2e2",
+                    "inverse-primary": "#5e5e5e",
+                    "on-primary-fixed-variant": "#474747",
+                    "on-tertiary": "#2f3131",
+                    "primary-container": "#000000",
+                    "secondary-fixed-dim": "#ffb4a8",
+                    "tertiary-fixed": "#e2e2e2",
+                    "error-container": "#93000a",
+                    "surface": "#131313",
+                    "on-surface-variant": "#cfc4c5",
+                    "on-primary": "#303030",
+                    "surface-container-highest": "#353535",
+                    "on-secondary-fixed-variant": "#930300"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "section-gap-mobile": "64px",
+                    "base": "8px",
+                    "gutter": "24px",
+                    "grid-columns": "12",
+                    "section-gap-desktop": "120px",
+                    "margin": "40px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Montserrat"],
+                    "display-lg": ["Montserrat"],
+                    "headline-lg-mobile": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "label-bold": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-bold": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .red-glow-hover:hover {
+            box-shadow: 0 0 30px rgba(224, 6, 0, 0.4);
+        }
+        .red-glow-static {
+            box-shadow: 0 0 20px rgba(224, 6, 0, 0.2);
+        }
+        body {
+            background-color: #000000;
+            color: #e5e2e1;
+        }
+    </style>
+</head>
+<body class="font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-gutter py-4">
+<div class="font-display-lg text-headline-md font-black text-on-surface tracking-tighter cursor-pointer">IIFN</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-on-surface hover:text-secondary transition-colors duration-300" href="#">Courses</a>
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-on-surface hover:text-secondary transition-colors duration-300" href="#">Research</a>
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-on-surface hover:text-secondary transition-colors duration-300" href="#">Certifications</a>
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-secondary border-b-2 border-secondary pb-1" href="#">Admissions</a>
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-on-surface hover:text-secondary transition-colors duration-300" href="#">About</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="hidden lg:block px-6 py-2 bg-secondary-container text-white font-label-bold uppercase tracking-widest red-glow-hover transition-all active:scale-95">
+                ENROLL NOW
+            </button>
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:scale-110 transition-transform" data-icon="menu">menu</span>
+</div>
+</nav>
+<!-- SideNavBar (Hidden by default, used for interaction) -->
+<aside class="fixed right-0 top-0 h-full w-full md:w-96 z-[60] bg-background/90 backdrop-blur-2xl border-l border-white/10 flex flex-col p-margin gap-base translate-x-full transition-all duration-500 ease-in-out shadow-[0_0_40px_rgba(224,6,0,0.15)]" id="side-nav">
+<div class="flex justify-between items-center mb-10">
+<div>
+<h2 class="font-display-lg text-headline-md text-secondary leading-none">IIFN</h2>
+<p class="text-[10px] uppercase tracking-[0.3em] text-on-surface/50">Performance Lab</p>
+</div>
+<button class="material-symbols-outlined text-on-surface/70 hover:text-secondary" onclick="document.getElementById('side-nav').classList.add('translate-x-full')">close</button>
+</div>
+<nav class="flex flex-col gap-6">
+<a class="group flex items-center gap-4 text-on-surface/70 hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-headline-md text-headline-md uppercase font-bold group-hover:text-secondary transition-colors">Home</span>
+</a>
+<a class="group flex items-center gap-4 text-on-surface/70 hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="font-headline-md text-headline-md uppercase font-bold group-hover:text-secondary transition-colors">Advanced Personal Training</span>
+</a>
+<a class="group flex items-center gap-4 text-on-surface/70 hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined">restaurant</span>
+<span class="font-headline-md text-headline-md uppercase font-bold group-hover:text-secondary transition-colors">Sports Nutrition</span>
+</a>
+<a class="group flex items-center gap-4 text-secondary font-black scale-110" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-headline-md text-headline-md uppercase">Master Diploma</span>
+</a>
+</nav>
+<div class="mt-auto pt-10 border-t border-white/10">
+<button class="w-full py-4 border-2 border-white text-white font-label-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all mb-8">
+                PROSPECTUS 2024
+            </button>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-secondary cursor-pointer transition-all" data-icon="settings">settings</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-secondary cursor-pointer transition-all" data-icon="help">help</span>
+</div>
+</div>
+</aside>
+<main class="pt-32 pb-section-gap-desktop max-w-[1440px] mx-auto px-margin">
+<!-- Hero Section -->
+<header class="mb-20 text-center lg:text-left">
+<h1 class="font-display-lg text-display-lg uppercase mb-4 text-on-surface">
+                Elite <span class="text-secondary-container">Admissions</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                Elevate your professional trajectory at India's premier fitness research institute. Join the league of elite performance specialists.
+            </p>
+</header>
+<!-- Main Two-Column Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Left: Enquiry Form -->
+<section class="lg:col-span-7 glass-panel p-8 md:p-12 rounded-lg relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary-container"></div>
+<h2 class="font-headline-lg text-headline-lg uppercase mb-8">Enquiry Form</h2>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-bold text-label-bold uppercase text-on-surface/60">Full Name</label>
+<input class="w-full bg-black border border-surface-variant focus:border-secondary-container focus:ring-1 focus:ring-secondary-container text-white py-3 px-4 transition-all" placeholder="e.g. ARJUN SHARMA" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-bold text-label-bold uppercase text-on-surface/60">Email Address</label>
+<input class="w-full bg-black border border-surface-variant focus:border-secondary-container focus:ring-1 focus:ring-secondary-container text-white py-3 px-4 transition-all" placeholder="arjun.s@performance.com" type="email"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-bold text-label-bold uppercase text-on-surface/60">Mobile Number</label>
+<input class="w-full bg-black border border-surface-variant focus:border-secondary-container focus:ring-1 focus:ring-secondary-container text-white py-3 px-4 transition-all" placeholder="+91 98XXX XXXXX" type="tel"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-bold text-label-bold uppercase text-on-surface/60">Desired Course</label>
+<select class="w-full bg-black border border-surface-variant focus:border-secondary-container focus:ring-1 focus:ring-secondary-container text-white py-3 px-4 transition-all">
+<option>Advanced Personal Training</option>
+<option>Sports Nutrition Specialist</option>
+<option>Master Diploma in Fitness</option>
+<option>Clinical Nutrition</option>
+</select>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-bold text-label-bold uppercase text-on-surface/60">Your Experience / Goals</label>
+<textarea class="w-full bg-black border border-surface-variant focus:border-secondary-container focus:ring-1 focus:ring-secondary-container text-white py-3 px-4 transition-all" placeholder="Tell us about your fitness background..." rows="4"></textarea>
+</div>
+<button class="w-full py-4 bg-secondary-container text-white font-label-bold uppercase tracking-[0.2em] red-glow-hover transition-all hover:scale-[1.01] active:scale-95" type="submit">
+                        SUBMIT APPLICATION
+                    </button>
+</form>
+</section>
+<!-- Right: Contact Details & Map -->
+<aside class="lg:col-span-5 space-y-gutter">
+<!-- Contact Cards -->
+<div class="bg-surface-container-low border border-white/5 p-8 space-y-8">
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary-container text-3xl" data-icon="location_on">location_on</span>
+<div>
+<h3 class="font-label-bold text-label-bold uppercase text-secondary">Headquarters</h3>
+<p class="text-on-surface-variant leading-relaxed">IIFN Performance Lab, Sector 18,<br/>High-Intensity Zone, Gurugram, India</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary-container text-3xl" data-icon="schedule">schedule</span>
+<div>
+<h3 class="font-label-bold text-label-bold uppercase text-secondary">Performance Hours</h3>
+<p class="text-on-surface-variant">Mon - Fri: 08:00 - 20:00</p>
+<div class="mt-1 flex gap-2 items-center">
+<span class="px-2 py-0.5 bg-secondary-container/20 text-secondary text-[10px] font-black uppercase">Classes Active</span>
+<p class="text-on-surface text-sm font-bold">Sat - Sun: 09:00 - 17:00</p>
+</div>
+</div>
+</div>
+</div>
+<!-- CTA Buttons -->
+<div class="grid grid-cols-2 gap-4">
+<a class="flex items-center justify-center gap-2 py-4 border border-white/20 text-white font-label-bold uppercase text-xs tracking-wider hover:bg-white hover:text-black transition-all" href="tel:+919876543210">
+<span class="material-symbols-outlined text-sm">call</span> CALL NOW
+                        </a>
+<a class="flex items-center justify-center gap-2 py-4 border border-white/20 text-white font-label-bold uppercase text-xs tracking-wider hover:bg-secondary-container hover:border-secondary-container transition-all" href="#">
+<span class="material-symbols-outlined text-sm">chat</span> WHATSAPP
+                        </a>
+</div>
+<!-- Social Row -->
+<div class="flex items-center gap-6 pt-4 border-t border-white/10">
+<span class="font-label-bold text-[10px] uppercase tracking-widest text-on-surface/40">Connect</span>
+<div class="flex gap-4">
+<a class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-high text-secondary hover:bg-secondary-container hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="photo_camera">photo_camera</span>
+</a>
+<a class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-high text-secondary hover:bg-secondary-container hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="facebook">face_nod</span>
+</a>
+<a class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-high text-secondary hover:bg-secondary-container hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="smart_display">smart_display</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Map Widget -->
+<div class="h-80 w-full bg-surface-container-lowest border border-white/5 relative group overflow-hidden grayscale hover:grayscale-0 transition-all duration-700">
+<div class="w-full h-full flex items-center justify-center bg-[#0a0a0a]" data-location="Gurugram, India" style="">
+<!-- Visual Placeholder for Map -->
+<div class="text-center p-8">
+<span class="material-symbols-outlined text-secondary-container text-5xl mb-4 animate-bounce" data-icon="map">map</span>
+<p class="font-label-bold text-label-bold uppercase tracking-widest text-on-surface/40">Interactive Map Loading</p>
+</div>
+</div>
+<div class="absolute inset-0 pointer-events-none border-[12px] border-black/20"></div>
+</div>
+</aside>
+</div>
+<!-- Admissions Timeline/Process -->
+<section class="mt-section-gap-desktop border-t border-white/10 pt-20">
+<h2 class="font-headline-lg text-headline-lg uppercase mb-12 text-center lg:text-left">The Admission <span class="text-secondary-container">Cycle</span></h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="space-y-4">
+<div class="text-secondary font-display-lg text-headline-lg opacity-20 leading-none">01</div>
+<h3 class="font-headline-md text-headline-md uppercase">Application Review</h3>
+<p class="text-on-surface-variant">Our admissions committee evaluates your fitness background and professional intent to ensure a cohort of high-performing individuals.</p>
+</div>
+<div class="space-y-4">
+<div class="text-secondary font-display-lg text-headline-lg opacity-20 leading-none">02</div>
+<h3 class="font-headline-md text-headline-md uppercase">Elite Interview</h3>
+<p class="text-on-surface-variant">A session with our lead faculty to map your career goals with our rigorous science-based curriculum.</p>
+</div>
+<div class="space-y-4">
+<div class="text-secondary font-display-lg text-headline-lg opacity-20 leading-none">03</div>
+<h3 class="font-headline-md text-headline-md uppercase">Lab Induction</h3>
+<p class="text-on-surface-variant">Once accepted, you receive your Student Portal credentials and preparatory high-intensity training materials.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap-desktop bg-surface-container-lowest border-t-4 border-secondary grid grid-cols-1 md:grid-cols-5 gap-gutter px-margin mx-auto">
+<div class="md:col-span-2">
+<h2 class="font-display-lg text-headline-md text-secondary mb-4 leading-none">IIFN</h2>
+<p class="text-on-surface-variant max-w-sm mb-8 font-body-md">Empowering the next generation of high-performance coaches through scientific rigor and practical excellence.</p>
+<p class="text-on-surface-variant font-body-md opacity-60">© 2024 Indian Institute of Fitness &amp; Nutrition. All Rights Reserved.</p>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-bold uppercase tracking-widest text-white mb-2">Academic</h4>
+<a class="text-on-surface-variant hover:text-secondary font-body-md transition-all" href="#">Curriculum</a>
+<a class="text-on-surface-variant hover:text-secondary font-body-md transition-all" href="#">Faculty</a>
+<a class="text-on-surface-variant hover:text-secondary font-body-md transition-all" href="#">Alumni</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-bold uppercase tracking-widest text-white mb-2">Resources</h4>
+<a class="text-on-surface-variant hover:text-secondary font-body-md transition-all" href="#">Affiliations</a>
+<a class="text-on-surface-variant hover:text-secondary font-body-md transition-all" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-secondary font-body-md transition-all" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-bold uppercase tracking-widest text-white mb-2">Quick Contact</h4>
+<p class="text-on-surface-variant font-body-md">admissions@iifn.edu.in</p>
+<p class="text-on-surface-variant font-body-md">+91 (124) 400 8900</p>
+</div>
+</footer>
+<script>
+        // Micro-interactions for buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => btn.classList.add('scale-95'));
+            btn.addEventListener('mouseup', () => btn.classList.remove('scale-95'));
+            btn.addEventListener('mouseleave', () => btn.classList.remove('scale-95'));
+        });
+
+        // Simple observer for reveal animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section, aside').forEach(el => {
+            el.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(el);
+        });
+    </script>
+</body></html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About Us | Indian Institute of Fitness & Nutrition (IIFN)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .red-heat-glow:hover {
+            box-shadow: 0 0 40px rgba(224, 6, 0, 0.4);
+        }
+        .text-glow {
+            text-shadow: 0 0 15px rgba(255, 180, 168, 0.3);
+        }
+        @keyframes count-up {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-count {
+            animation: count-up 0.8s ease-out forwards;
+        }
+        .performance-grid {
+            background-image: radial-gradient(circle at 2px 2px, #222 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#393939",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "surface-variant": "#353535",
+                        "surface-container-high": "#2a2a2a",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-tertiary-container": "#747576",
+                        "error": "#ffb4ab",
+                        "on-secondary-container": "#fff1ef",
+                        "on-secondary": "#680200",
+                        "surface-container": "#20201f",
+                        "on-primary-container": "#757575",
+                        "on-background": "#e5e2e1",
+                        "secondary-fixed": "#ffdad4",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-container-low": "#1c1b1b",
+                        "inverse-on-surface": "#313030",
+                        "secondary": "#ffb4a8",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-error": "#690005",
+                        "primary-fixed-dim": "#c6c6c6",
+                        "on-secondary-fixed": "#410100",
+                        "secondary-container": "#e00600",
+                        "primary": "#c6c6c6",
+                        "on-surface": "#e5e2e1",
+                        "background": "#131313",
+                        "surface-tint": "#c6c6c6",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-dim": "#131313",
+                        "outline": "#988e90",
+                        "tertiary-container": "#000000",
+                        "tertiary": "#c6c6c7",
+                        "on-primary-fixed": "#1b1b1b",
+                        "outline-variant": "#4c4546",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed": "#e2e2e2",
+                        "inverse-primary": "#5e5e5e",
+                        "on-primary-fixed-variant": "#474747",
+                        "on-tertiary": "#2f3131",
+                        "primary-container": "#000000",
+                        "secondary-container": "#e00600",
+                        "secondary-fixed-dim": "#ffb4a8",
+                        "tertiary-fixed": "#e2e2e2",
+                        "error-container": "#93000a",
+                        "surface": "#131313",
+                        "on-surface-variant": "#cfc4c5",
+                        "on-primary": "#303030",
+                        "surface-container-highest": "#353535",
+                        "on-secondary-fixed-variant": "#930300"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "section-gap-mobile": "64px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "grid-columns": "12",
+                        "section-gap-desktop": "120px",
+                        "margin": "40px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "label-bold": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-bold": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-secondary-container selection:text-white overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-gutter py-4 w-full max-w-full mx-auto">
+<div class="font-display-lg text-headline-md font-black text-on-surface tracking-tighter">IIFN</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Courses</a>
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Research</a>
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Certifications</a>
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Admissions</a>
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-secondary border-b-2 border-secondary pb-1" href="#">About</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="hidden md:block font-label-bold text-label-bold uppercase tracking-wider bg-secondary-container text-white px-6 py-2 transition-all hover:scale-105 active:scale-95 red-heat-glow">ENROLL NOW</button>
+<span class="material-symbols-outlined text-secondary cursor-pointer" data-icon="menu">menu</span>
+</div>
+</nav>
+<!-- SideNavBar (Hidden by default, triggered by JS) -->
+<aside class="fixed right-0 top-0 h-full w-full md:w-96 z-[60] bg-background/90 backdrop-blur-2xl border-l border-white/10 shadow-[0_0_40px_rgba(224,6,0,0.15)] flex flex-col p-margin gap-base transform translate-x-full transition-all duration-500 ease-in-out" id="side-nav">
+<div class="flex justify-between items-center mb-10">
+<div class="font-display-lg text-headline-md text-secondary">IIFN</div>
+<span class="material-symbols-outlined text-on-surface cursor-pointer" onclick="document.getElementById('side-nav').classList.add('translate-x-full')">close</span>
+</div>
+<div class="flex flex-col gap-6">
+<a class="font-headline-md text-headline-md uppercase font-bold text-on-surface/70 hover:text-on-surface transition-all" href="#">Home</a>
+<a class="font-headline-md text-headline-md uppercase font-bold text-on-surface/70 hover:text-on-surface transition-all" href="#">Advanced Personal Training</a>
+<a class="font-headline-md text-headline-md uppercase font-bold text-on-surface/70 hover:text-on-surface transition-all" href="#">Sports Nutrition</a>
+<a class="font-headline-md text-headline-md uppercase font-bold text-on-surface/70 hover:text-on-surface transition-all" href="#">Master Diploma</a>
+<a class="font-headline-md text-headline-md uppercase font-bold text-on-surface/70 hover:text-on-surface transition-all" href="#">Student Portal</a>
+<a class="font-headline-md text-headline-md uppercase font-bold text-on-surface/70 hover:text-on-surface transition-all" href="#">Contact</a>
+</div>
+</aside>
+<main class="performance-grid">
+<!-- Hero Section -->
+<section class="relative h-[921px] w-full flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-b from-background/20 via-background/60 to-background z-10"></div>
+<div class="w-full h-full bg-cover bg-center grayscale opacity-60" data-alt="A cinematic, wide-angle shot of a high-tech performance lab at the Indian Institute of Fitness and Nutrition. Professional fitness trainers and students are seen in a dark, atmospheric environment with high-contrast lighting and intense red accents. The atmosphere is disciplined, powerful, and elite, reflecting a top-tier educational institution for athletics and science." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB5YOnZ2XxFctG6vJd4h6BfBq6cWVHjzWqdmTy7FdLyPDMidIQS-CGSrYnYWf8cxmKnA00b-xQyYwc9kUKIxJnfs5wo1iEhtstbHtgvjGEh8HA0XbwrIUEZZsM6iyBdTWT-ovk_hv_E21dRBne_2KpfucSxybQFUYtoQEBkYzPK6_oK_NXTeDzyWc_k5qXYT3_-jSk8PIcZOC37aLi6ihEGAgGn02mONW7zcReIACbMvyB-Ontxgvd4ESG8TIniyhkeCpW544r285E')"></div>
+</div>
+<div class="relative z-20 text-center px-gutter max-w-5xl">
+<span class="inline-block px-4 py-1 bg-secondary-container text-white font-label-bold text-xs uppercase tracking-[0.2em] mb-6 animate-pulse">Excellence in Fitness Education</span>
+<h1 class="font-display-lg text-[48px] md:text-[84px] leading-[1.05] text-white uppercase mb-8">Spreading <span class="text-secondary-container">Evidence-Based</span> Fitness Education</h1>
+<p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto mb-12">Bridging the gap between athletic performance and scientific precision through a disciplined, high-octane curriculum.</p>
+<div class="flex flex-col sm:flex-row gap-6 justify-center">
+<button class="bg-secondary-container text-white font-label-bold px-10 py-4 uppercase red-heat-glow transition-all">Download Prospectus</button>
+<button class="border-2 border-white text-white font-label-bold px-10 py-4 uppercase hover:bg-white hover:text-black transition-all">Our Story</button>
+</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="py-20 relative z-20 -mt-20 px-margin">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="glass-panel p-10 text-center group transition-all hover:border-secondary-container/50">
+<div class="font-display-lg text-secondary-container mb-2 text-glow" id="stat-certified">15,000+</div>
+<div class="font-label-bold uppercase tracking-widest text-on-surface-variant group-hover:text-secondary transition-colors">Students Certified</div>
+</div>
+<div class="glass-panel p-10 text-center group transition-all hover:border-secondary-container/50">
+<div class="font-display-lg text-secondary-container mb-2 text-glow" id="stat-years">12+</div>
+<div class="font-label-bold uppercase tracking-widest text-on-surface-variant group-hover:text-secondary transition-colors">Years of Excellence</div>
+</div>
+<div class="glass-panel p-10 text-center group transition-all hover:border-secondary-container/50">
+<div class="font-display-lg text-secondary-container mb-2 text-glow" id="stat-placement">94%</div>
+<div class="font-label-bold uppercase tracking-widest text-on-surface-variant group-hover:text-secondary transition-colors">Placement Rate</div>
+</div>
+</div>
+</section>
+<!-- Mission/Vision Section -->
+<section class="py-section-gap-desktop px-margin max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="space-y-12">
+<div>
+<h2 class="font-display-lg text-headline-lg uppercase text-white mb-6 border-l-4 border-secondary-container pl-6">Our Mission</h2>
+<p class="font-body-lg text-on-surface-variant leading-relaxed">
+                            To empower the next generation of fitness leaders with <span class="text-secondary font-bold">scientifically-backed knowledge</span> and practical rigor. We dismantle myths and replace them with peer-reviewed protocols that drive real results in performance labs and commercial gyms alike.
+                        </p>
+</div>
+<div>
+<h2 class="font-display-lg text-headline-lg uppercase text-white mb-6 border-l-4 border-secondary-container pl-6">Our Vision</h2>
+<p class="font-body-lg text-on-surface-variant leading-relaxed">
+                            To become the global standard for <span class="text-secondary font-bold">Performance Education</span>. We envision an industry where every trainer is a researcher, and every workout is a calculated step toward physiological peak, fostered through innovation and integrity.
+                        </p>
+</div>
+</div>
+<div class="relative h-[600px] group">
+<div class="absolute inset-0 border-2 border-secondary-container translate-x-4 translate-y-4 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500"></div>
+<div class="w-full h-full bg-cover bg-center grayscale transition-all duration-700 group-hover:grayscale-0" data-alt="A high-contrast, artistic photograph of a female athlete performing a precise deadlift in a modern gym with red atmospheric lighting. The image emphasizes muscle definition, discipline, and the scientific approach to fitness. The lighting is dramatic, highlighting the sleek equipment and professional setting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDyiTrFuJpBGr3x2TwCPCJWma9XX8_epjWKPpjg87SEh_rGtAIyqH92z31g0Scw3_9nL9mj7DgOOO8CGegt00uI4zcCiyqE_NRLKSyVlEiKI9GUOGaQgZvKDmujguhGCc-bn3Z4Bg_RUTPwbNd7S1oPC3SZG17RsbmAxG9GRfNrOJjOhhuPCPKDjTS6uEqh20bmP34xXUrN446H9yo3_GwbKW4YdxyH118uZQNZvAShvqozW1v5neWTntJozagAFsYbjzF7fB7kkJc')"></div>
+</div>
+</div>
+</section>
+<!-- Affiliations Section -->
+<section class="py-section-gap-desktop bg-surface-container-lowest px-margin">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-20">
+<h2 class="font-display-lg text-headline-lg uppercase text-white mb-4">Accreditations & Registrations</h2>
+<div class="h-1 w-24 bg-secondary-container mx-auto"></div>
+</div>
+<div class="overflow-x-auto glass-panel">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-black">
+<th class="p-6 font-label-bold uppercase text-secondary tracking-widest border-b border-white/10">Entity / Registration</th>
+<th class="p-6 font-label-bold uppercase text-secondary tracking-widest border-b border-white/10">Certificate / Reg. Number</th>
+<th class="p-6 font-label-bold uppercase text-secondary tracking-widest border-b border-white/10">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-on-surface-variant">
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+<td class="p-6">Ministry of Corporate Affairs (MCA)</td>
+<td class="p-6">U85300DL2021PTC384952</td>
+<td class="p-6 text-green-500 flex items-center gap-2"><span class="material-symbols-outlined text-sm" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span> Verified</td>
+</tr>
+<tr class="bg-surface-container-low/50 border-b border-white/5 hover:bg-white/5 transition-colors">
+<td class="p-6">ISO 9001:2015 Quality Management</td>
+<td class="p-6">21EQHV89</td>
+<td class="p-6 text-green-500 flex items-center gap-2"><span class="material-symbols-outlined text-sm" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span> Certified</td>
+</tr>
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+<td class="p-6">Skill India Mission (NSDC Partner)</td>
+<td class="p-6">TP064522</td>
+<td class="p-6 text-green-500 flex items-center gap-2"><span class="material-symbols-outlined text-sm" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span> Active</td>
+</tr>
+<tr class="bg-surface-container-low/50 border-b border-white/5 hover:bg-white/5 transition-colors">
+<td class="p-6">FIT India Movement Registration</td>
+<td class="p-6">FI2022APP8829</td>
+<td class="p-6 text-green-500 flex items-center gap-2"><span class="material-symbols-outlined text-sm" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span> Registered</td>
+</tr>
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+<td class="p-6">MSME (Udyam Registration)</td>
+<td class="p-6">UDYAM-DL-08-0012943</td>
+<td class="p-6 text-green-500 flex items-center gap-2"><span class="material-symbols-outlined text-sm" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span> Active</td>
+</tr>
+<!-- More rows for the 14 registrations would follow same pattern -->
+<tr class="bg-surface-container-low/50 border-b border-white/5 hover:bg-white/5 transition-colors">
+<td class="p-6">NITI Aayog (NGO Darpan)</td>
+<td class="p-6">DL/2021/0291484</td>
+<td class="p-6 text-green-500 flex items-center gap-2"><span class="material-symbols-outlined text-sm" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span> Active</td>
+</tr>
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+<td class="p-6">International Health & Fitness Association</td>
+<td class="p-6">IHFA-MEM-IIFN-2024</td>
+<td class="p-6 text-green-500 flex items-center gap-2"><span class="material-symbols-outlined text-sm" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span> Member</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Faculty Section -->
+<section class="py-section-gap-desktop px-margin max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div>
+<h2 class="font-display-lg text-headline-lg uppercase text-white mb-4">Elite Faculty</h2>
+<p class="font-body-lg text-on-surface-variant max-w-xl">Learn from master trainers and sports nutritionists who live the performance lifestyle.</p>
+</div>
+<div class="flex gap-4">
+<button class="p-4 border border-white/20 hover:border-secondary transition-all"><span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span></button>
+<button class="p-4 border border-white/20 hover:border-secondary transition-all"><span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span></button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Faculty Card 1 -->
+<div class="bg-surface-container-low border border-white/5 overflow-hidden group">
+<div class="relative h-80 overflow-hidden">
+<div class="absolute inset-0 bg-secondary-container/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-10"></div>
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100" data-alt="Professional portrait of a male lead faculty member at IIFN. He is an elite master trainer with a muscular build, wearing a professional black IIFN athletic shirt. The background is a dark, sleek gym environment with high-contrast shadows and clean red linear lighting. Professional, authoritative expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxyMWBzYC2eYG8oEo10IVENcEiM2-New6Heo8pUrekJdtx8_69jcEZCOcYkfscZdCUVys_Vs35kF64KAfe0H71YU6O5klOhFz0ZpNZhIDLrrlj3MG5LeFbPSum2gzTTKTQPiD8IAV2NNavljUs6A6UvdLRaw-cduUX6zHg_SrOn5kkmUxIKzr7xHTse0Pfj9Sp16mmUIRykIJw_8Ld0s0F9mAfW44vL8LM1C5npAOpWqjFMrEhnT1O-R-JXWAQPuWn1d1Hh3HDOO4"/>
+</div>
+<div class="p-6 relative">
+<div class="h-1 w-12 bg-secondary-container mb-4 group-hover:w-full transition-all duration-500"></div>
+<h3 class="font-headline-md text-white uppercase mb-1">Dr. Aryan Sharma</h3>
+<p class="font-label-bold text-secondary text-xs uppercase tracking-widest mb-4">Master Diploma in Fitness</p>
+<p class="font-body-md text-on-surface-variant text-sm">15+ Years Industry Experience, Specialist in Biomechanics.</p>
+</div>
+</div>
+<!-- Faculty Card 2 -->
+<div class="bg-surface-container-low border border-white/5 overflow-hidden group">
+<div class="relative h-80 overflow-hidden">
+<div class="absolute inset-0 bg-secondary-container/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-10"></div>
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100" data-alt="Professional portrait of a female sports nutritionist at IIFN. She is fit and athletic, wearing a dark professional performance jacket. The setting is a science lab-inspired performance center. Lighting is cool with sharp red highlights. She has a confident, knowledgeable expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhqRqzowSGYCDlZGlArHh9cYpGjd5KCJxnN-xxzV4JrambkvXT1F_jUQKBIZSgXTVWqDZmAb79l61KC7ffxAiJSBCzoKZiDVDiFXWKCaOfBrcEuwxkLU6FwR-txOaP384JOaXxiGOvw875GSKf7_KggIjyokyEAi67FHIW98vWrDuQyGjHi_3hy8gkFBElX4WVx-O84r5XKAw_7zE2X05OE5CvjJTNV7Wq5tz2osw_wA5Lu4klfmCPLfzg5tGDqCElyi_WIKh4toQ"/>
+</div>
+<div class="p-6 relative">
+<div class="h-1 w-12 bg-secondary-container mb-4 group-hover:w-full transition-all duration-500"></div>
+<h3 class="font-headline-md text-white uppercase mb-1">Sneha Kapoor</h3>
+<p class="font-label-bold text-secondary text-xs uppercase tracking-widest mb-4">Sports Nutrition Head</p>
+<p class="font-body-md text-on-surface-variant text-sm">Registered Dietitian, Performance Nutrition Expert.</p>
+</div>
+</div>
+<!-- Faculty Card 3 -->
+<div class="bg-surface-container-low border border-white/5 overflow-hidden group">
+<div class="relative h-80 overflow-hidden">
+<div class="absolute inset-0 bg-secondary-container/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-10"></div>
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100" data-alt="Portrait of a muscular male faculty member specialising in strength and conditioning at IIFN. He is standing in a power rack environment with heavy iron weights visible in the blurred background. Moody, dramatic lighting with red tones. Bold, expert appearance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4LSknMGvWsOaxZac8u0-Y1CoMzHWfpgOhTJUXCSg8FkK_dqtQRm8u2ZjPjSkz1i1Yeu6m5y7a1VbXlck-EjTTVFP0KWgY-201czkLHscHnR5Zk6N4cqjVGVmIAHvqprbD28imJ7PBkGBUau151q7shTQFw9I3158A8uP_qeCm6FGY6IRCoXGpY0nWUzv-ftKpKGD3_buERalCt-p-3iJ00SmC7o5jlhCHPDE5h5tZfRN8uucGrvTvLl5h65h0rllPNt_54aJfhNU"/>
+</div>
+<div class="p-6 relative">
+<div class="h-1 w-12 bg-secondary-container mb-4 group-hover:w-full transition-all duration-500"></div>
+<h3 class="font-headline-md text-white uppercase mb-1">Vikram Rathore</h3>
+<p class="font-label-bold text-secondary text-xs uppercase tracking-widest mb-4">Strength Specialist</p>
+<p class="font-body-md text-on-surface-variant text-sm">Olympic Weightlifting Coach, CSCS Certified.</p>
+</div>
+</div>
+<!-- Faculty Card 4 -->
+<div class="bg-surface-container-low border border-white/5 overflow-hidden group">
+<div class="relative h-80 overflow-hidden">
+<div class="absolute inset-0 bg-secondary-container/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-10"></div>
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100" data-alt="Portrait of a fit male trainer focusing on clinical exercise science at IIFN. He is wearing clinical performance attire in a tech-driven training room with screens showing physiological data. High-contrast dark aesthetic with red glowing elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_w7gRP6--xXhbZEen5yNStjYJUnu3dfHFylQGZ4DrA7YRikB7ZEjs-Yd9MxKR48oUDeo7x4pcAiXN5JFmCoJAYEwHsq3IYRt2idiFsxSuLFzkXJah6D_DhyQWDTTYqjUJMu0Ps478XyVmuCrhXz9gLrsqizSietjz71Hl1ocg1pecQsZjG8Yr5tSRkFoU872OqwgGKXDxElmffc5yyIatVvyvBu7tQnvrs9dAeFA2ryhkULHmeT9iTXP7pXoDfQbgwYZNslTfsVo"/>
+</div>
+<div class="p-6 relative">
+<div class="h-1 w-12 bg-secondary-container mb-4 group-hover:w-full transition-all duration-500"></div>
+<h3 class="font-headline-md text-white uppercase mb-1">Rajesh Mehra</h3>
+<p class="font-label-bold text-secondary text-xs uppercase tracking-widest mb-4">Clinical Exercise</p>
+<p class="font-body-md text-on-surface-variant text-sm">Physiotherapist & Advanced Personal Trainer.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-section-gap-desktop px-margin">
+<div class="max-w-7xl mx-auto glass-panel relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-1/2 h-full bg-secondary-container skew-x-12 translate-x-20 opacity-10 group-hover:opacity-20 transition-all duration-700"></div>
+<div class="relative z-10 p-12 md:p-24 flex flex-col md:flex-row items-center justify-between gap-12">
+<div class="max-w-2xl">
+<h2 class="font-display-lg text-[40px] md:text-[56px] text-white uppercase mb-6 leading-tight">Start Your <span class="text-secondary-container">Professional</span> Journey</h2>
+<p class="font-body-lg text-on-surface-variant">Join thousands of elite fitness professionals. Registration for the 2024 Autumn Cohort is now open.</p>
+</div>
+<button class="whitespace-nowrap bg-secondary-container text-white font-label-bold px-12 py-5 uppercase red-heat-glow hover:scale-105 transition-all text-lg">Enroll Today</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap-desktop bg-surface-container-lowest border-t-4 border-secondary">
+<div class="grid grid-cols-1 md:grid-cols-5 gap-gutter px-margin mx-auto max-w-7xl">
+<div class="md:col-span-2">
+<div class="font-display-lg text-headline-md text-secondary mb-6">IIFN</div>
+<p class="font-body-md text-on-surface-variant max-w-sm mb-8">The Indian Institute of Fitness & Nutrition is a premier academic institution dedicated to high-performance fitness education and research.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-secondary transition-colors group" href="#">
+<span class="material-symbols-outlined text-white" data-icon="share">share</span>
+</a>
+<a class="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-secondary transition-colors group" href="#">
+<span class="material-symbols-outlined text-white" data-icon="mail">mail</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-label-bold uppercase text-white mb-6 tracking-widest">Resources</h4>
+<ul class="space-y-4 font-body-md text-on-surface-variant">
+<li><a class="hover:text-secondary transition-all" href="#">Curriculum</a></li>
+<li><a class="hover:text-secondary transition-all" href="#">Affiliations</a></li>
+<li><a class="hover:text-secondary transition-all" href="#">Faculty</a></li>
+<li><a class="hover:text-secondary transition-all" href="#">Alumni</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-bold uppercase text-white mb-6 tracking-widest">Legal</h4>
+<ul class="space-y-4 font-body-md text-on-surface-variant">
+<li><a class="hover:text-secondary transition-all" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-secondary transition-all" href="#">Terms of Service</a></li>
+<li><a class="hover:text-secondary transition-all" href="#">Refund Policy</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-bold uppercase text-white mb-6 tracking-widest">Contact</h4>
+<ul class="space-y-4 font-body-md text-on-surface-variant">
+<li class="flex gap-2"><span class="material-symbols-outlined text-secondary text-sm" data-icon="location_on">location_on</span> New Delhi, India</li>
+<li class="flex gap-2"><span class="material-symbols-outlined text-secondary text-sm" data-icon="call">call</span> +91 999 000 111</li>
+<li class="flex gap-2"><span class="material-symbols-outlined text-secondary text-sm" data-icon="schedule">schedule</span> Mon - Sat: 9am - 7pm</li>
+</ul>
+</div>
+</div>
+<div class="mt-20 pt-8 border-t border-white/5 text-center px-margin">
+<p class="font-body-md text-on-surface-variant/50">© 2024 Indian Institute of Fitness & Nutrition. All Rights Reserved.</p>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for mobile menu
+        document.querySelector('[data-icon="menu"]').addEventListener('click', () => {
+            document.getElementById('side-nav').classList.remove('translate-x-full');
+        });
+
+        // Intersection Observer for animated counters
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-count');
+                    // In a real app, logic for counting numbers up would go here
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('#stat-certified, #stat-years, #stat-placement').forEach(el => observer.observe(el));
+    </script>
+</body></html>

@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>IIFN | Online Fitness Certification &amp; Science-Based Education</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&amp;family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface-bright": "#393939",
+                "on-tertiary-fixed-variant": "#454747",
+                "surface-variant": "#353535",
+                "surface-container-high": "#2a2a2a",
+                "on-tertiary-fixed": "#1a1c1c",
+                "on-tertiary-container": "#747576",
+                "error": "#ffb4ab",
+                "on-secondary-container": "#fff1ef",
+                "on-secondary": "#680200",
+                "surface-container": "#20201f",
+                "on-primary-container": "#757575",
+                "on-background": "#e5e2e1",
+                "secondary-fixed": "#ffdad4",
+                "surface-container-lowest": "#0e0e0e",
+                "surface-container-low": "#1c1b1b",
+                "inverse-on-surface": "#313030",
+                "secondary": "#ffb4a8",
+                "tertiary-fixed-dim": "#c6c6c7",
+                "on-error": "#690005",
+                "primary-fixed-dim": "#c6c6c6",
+                "on-secondary-fixed": "#410100",
+                "secondary-container": "#E10600",
+                "primary": "#c6c6c6",
+                "on-surface": "#e5e2e1",
+                "background": "#131313",
+                "surface-tint": "#c6c6c6",
+                "inverse-surface": "#e5e2e1",
+                "surface-dim": "#131313",
+                "outline": "#988e90",
+                "tertiary-container": "#000000",
+                "tertiary": "#c6c6c7",
+                "on-primary-fixed": "#1b1b1b",
+                "outline-variant": "#4c4546",
+                "on-error-container": "#ffdad6",
+                "primary-fixed": "#e2e2e2",
+                "inverse-primary": "#5e5e5e",
+                "on-primary-fixed-variant": "#474747",
+                "on-tertiary": "#2f3131",
+                "primary-container": "#000000",
+                "secondary-fixed-dim": "#ffb4a8",
+                "tertiary-fixed": "#e2e2e2",
+                "error-container": "#93000a",
+                "surface": "#131313",
+                "on-surface-variant": "#cfc4c5",
+                "on-primary": "#303030",
+                "surface-container-highest": "#353535",
+                "on-secondary-fixed-variant": "#930300"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "section-gap-mobile": "64px",
+                "base": "8px",
+                "gutter": "24px",
+                "grid-columns": "12",
+                "section-gap-desktop": "120px",
+                "margin": "40px"
+            },
+            "fontFamily": {
+                "body-lg": ["Inter"],
+                "headline-lg": ["Montserrat"],
+                "display-lg": ["Montserrat"],
+                "headline-lg-mobile": ["Montserrat"],
+                "headline-md": ["Montserrat"],
+                "body-md": ["Inter"],
+                "label-bold": ["Inter"]
+            },
+            "fontSize": {
+                "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "label-bold": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #131313; color: #e5e2e1; }
+        .glass-nav { backdrop-filter: blur(20px); background: rgba(19, 19, 19, 0.8); }
+        .red-glow { box-shadow: 0 0 40px rgba(225, 6, 0, 0.3); }
+        .red-glow-hover:hover { box-shadow: 0 0 50px rgba(225, 6, 0, 0.5); }
+        .marquee { overflow: hidden; white-space: nowrap; }
+        .marquee-content { display: inline-block; animation: marquee 30s linear infinite; }
+        .marquee-content-slow { display: inline-block; animation: marquee 45s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #E10600; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .review-marquee { animation: marquee 40s linear infinite; }
+        .review-marquee:hover { animation-play-state: paused; }
+        .step-card:hover .step-number { transform: translateY(-5px); color: #E10600; }
+        .logo-filter { filter: brightness(0) invert(1); opacity: 0.6; transition: opacity 0.3s ease; }
+        .logo-filter:hover { opacity: 1; }
+    </style>
+</head>
+<body class="font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 border-b border-white/10 flex justify-between items-center px-gutter py-4 max-w-full glass-nav">
+<div class="font-display-lg text-headline-md font-black text-on-surface tracking-tighter uppercase">IIFN</div>
+<div class="hidden md:flex gap-gutter">
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-secondary border-b-2 border-secondary pb-1" href="#">Courses</a>
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-on-surface hover:text-secondary transition-all duration-300" href="#">Certifications</a>
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-on-surface hover:text-secondary transition-all duration-300" href="#">Student Portal</a>
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-on-surface hover:text-secondary transition-all duration-300" href="#">Admissions</a>
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-on-surface hover:text-secondary transition-all duration-300" href="#">About</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden lg:block border border-secondary text-secondary font-label-bold text-label-bold px-6 py-2 uppercase transition-all hover:bg-secondary/10">SIGN UP</button>
+<button class="bg-secondary-container text-white font-label-bold text-label-bold px-6 py-2 uppercase red-glow-hover transition-all active:scale-95">ENROLL NOW</button>
+<span class="material-symbols-outlined text-on-surface cursor-pointer">menu</span>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative w-full h-[80vh] min-h-[600px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuATk9aVZFn9MFKkPfnST_UPGZh4TdWzYJ3fGvd3IvCNpB5es01rokzuNOrMZjfmDAMZcEeFWGIw42Cbu8mUz9NxW9_crZJYrRyHhjD9wJoQwkFEJ8NZk-0D626E-4MOMWFChZ-IPjk_VcoVPC0ftuHPrAjia9lTLsB-SugLMgtXvrvmONnztN7IIgyw58i_iKP3Z6xhyKGYs5d2gXy2zhfEXc5HwMtH4U9f0wOLxFrVBrh_t-0JIfNdYeRH0D4R8KYEpBNI7zax5Fg')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-secondary-container/20"></div>
+</div>
+<div class="relative z-10 px-margin w-full max-w-screen-xl mx-auto">
+<div class="flex flex-col gap-6 max-w-2xl">
+<div class="flex gap-4 flex-wrap">
+<span class="bg-secondary-container/20 border border-secondary-container/50 text-secondary text-[10px] font-bold px-3 py-1 uppercase tracking-widest">Global Online Certification</span>
+<span class="bg-secondary-container/20 border border-secondary-container/50 text-secondary text-[10px] font-bold px-3 py-1 uppercase tracking-widest">Science-Based Curriculum</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface uppercase leading-none">Master Fitness Science Online</h1>
+<p class="font-headline-md text-headline-md text-on-surface/70">The Gold Standard in Professional Online Fitness Education.</p>
+<div class="flex gap-base mt-4">
+<button class="bg-secondary-container text-white px-8 py-4 font-label-bold text-label-bold uppercase red-glow hover:scale-105 transition-all">Start Your Course</button>
+<button class="border-2 border-white text-white px-8 py-4 font-label-bold text-label-bold uppercase hover:bg-white hover:text-black transition-all">Download Brochure</button>
+</div>
+</div>
+</div>
+</header>
+<!-- As Featured In (Larger & More Prominent) -->
+<section class="bg-surface py-20 border-b border-white/5 overflow-hidden">
+<div class="px-margin max-w-screen-xl mx-auto mb-12 text-center">
+<h2 class="text-xs font-bold text-secondary uppercase tracking-[0.3em] mb-4">Establishing Authority</h2>
+<p class="font-display-lg text-headline-lg uppercase">As Featured In Global Media</p>
+<div class="w-16 h-1 bg-secondary-container mx-auto mt-6"></div>
+</div>
+<div class="marquee-content-slow flex gap-16 items-center">
+<div class="flex gap-24 items-center pr-24">
+<img alt="ANI News" class="h-10 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<img alt="The Print" class="h-10 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<img alt="Indian Express" class="h-10 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<img alt="Zee5" class="h-10 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<img alt="DailyHunt" class="h-10 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<img alt="Telegraph" class="h-10 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+</div>
+<div class="flex gap-24 items-center pr-24">
+<img alt="ANI News" class="h-10 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<img alt="The Print" class="h-10 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<img alt="Indian Express" class="h-10 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<img alt="Zee5" class="h-10 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<img alt="DailyHunt" class="h-10 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<img alt="Telegraph" class="h-10 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+</div>
+</div>
+</section>
+<!-- Global Affiliations & Certifications Section (Enhanced) -->
+<section class="py-24 bg-surface-container-low border-b border-white/5">
+<div class="px-margin max-w-screen-xl mx-auto flex flex-col items-center gap-16">
+<div class="text-center">
+<h2 class="font-display-lg text-headline-lg uppercase tracking-tight mb-4">Elite Global Affiliations</h2>
+<p class="text-secondary font-label-bold uppercase tracking-[0.3em] text-xs">Internationally Recognized Accreditation &amp; Standards</p>
+<div class="w-16 h-1 bg-secondary-container mx-auto mt-6"></div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-12 lg:gap-20 items-center justify-items-center w-full max-w-6xl">
+<div class="flex flex-col items-center gap-6 group">
+<img alt="NSDC Logo" class="h-24 lg:h-32 object-contain logo-filter group-hover:opacity-100 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<div class="text-center">
+<p class="font-label-bold text-on-surface uppercase text-xs">NSDC Approved</p>
+<p class="text-[10px] text-on-surface/40 uppercase mt-1">Skill India Partner</p>
+</div>
+</div>
+<div class="flex flex-col items-center gap-6 group">
+<img alt="ISO Logo" class="h-24 lg:h-32 object-contain logo-filter group-hover:opacity-100 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<div class="text-center">
+<p class="font-label-bold text-on-surface uppercase text-xs">ISO 9001:2015</p>
+<p class="text-[10px] text-on-surface/40 uppercase mt-1">Quality Management</p>
+</div>
+</div>
+<div class="flex flex-col items-center gap-6 group">
+<img alt="EREPS Logo" class="h-24 lg:h-32 object-contain logo-filter group-hover:opacity-100 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<div class="text-center">
+<p class="font-label-bold text-on-surface uppercase text-xs">EREPS Level 4</p>
+<p class="text-[10px] text-on-surface/40 uppercase mt-1">European Standards</p>
+</div>
+</div>
+<div class="flex flex-col items-center gap-6 group">
+<img alt="MSME Logo" class="h-24 lg:h-32 object-contain logo-filter group-hover:opacity-100 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<div class="text-center">
+<p class="font-label-bold text-on-surface uppercase text-xs">MSME Registered</p>
+<p class="text-[10px] text-on-surface/40 uppercase mt-1">Govt. of India</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- How Does NFNA Work -->
+<section class="py-section-gap-desktop bg-black">
+<div class="px-margin max-w-screen-xl mx-auto">
+<div class="flex flex-col items-center text-center mb-16">
+<h2 class="font-display-lg text-headline-lg uppercase mb-4">How Does NFNA Work?</h2>
+<p class="text-on-surface/50 font-label-bold uppercase tracking-widest text-xs">Your Journey to Professional Success in 6 Simple Steps</p>
+<div class="w-24 h-1 bg-secondary-container mt-6"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Step 1 -->
+<div class="step-card bg-surface-container-low p-10 border border-white/5 transition-all duration-300 hover:border-secondary-container/50 group relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary-container/20 group-hover:bg-secondary-container transition-all"></div>
+<span class="step-number font-display-lg text-5xl text-white/5 transition-all duration-300 block mb-4">01</span>
+<h3 class="font-headline-md text-headline-md uppercase mb-3">Register</h3>
+<p class="text-on-surface-variant font-body-md">Choose your desired certification and complete the simple online registration form.</p>
+</div>
+<!-- Step 2 -->
+<div class="step-card bg-surface-container-low p-10 border border-white/5 transition-all duration-300 hover:border-secondary-container/50 group relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary-container/20 group-hover:bg-secondary-container transition-all"></div>
+<span class="step-number font-display-lg text-5xl text-white/5 transition-all duration-300 block mb-4">02</span>
+<h3 class="font-headline-md text-headline-md uppercase mb-3">Payment</h3>
+<p class="text-on-surface-variant font-body-md">Securely pay your course fee once or opt for flexible monthly installments.</p>
+</div>
+<!-- Step 3 -->
+<div class="step-card bg-surface-container-low p-10 border border-white/5 transition-all duration-300 hover:border-secondary-container/50 group relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary-container/20 group-hover:bg-secondary-container transition-all"></div>
+<span class="step-number font-display-lg text-5xl text-white/5 transition-all duration-300 block mb-4">03</span>
+<h3 class="font-headline-md text-headline-md uppercase mb-3">Learn</h3>
+<p class="text-on-surface-variant font-body-md">Instant access to live webinars and high-definition recorded classes on our LMS.</p>
+</div>
+<!-- Step 4 -->
+<div class="step-card bg-surface-container-low p-10 border border-white/5 transition-all duration-300 hover:border-secondary-container/50 group relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary-container/20 group-hover:bg-secondary-container transition-all"></div>
+<span class="step-number font-display-lg text-5xl text-white/5 transition-all duration-300 block mb-4">04</span>
+<h3 class="font-headline-md text-headline-md uppercase mb-3">Assignments</h3>
+<p class="text-on-surface-variant font-body-md">Apply your knowledge through practical assignments and case-study evaluations.</p>
+</div>
+<!-- Step 5 -->
+<div class="step-card bg-surface-container-low p-10 border border-white/5 transition-all duration-300 hover:border-secondary-container/50 group relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary-container/20 group-hover:bg-secondary-container transition-all"></div>
+<span class="step-number font-display-lg text-5xl text-white/5 transition-all duration-300 block mb-4">05</span>
+<h3 class="font-headline-md text-headline-md uppercase mb-3">Examination</h3>
+<p class="text-on-surface-variant font-body-md">Attempt the online proctored certification exam when you feel prepared.</p>
+</div>
+<!-- Step 6 -->
+<div class="step-card bg-surface-container-low p-10 border border-white/5 transition-all duration-300 hover:border-secondary-container/50 group relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary-container/20 group-hover:bg-secondary-container transition-all"></div>
+<span class="step-number font-display-lg text-5xl text-white/5 transition-all duration-300 block mb-4">06</span>
+<h3 class="font-headline-md text-headline-md uppercase mb-3">Transform</h3>
+<p class="text-on-surface-variant font-body-md">Receive your verified certificate and launch your elite career in fitness.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Why Choose IIFN -->
+<section class="py-section-gap-desktop px-margin max-w-screen-xl mx-auto">
+<div class="flex flex-col items-center text-center mb-16">
+<h2 class="font-display-lg text-headline-lg uppercase mb-4">Science-Based Online Excellence</h2>
+<div class="w-24 h-1 bg-secondary-container"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="bg-surface-container-low p-base border border-white/5 hover:border-secondary-container/50 transition-all group">
+<div class="p-8 flex flex-col gap-4">
+<span class="material-symbols-outlined text-secondary-container text-4xl" data-icon="laptop_chromebook">laptop_chromebook</span>
+<h3 class="font-headline-md text-headline-md uppercase">100% Online Learning</h3>
+<p class="text-on-surface-variant font-body-md">Access world-class fitness education from anywhere, at any time, through our advanced LMS.</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-low p-base border border-white/5 hover:border-secondary-container/50 transition-all group">
+<div class="p-8 flex flex-col gap-4">
+<span class="material-symbols-outlined text-secondary-container text-4xl" data-icon="science">science</span>
+<h3 class="font-headline-md text-headline-md uppercase">Science-Based Pedagogy</h3>
+<p class="text-on-surface-variant font-body-md">Curriculum built on the latest research in exercise physiology, biomechanics, and nutrition science.</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-low p-base border border-white/5 hover:border-secondary-container/50 transition-all group">
+<div class="p-8 flex flex-col gap-4">
+<span class="material-symbols-outlined text-secondary-container text-4xl" data-icon="video_call">video_call</span>
+<h3 class="font-headline-md text-headline-md uppercase">Live Expert Mentorship</h3>
+<p class="text-on-surface-variant font-body-md">Weekly live interaction with industry veterans to clear concepts and discuss real-world case studies.</p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-low p-base border border-white/5 hover:border-secondary-container/50 transition-all group">
+<div class="p-8 flex flex-col gap-4">
+<span class="material-symbols-outlined text-secondary-container text-4xl" data-icon="workspace_premium">workspace_premium</span>
+<h3 class="font-headline-md text-headline-md uppercase">Verified Digital Creds</h3>
+<p class="text-on-surface-variant font-body-md">Receive blockchain-verified digital certificates instantly upon successful course completion.</p>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="bg-surface-container-low p-base border border-white/5 hover:border-secondary-container/50 transition-all group">
+<div class="p-8 flex flex-col gap-4">
+<span class="material-symbols-outlined text-secondary-container text-4xl" data-icon="groups">groups</span>
+<h3 class="font-headline-md text-headline-md uppercase">Global Alumni Network</h3>
+<p class="text-on-surface-variant font-body-md">Join a community of 15,000+ professionals working across 20+ countries worldwide.</p>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="bg-surface-container-low p-base border border-white/5 hover:border-secondary-container/50 transition-all group">
+<div class="p-8 flex flex-col gap-4">
+<span class="material-symbols-outlined text-secondary-container text-4xl" data-icon="history_edu">history_edu</span>
+<h3 class="font-headline-md text-headline-md uppercase">Lifetime Access</h3>
+<p class="text-on-surface-variant font-body-md">Keep your knowledge fresh with lifetime access to updated course materials and webinars.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Top Courses Summary Section (New) -->
+<section class="py-section-gap-desktop bg-surface-container-lowest">
+<div class="px-margin max-w-screen-xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div class="max-w-2xl">
+<h2 class="text-xs font-bold text-secondary uppercase tracking-[0.3em] mb-4">Master Your Craft</h2>
+<p class="font-display-lg text-headline-lg uppercase">World-Class Digital Certifications</p>
+<div class="w-16 h-1 bg-secondary-container mt-6"></div>
+</div>
+<a class="bg-transparent border-2 border-secondary-container text-on-surface hover:bg-secondary-container hover:text-white px-8 py-4 font-label-bold text-label-bold uppercase transition-all flex items-center gap-2 group" href="#">
+View All Courses <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Course 1 -->
+<div class="bg-black border border-white/10 group overflow-hidden">
+<div class="h-64 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDyzQdQTZXXO8CdZZIVKc60hEgvsAPJ7qlJ6496LXcsdw0hcKlauAd4AO2GZY8zfZk78DuaPM7c-SzKruTFdgOrCkf1xXSAhukQH4TRCgov-Zwpj3fJR6znYKibZ77Q5DUGKhhzfiPrVrIsFN0el7OzWJdFnFeIY-1itVxMg_fs-cKT0nsnAkxSukCsL5JhoILaEVJiUpg4gNoMMVzePK8QSNv_A8Vetsi-us0a3kClPA4ZQZnZXID5Q8dwZ-4l0o-6yIxDmtuJNlw')"></div>
+<div class="p-8">
+<div class="flex justify-between items-center mb-4">
+<span class="text-[10px] bg-secondary-container/20 text-secondary px-2 py-1 font-bold uppercase">Best Seller</span>
+<span class="text-on-surface/50 text-[10px] uppercase font-bold">3 Months</span>
+</div>
+<h3 class="font-headline-md text-headline-md uppercase mb-4">Personal Trainer Certification</h3>
+<p class="text-on-surface/60 text-sm mb-6 line-clamp-2">Master the science of exercise physiology, biomechanics, and program design for elite results.</p>
+<button class="w-full py-4 border border-white/20 text-white font-label-bold uppercase hover:bg-white hover:text-black transition-all">Course Details</button>
+</div>
+</div>
+<!-- Course 2 -->
+<div class="bg-black border border-white/10 group overflow-hidden">
+<div class="h-64 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuATk9aVZFn9MFKkPfnST_UPGZh4TdWzYJ3fGvd3IvCNpB5es01rokzuNOrMZjfmDAMZcEeFWGIw42Cbu8mUz9NxW9_crZJYrRyHhjD9wJoQwkFEJ8NZk-0D626E-4MOMWFChZ-IPjk_VcoVPC0ftuHPrAjia9lTLsB-SugLMgtXvrvmONnztN7IIgyw58i_iKP3Z6xhyKGYs5d2gXy2zhfEXc5HwMtH4U9f0wOLxFrVBrh_t-0JIfNdYeRH0D4R8KYEpBNI7zax5Fg')"></div>
+<div class="p-8">
+<div class="flex justify-between items-center mb-4">
+<span class="text-[10px] bg-secondary-container/20 text-secondary px-2 py-1 font-bold uppercase">Science-Based</span>
+<span class="text-on-surface/50 text-[10px] uppercase font-bold">2 Months</span>
+</div>
+<h3 class="font-headline-md text-headline-md uppercase mb-4">Certified Sports Nutritionist</h3>
+<p class="text-on-surface/60 text-sm mb-6 line-clamp-2">Understand biochemistry and performance nutrition to fuel athletes for maximum output.</p>
+<button class="w-full py-4 border border-white/20 text-white font-label-bold uppercase hover:bg-white hover:text-black transition-all">Course Details</button>
+</div>
+</div>
+<!-- Course 3 -->
+<div class="bg-black border border-white/10 group overflow-hidden">
+<div class="h-64 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCwuWmG5vFipxSnPBNYCPBHnWTDU3wf0xIVWAgbAS5ZKSj1JxgL9Mr4QuPEpRtZ0CozV9a1DcdFb-onu0YxDZlsU1detdL747tZ3uFkKwhOn1vVl2HYWJTduqcgNYkm1l-v_SClin34RiCmfZwRcEnGGUGdDMvmaCCaWuZLWeG6RVk2axeksDNSFu5NVumb7BJIXDpQKsHHRmDiZIZ891m8so7O-ec_H6IMNYp0lDJ9eqCLvURnN0ICjbBJFw9T7F_ZjFyU68UZk9s')"></div>
+<div class="p-8">
+<div class="flex justify-between items-center mb-4">
+<span class="text-[10px] bg-secondary-container/20 text-secondary px-2 py-1 font-bold uppercase">Advanced</span>
+<span class="text-on-surface/50 text-[10px] uppercase font-bold">6 Months</span>
+</div>
+<h3 class="font-headline-md text-headline-md uppercase mb-4">Master Diploma in Fitness</h3>
+<p class="text-on-surface/60 text-sm mb-6 line-clamp-2">Our most comprehensive program covering training, nutrition, and business management.</p>
+<button class="w-full py-4 border border-white/20 text-white font-label-bold uppercase hover:bg-white hover:text-black transition-all">Course Details</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Our Students Work In (Enhanced) -->
+<section class="py-24 bg-surface-container-lowest border-y border-white/5 overflow-hidden">
+<div class="px-margin max-w-screen-xl mx-auto mb-16 text-center">
+<h3 class="text-xs font-bold text-secondary uppercase tracking-[0.3em] mb-4">Proven Placement Records</h3>
+<p class="font-display-lg text-headline-lg uppercase">Our Alumni Drive The Global Industry</p>
+<div class="w-16 h-1 bg-secondary-container mx-auto mt-6"></div>
+</div>
+<div class="marquee-content flex gap-16 items-center">
+<div class="flex gap-24 items-center pr-24">
+<img alt="Gold's Gym" class="h-12 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<img alt="Cult.fit" class="h-12 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<img alt="Anytime Fitness" class="h-12 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<img alt="Talwalkars" class="h-12 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<img alt="Fitness First" class="h-12 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<img alt="Snap Fitness" class="h-12 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+</div>
+<div class="flex gap-24 items-center pr-24">
+<img alt="Gold's Gym" class="h-12 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<img alt="Cult.fit" class="h-12 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<img alt="Anytime Fitness" class="h-12 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<img alt="Talwalkars" class="h-12 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<img alt="Fitness First" class="h-12 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+<img alt="Snap Fitness" class="h-12 object-contain logo-filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX-XvD3xP4q_8Ue5G9_W5l_mK6j6_gVlQz9-v5oX-gP7W0M9X1B2C3D4E5F6G7H8I9J0"/>
+</div>
+</div>
+</section>
+<!-- Course Snapshot -->
+<section class="py-section-gap-desktop bg-surface-container-lowest">
+<div class="px-margin max-w-screen-xl mx-auto flex flex-col md:flex-row gap-section-gap-mobile items-center">
+<div class="w-full md:w-1/2 relative">
+<div class="absolute -inset-4 border-2 border-secondary-container/20 rounded-lg"></div>
+<div class="w-full aspect-[4/3] bg-cover bg-center rounded relative z-10" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDyzQdQTZXXO8CdZZIVKc60hEgvsAPJ7qlJ6496LXcsdw0hcKlauAd4AO2GZY8zfZk78DuaPM7c-SzKruTFdgOrCkf1xXSAhukQH4TRCgov-Zwpj3fJR6znYKibZ77Q5DUGKhhzfiPrVrIsFN0el7OzWJdFnFeIY-1itVxMg_fs-cKT0nsnAkxSukCsL5JhoILaEVJiUpg4gNoMMVzePK8QSNv_A8Vetsi-us0a3kClPA4ZQZnZXID5Q8dwZ-4l0o-6yIxDmtuJNlw')"></div>
+<div class="absolute top-8 left-8 bg-secondary-container text-white px-4 py-2 font-label-bold text-label-bold uppercase z-20">Elite Online Course</div>
+</div>
+<div class="w-full md:w-1/2 flex flex-col gap-8">
+<div class="flex flex-col gap-2">
+<span class="text-secondary-container font-label-bold uppercase tracking-widest">Featured Certification</span>
+<h2 class="font-display-lg text-headline-lg uppercase">Certified Personal Trainer (CPT)</h2>
+</div>
+<div class="grid grid-cols-2 gap-gutter border-y border-white/10 py-8">
+<div class="flex flex-col">
+<span class="text-on-surface/50 text-[12px] uppercase">Duration</span>
+<span class="font-headline-md text-headline-md">3 Months</span>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface/50 text-[12px] uppercase">Platform</span>
+<span class="font-headline-md text-headline-md">IIFN Virtual Campus</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex flex-col">
+<span class="text-on-surface/50 text-[12px] uppercase">Investment</span>
+<div class="flex items-center gap-3">
+<span class="font-display-lg text-headline-lg text-secondary-container">₹5,999</span>
+<span class="text-on-surface/30 line-through text-headline-md">₹12,000</span>
+</div>
+</div>
+</div>
+<div class="flex gap-base">
+<button class="bg-secondary-container text-white px-10 py-4 font-label-bold text-label-bold uppercase red-glow-hover transition-all">Enroll Now</button>
+<button class="border border-white/30 text-white px-10 py-4 font-label-bold text-label-bold uppercase hover:bg-white/5 transition-all">View Online Syllabus</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats -->
+<section class="py-24 bg-black border-y border-white/5">
+<div class="px-margin max-w-screen-xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-gutter text-center">
+<div class="flex flex-col gap-2">
+<span class="font-display-lg text-display-lg text-secondary-container">15K+</span>
+<span class="font-label-bold text-label-bold text-on-surface/50 uppercase tracking-widest">Certified Online</span>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-display-lg text-display-lg text-secondary-container">94%</span>
+<span class="font-label-bold text-label-bold text-on-surface/50 uppercase tracking-widest">Placement Success</span>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-display-lg text-display-lg text-secondary-container">25+</span>
+<span class="font-label-bold text-label-bold text-on-surface/50 uppercase tracking-widest">Global Partners</span>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-display-lg text-display-lg text-secondary-container">4.9/5</span>
+<span class="font-label-bold text-label-bold text-on-surface/50 uppercase tracking-widest">Student Rating</span>
+</div>
+</div>
+</section>
+<!-- Success Stories -->
+<section class="py-section-gap-desktop overflow-hidden">
+<div class="px-margin max-w-screen-xl mx-auto flex flex-col items-center mb-16">
+<h2 class="font-display-lg text-headline-lg uppercase text-center">Graduate Success Stories</h2>
+<p class="text-on-surface/50 font-label-bold uppercase mt-4">Transformed through Science-Based Education</p>
+</div>
+<div class="flex gap-gutter px-margin overflow-x-auto pb-8 custom-scrollbar">
+<div class="flex gap-gutter">
+<div class="min-w-[400px] bg-surface-container-lowest p-8 border border-white/5 relative">
+<span class="material-symbols-outlined text-6xl text-secondary-container/20 absolute top-4 right-8" data-icon="format_quote">format_quote</span>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-16 h-16 rounded-full bg-cover bg-center border-2 border-secondary-container" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCwuWmG5vFipxSnPBNYCPBHnWTDU3wf0xIVWAgbAS5ZKSj1JxgL9Mr4QuPEpRtZ0CozV9a1DcdFb-onu0YxDZlsU1detdL747tZ3uFkKwhOn1vVl2HYWJTduqcgNYkm1l-v_SClin34RiCmfZwRcEnGGUGdDMvmaCCaWuZLWeG6RVk2axeksDNSFu5NVumb7BJIXDpQKsHHRmDiZIZ891m8so7O-ec_H6IMNYp0lDJ9eqCLvURnN0ICjbBJFw9T7F_ZjFyU68UZk9s')"></div>
+<div>
+<p class="font-headline-md text-headline-md uppercase">Rahul Sharma</p>
+<p class="text-secondary-container text-sm">Online CPT Graduate</p>
+</div>
+</div>
+<p class="text-on-surface/70 italic">"IIFN's online CPT course completely changed my approach. The emphasis on scientific biomechanics gave me the edge I needed to work at elite gyms."</p>
+</div>
+<div class="min-w-[400px] bg-surface-container-lowest p-8 border border-white/5 relative">
+<span class="material-symbols-outlined text-6xl text-secondary-container/20 absolute top-4 right-8" data-icon="format_quote">format_quote</span>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-16 h-16 rounded-full bg-cover bg-center border-2 border-secondary-container" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD8DMo7p5k4yGT5-OoIn1h1FPRUzTsdOM9RXtNrT9_lNUG8Eqk6DG2VA9ED4K3kICjgY_AYeiIQdO3VMlmCs0e_WnFnbXosWT7ZmfLSwnf4_sW7ZMr1Dv64z6k35uElnle1yWtQv_c5-dz8PaexZuwzVXOAic8_z4yXufE-go9Q7UWY_KpcEq-LDV1mHMDzwsm4dG6x88fURB6qx35ASJivjmjm8TpYJXGNNcsmEoepJoBRr9irfCT5z_fumj_OfxCadhga9tvDntk')"></div>
+<div>
+<p class="font-headline-md text-headline-md uppercase">Ananya Gupta</p>
+<p class="text-secondary-container text-sm">Nutrition Specialist</p>
+</div>
+</div>
+<p class="text-on-surface/70 italic">"The bilingual support was a lifesaver. Being able to understand complex nutritional science online helped me score high in the certification."</p>
+</div>
+<div class="min-w-[400px] bg-surface-container-lowest p-8 border border-white/5 relative">
+<span class="material-symbols-outlined text-6xl text-secondary-container/20 absolute top-4 right-8" data-icon="format_quote">format_quote</span>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-16 h-16 rounded-full bg-cover bg-center border-2 border-secondary-container" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB983SFLp0VjLlLSy26H6W9SDaFUpXJCybAwdZF9U9su9rmoeuWG3dYV6-x-49MmijGy3wB_02dgoCfv1qJEejs1FQrV19GuN0hxgAKAZCb9rm2u1js2Oxy6PdJDxDHGLOOSnpOpEA8XdUFROPtVikOUgXoYqNg991RdiGLEM5LHTV9HPsGWnUx-aZRKzFOrIYN4mT6Ydd8frXzvdBXSZTrZlO1ltGnQdHOOUgUN4gmcazJ7iyCs7XLllb814WxKMbrgtysfCwTxz8')"></div>
+<div>
+<p class="font-headline-md text-headline-md uppercase">Vikram Singh</p>
+<p class="text-secondary-container text-sm">Master Diploma Graduate</p>
+</div>
+</div>
+<p class="text-on-surface/70 italic">"I only hire IIFN certified trainers now. The quality of knowledge they bring from their online training is incomparable to other generic certifications."</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Enquiry Form & FAQ -->
+<section class="py-section-gap-desktop bg-black">
+<div class="px-margin max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-section-gap-mobile items-start">
+<!-- Enquiry Form -->
+<div class="bg-surface-container-low p-margin border border-white/10 relative">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary-container"></div>
+<h3 class="font-display-lg text-headline-lg uppercase mb-8">Start Your Online Journey</h3>
+<form class="flex flex-col gap-6">
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-2">
+<label class="text-[12px] uppercase text-on-surface/50 font-label-bold">Full Name</label>
+<input class="bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-on-surface" placeholder="John Doe" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-[12px] uppercase text-on-surface/50 font-label-bold">Phone Number</label>
+<input class="bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-on-surface" placeholder="+91 98765 43210" type="tel"/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-[12px] uppercase text-on-surface/50 font-label-bold">Email Address</label>
+<input class="bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-on-surface" placeholder="john@example.com" type="email"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-2">
+<label class="text-[12px] uppercase text-on-surface/50 font-label-bold">City</label>
+<input class="bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-on-surface" placeholder="Mumbai" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-[12px] uppercase text-on-surface/50 font-label-bold">Preferred Course</label>
+<select class="bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-on-surface">
+<option>Certified Personal Trainer</option>
+<option>Sports Nutritionist</option>
+<option>Master Diploma</option>
+</select>
+</div>
+</div>
+<button class="bg-secondary-container text-white py-4 font-display-lg text-headline-md uppercase red-glow mt-4" type="submit">Send Online Enquiry</button>
+</form>
+</div>
+<!-- FAQ Section -->
+<div class="flex flex-col gap-8">
+<h3 class="font-display-lg text-headline-lg uppercase">Course FAQ</h3>
+<div class="flex flex-col gap-4">
+<details class="group bg-surface-container-lowest border border-white/5 overflow-hidden">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none hover:bg-secondary-container/5 transition-all">
+<span class="font-headline-md text-headline-md uppercase">Is the online certificate valid?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="p-6 pt-0 text-on-surface/70 border-t border-white/5 mt-4">
+                            Yes, IIFN certificates are ISO 9001:2015 certified and recognized globally by premium fitness chains. They carry the same weight as offline certifications.
+                        </div>
+</details>
+<details class="group bg-surface-container-lowest border border-white/5 overflow-hidden">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none hover:bg-secondary-container/5 transition-all">
+<span class="font-headline-md text-headline-md uppercase">How do online exams work?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="p-6 pt-0 text-on-surface/70 border-t border-white/5 mt-4">
+                            Exams are conducted through our secure proctored portal. You can take the exam from the comfort of your home using a laptop with a webcam.
+                        </div>
+</details>
+<details class="group bg-surface-container-lowest border border-white/5 overflow-hidden">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none hover:bg-secondary-container/5 transition-all">
+<span class="font-headline-md text-headline-md uppercase">Do I get practical training?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="p-6 pt-0 text-on-surface/70 border-t border-white/5 mt-4">
+                            Practical concepts are taught via high-definition video demonstrations and interactive live sessions where mentors correct your form virtually.
+                        </div>
+</details>
+</div>
+</div>
+</div>
+</section>
+<!-- Verified Student Reviews Carousel -->
+<section class="py-16 bg-surface-container-lowest border-t border-white/10 overflow-hidden">
+<div class="px-margin max-w-screen-xl mx-auto mb-12 flex justify-between items-end">
+<div>
+<h3 class="font-display-lg text-headline-md uppercase">Verified Student Reviews</h3>
+<p class="text-secondary font-label-bold uppercase text-xs mt-2">100% Authentic Online Graduates</p>
+</div>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="stars">stars</span>
+<span class="material-symbols-outlined text-secondary" data-icon="stars">stars</span>
+<span class="material-symbols-outlined text-secondary" data-icon="stars">stars</span>
+</div>
+</div>
+<div class="marquee review-marquee">
+<div class="flex gap-gutter px-gutter">
+<!-- Review 1 -->
+<div class="min-w-[320px] bg-black p-6 border border-white/10 flex flex-col items-center text-center">
+<img alt="Sukriti" class="w-24 h-24 rounded-full object-cover border-2 border-secondary mb-4" src="https://lh3.googleusercontent.com/aida/AP1WRLs6msgLMb8B4WCQLwabtfOT85AlARLoEPYUxDNufWBmb2ZJvR0VRuNiRB3vPeVA71WNahd-ne2UUyJa295krUzOUTr0Mo9zaBhCFiJKrVrH79KWFTCI5e4BhOadPr9L4uQXTfdLgp9nmUtBZQIx4HtdFglczYsKFJFI2_NehGeHjMhWFXzg0Yxyd9AOL4dNR2zGsqMfJnfC0UGJTMQRjWutnDeQ6BlbwLxIgWYsQnboctDZZ_YzBETrvCM"/>
+<h4 class="font-bold uppercase text-sm">Sukriti</h4>
+<p class="text-xs text-on-surface/60 mb-3">Applied Nutrition Graduate</p>
+<p class="text-[13px] text-on-surface/80 italic">"The scientific depth of the nutrition module was incredible. Truly helped me start my online consulting."</p>
+</div>
+<!-- Review 2 -->
+<div class="min-w-[320px] bg-black p-6 border border-white/10 flex flex-col items-center text-center">
+<img alt="Swapnil" class="w-24 h-24 rounded-full object-cover border-2 border-secondary mb-4" src="https://lh3.googleusercontent.com/aida/AP1WRLsx8rOTXx05tSGFmAY-1iLk40acaIXHSGXPI-4bcsSH9X-uZSmFlE604TefRwx4tIum78RpRNW1Huz_7kVgFVG8Aqm5qbWUPiiX71vi5nhJVmO5z-4cltkkO3IUE5lqtSxF09hcGQSzq483mCApcnd36BNQ5owLHweT1G8o-ZhUCyB1bKSjzHJXwAsFj00F7WFLEn3YhNz7m7II0eE2NG8DIaIuPpd8TausyhgsMRSBVTSUfrHNqo7_ENk"/>
+<h4 class="font-bold uppercase text-sm">Swapnil Karekar</h4>
+<p class="text-xs text-on-surface/60 mb-3">Online CPT Graduate</p>
+<p class="text-[13px] text-on-surface/80 italic">"Flexible learning allowed me to balance my job while getting a high-quality fitness certification."</p>
+</div>
+<!-- Review 3 -->
+<div class="min-w-[320px] bg-black p-6 border border-white/10 flex flex-col items-center text-center">
+<img alt="Vyas Priya Mehul" class="w-24 h-24 rounded-full object-cover border-2 border-secondary mb-4" src="https://lh3.googleusercontent.com/aida/AP1WRLu73P_Wp26TaKtGjaeL-jX6Y9jnWAkCzCYMAvBRjupbBhyPY8JLFseQdPck9Hpzlof7oWHBaglvKy-z9K-g80plAacjPrIhXb-HZgJEkV-P9DVSV0mVZNuHId1PI50gHEEG7Ur6ovdrJ96_GMkfl87tKTwTCbZEAmA-tnkOgzujYKbgaKtxQGvsXhX7cQY-Lq0jYp1gdR_byKe6kaTKxoaeNxLlBbMIjfL61ShIGz1gKg5bjZYQAmCo02w"/>
+<h4 class="font-bold uppercase text-sm">Vyas Priya Mehul</h4>
+<p class="text-xs text-on-surface/60 mb-3">Certified Nutritionist</p>
+<p class="text-[13px] text-on-surface/80 italic">"Highly professional faculty. The bilingual lectures made complex science very easy to understand."</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-section-gap-desktop bg-surface-container-lowest border-t-4 border-secondary-container">
+<div class="grid grid-cols-1 md:grid-cols-5 gap-gutter px-margin mx-auto max-w-screen-xl">
+<div class="md:col-span-2 flex flex-col gap-6">
+<div class="font-display-lg text-headline-md text-secondary uppercase font-black">IIFN</div>
+<p class="text-on-surface-variant font-body-md max-w-sm">The Indian Institute of Fitness &amp; Nutrition (IIFN) is India's premier online destination for science-based fitness and performance education.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-secondary-container hover:border-secondary-container transition-all" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="share">share</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-secondary-container hover:border-secondary-container transition-all" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="thumb_up">thumb_up</span>
+</a>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-bold uppercase text-secondary">Learning</h4>
+<a class="text-on-surface-variant hover:text-secondary transition-all" href="#">Online Courses</a>
+<a class="text-on-surface-variant hover:text-secondary transition-all" href="#">Digital Certifications</a>
+<a class="text-on-surface-variant hover:text-secondary transition-all" href="#">Student Portal</a>
+<a class="text-on-surface-variant hover:text-secondary transition-all" href="#">LMS Guide</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-bold uppercase text-secondary">Legal</h4>
+<a class="text-on-surface-variant hover:text-secondary transition-all" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-secondary transition-all" href="#">Terms &amp; Refunds</a>
+<a class="text-on-surface-variant hover:text-secondary transition-all" href="#">Global Affiliations</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-bold uppercase text-secondary">Contact</h4>
+<span class="text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="mail">mail</span>
+                    admission@iifn.edu
+                </span>
+<span class="text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="call">call</span>
+                    +91 1800 123 456
+                </span>
+</div>
+</div>
+<div class="px-margin mx-auto max-w-screen-xl mt-16 pt-8 border-t border-white/5 text-center text-on-surface/30 text-sm">
+            © 2024 Indian Institute of Fitness &amp; Nutrition. Global Online Education Leader.
+        </div>
+</footer>
+<!-- SideNav (Mobile) -->
+<div class="fixed right-0 top-0 h-full w-full md:w-96 z-[60] bg-background/90 backdrop-blur-2xl border-l border-white/10 shadow-[0_0_40px_rgba(225,6,0,0.15)] flex flex-col p-margin gap-base transition-transform translate-x-full duration-500 ease-in-out" id="mobile-nav">
+<div class="flex justify-between items-center mb-12">
+<div class="font-display-lg text-headline-md text-secondary font-black">IIFN</div>
+<span class="material-symbols-outlined text-3xl cursor-pointer" data-icon="close" id="close-nav">close</span>
+</div>
+<div class="flex flex-col gap-6">
+<a class="font-headline-md text-headline-md uppercase font-black text-secondary scale-110" href="#">Home</a>
+<a class="font-headline-md text-headline-md uppercase text-on-surface/70 hover:text-on-surface" href="#">Online Personal Training</a>
+<a class="font-headline-md text-headline-md uppercase text-on-surface/70 hover:text-on-surface" href="#">Sports Nutrition</a>
+<a class="font-headline-md text-headline-md uppercase text-on-surface/70 hover:text-on-surface" href="#">Student Portal</a>
+<a class="font-headline-md text-headline-md uppercase text-on-surface/70 hover:text-on-surface" href="#">Global Certifications</a>
+<a class="font-headline-md text-headline-md uppercase text-on-surface/70 hover:text-on-surface" href="#">Contact Admissions</a>
+</div>
+<div class="mt-auto flex flex-col gap-4 border-t border-white/10 pt-8">
+<button class="bg-secondary-container text-white py-4 font-label-bold uppercase tracking-widest">COURSE CATALOGUE</button>
+<div class="flex justify-between items-center text-on-surface/50 text-sm uppercase font-label-bold">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="settings">settings</span> Student Support
+                </div>
+</div>
+</div>
+</div>
+<script>
+        const menuBtn = document.querySelector('span[data-icon="menu"]');
+        const closeBtn = document.getElementById('close-nav');
+        const mobileNav = document.getElementById('mobile-nav');
+
+        menuBtn.addEventListener('click', () => {
+            mobileNav.classList.remove('translate-x-full');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            mobileNav.classList.add('translate-x-full');
+        });
+    </script>
+</body></html>

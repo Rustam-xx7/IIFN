@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JEWEL GYM | Transform Your Limits</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&amp;family=Inter:wght@400;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#393939",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "surface-variant": "#353535",
+                    "surface-container-high": "#2a2a2a",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "on-tertiary-container": "#747576",
+                    "error": "#ffb4ab",
+                    "on-secondary-container": "#fff1ef",
+                    "on-secondary": "#680200",
+                    "surface-container": "#20201f",
+                    "on-primary-container": "#757575",
+                    "on-background": "#e5e2e1",
+                    "secondary-fixed": "#ffdad4",
+                    "surface-container-lowest": "#0e0e0e",
+                    "surface-container-low": "#1c1b1b",
+                    "inverse-on-surface": "#313030",
+                    "secondary": "#ffb4a8",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "on-error": "#690005",
+                    "primary-fixed-dim": "#c6c6c6",
+                    "on-secondary-fixed": "#410100",
+                    "secondary-container": "#e00600",
+                    "primary": "#c6c6c6",
+                    "on-surface": "#e5e2e1",
+                    "background": "#131313",
+                    "surface-tint": "#c6c6c6",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-dim": "#131313",
+                    "outline": "#988e90",
+                    "tertiary-container": "#000000",
+                    "tertiary": "#c6c6c7",
+                    "on-primary-fixed": "#1b1b1b",
+                    "outline-variant": "#4c4546",
+                    "on-error-container": "#ffdad6",
+                    "primary-fixed": "#e2e2e2",
+                    "inverse-primary": "#5e5e5e",
+                    "on-primary-fixed-variant": "#474747",
+                    "on-tertiary": "#2f3131",
+                    "primary-container": "#000000",
+                    "secondary-fixed-dim": "#ffb4a8",
+                    "tertiary-fixed": "#e2e2e2",
+                    "error-container": "#93000a",
+                    "surface": "#131313",
+                    "on-surface-variant": "#cfc4c5",
+                    "on-primary": "#303030",
+                    "surface-container-highest": "#353535",
+                    "on-secondary-fixed-variant": "#930300"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "section-gap-mobile": "64px",
+                    "base": "8px",
+                    "gutter": "24px",
+                    "grid-columns": "12",
+                    "section-gap-desktop": "120px",
+                    "margin": "40px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Montserrat"],
+                    "display-lg": ["Montserrat"],
+                    "headline-lg-mobile": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "label-bold": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-bold": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .red-heat-glow {
+            box-shadow: 0 0 30px rgba(224, 6, 0, 0.3);
+        }
+        .red-heat-glow:hover {
+            box-shadow: 0 0 50px rgba(224, 6, 0, 0.5);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .bg-mesh {
+            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden bg-mesh">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 border-b border-white/10 bg-background/80 backdrop-blur-xl flex justify-between items-center px-margin py-4">
+<div class="flex items-center gap-3">
+<img alt="Jewel Gym Logo" class="h-10 w-10 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASLaKSdtiyWH3cOll9aw_4THiak1TrHj431cceF3VIKMHZVSkSLG43fn20ntc0IUUvinQuaChIJBiq8qRPD0BbYJWwCX7H641_suCXNXK6uDvaclcThTHsshipyqc3b-Sz6z9hbX6UB3aquqd5APNF_9WbeAV00Gl4LUEU0oOf9i-BLEx8dCPpvETSFGjbq3qzCUA3dz23BUCL7MTQR7-y7UkHWa7n1bDiwnX5-NmVnw1Mi0wL4KJRESuxOCtmJ3TC9Rs5MPrezuc"/>
+<div class="font-display-lg text-headline-md font-black text-on-surface tracking-tighter uppercase leading-none">JEWEL<br/><span class="text-[10px] tracking-[0.4em] text-secondary">GYM</span></div>
+</div>
+<div class="hidden md:flex gap-gutter items-center">
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-on-surface hover:text-secondary transition-colors duration-300" href="#facilities">Facilities</a>
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-on-surface hover:text-secondary transition-colors duration-300" href="#plans">Plans</a>
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-on-surface hover:text-secondary transition-colors duration-300" href="#locations">Locations</a>
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-on-surface hover:text-secondary transition-colors duration-300" href="#contact">Contact</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-secondary-container text-white px-6 py-2 font-label-bold text-label-bold uppercase red-heat-glow transition-all active:scale-95">JOIN NOW</button>
+<button class="text-secondary cursor-pointer" id="menu-toggle">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- SideNavBar (Mobile/Overlay) -->
+<div class="fixed right-0 top-0 h-full w-full md:w-96 z-[60] bg-background/90 backdrop-blur-2xl border-l border-white/10 transform translate-x-full transition-all duration-500 ease-in-out flex flex-col p-margin gap-base shadow-[0_0_40px_rgba(224,6,0,0.15)]" id="side-nav">
+<div class="flex justify-between items-center mb-10">
+<div class="flex flex-col">
+<span class="font-display-lg text-headline-md text-secondary uppercase font-bold tracking-tighter">JEWEL GYM</span>
+<span class="text-on-surface/50 font-label-bold text-[10px] uppercase tracking-widest">Powered by IIFN</span>
+</div>
+<button class="text-on-surface" id="close-nav"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div class="flex flex-col gap-6">
+<a class="flex items-center gap-4 text-secondary font-black scale-110 group" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-headline-md text-headline-md uppercase">Home</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface/70 hover:text-on-surface transition-all group" href="#facilities">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="font-headline-md text-headline-md uppercase">Equipments</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface/70 hover:text-on-surface transition-all group" href="#plans">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-headline-md text-headline-md uppercase">Pricing</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface/70 hover:text-on-surface transition-all group" href="#locations">
+<span class="material-symbols-outlined">map</span>
+<span class="font-headline-md text-headline-md uppercase">Locations</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface/70 hover:text-on-surface transition-all group" href="#contact">
+<span class="material-symbols-outlined">mail</span>
+<span class="font-headline-md text-headline-md uppercase">Contact</span>
+</a>
+</div>
+<div class="mt-auto pt-10 border-t border-white/5 flex flex-col gap-4">
+<button class="bg-secondary-container text-white w-full py-4 font-label-bold text-label-bold tracking-[0.2em] red-heat-glow">BOOK FREE TRIAL</button>
+</div>
+</div>
+<main>
+<!-- Hero Section -->
+<section class="relative h-[921px] w-full flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50 z-10"></div>
+<div class="absolute inset-0 bg-black/60 z-10"></div>
+<img class="w-full h-full object-cover grayscale brightness-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5rM8xBA5GRORwXQlWCrpqAvnNUEAv05H4MY3oGPiaI6hd0Ez77BPzQVIBvCNq7sLbx6Uuh4y5yvNUF4mNnU-dUH88QOYDgRIyS7S1IrAZXbeOYBed-LLYlCgK13Yv2wqm9yHNrorOjdcc1Z4JJUp4Cu7w6xcGGvXJQGuIYoOFGph1GGzKmTLj_c1_KzkGkyCJBq0ly7DLsXhH2bFuUv1Xr_XCaG01JGDOBzeoUCu-gqIypDWLJHg0dp4J4irEv3LXsXnNTrJIeT4"/>
+</div>
+<div class="relative z-20 text-center px-margin max-w-5xl">
+<img alt="Jewel Gym" class="w-32 mx-auto mb-8 animate-pulse" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASLaKSdtiyWH3cOll9aw_4THiak1TrHj431cceF3VIKMHZVSkSLG43fn20ntc0IUUvinQuaChIJBiq8qRPD0BbYJWwCX7H641_suCXNXK6uDvaclcThTHsshipyqc3b-Sz6z9hbX6UB3aquqd5APNF_9WbeAV00Gl4LUEU0oOf9i-BLEx8dCPpvETSFGjbq3qzCUA3dz23BUCL7MTQR7-y7UkHWa7n1bDiwnX5-NmVnw1Mi0wL4KJRESuxOCtmJ3TC9Rs5MPrezuc"/>
+<h1 class="font-display-lg text-display-lg md:text-[96px] uppercase italic leading-[0.9] mb-8">
+                TRANSFORM <br/> <span class="text-secondary">YOUR LIMITS</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface/90 max-w-2xl mx-auto mb-10 tracking-wide uppercase font-bold">
+                At Jewel Gym, we don't just train; we build champions. Experience a high-intensity performance lab designed for the elite.
+            </p>
+<div class="flex flex-col md:flex-row gap-6 justify-center">
+<button class="bg-secondary-container text-white px-12 py-5 font-label-bold text-label-bold uppercase red-heat-glow tracking-widest text-lg">START NOW</button>
+<button class="border-2 border-white text-white px-12 py-5 font-label-bold text-label-bold uppercase hover:bg-white hover:text-black transition-all tracking-widest text-lg">EXPLORE LAB</button>
+</div>
+</div>
+</section>
+<!-- Facilities Grid -->
+<section class="py-section-gap-desktop px-margin max-w-7xl mx-auto" id="facilities">
+<div class="mb-16">
+<h2 class="font-display-lg text-headline-lg uppercase border-l-4 border-secondary pl-6 mb-4">Elite Facilities</h2>
+<p class="text-on-surface-variant font-body-md max-w-xl italic">The Jewel Gym infrastructure is built on science, performance, and luxury.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Modern Equipments -->
+<div class="group relative overflow-hidden bg-surface-container border border-white/5 p-8 transition-all hover:border-secondary">
+<div class="mb-6 flex justify-between items-start">
+<span class="material-symbols-outlined text-secondary text-5xl">fitness_center</span>
+<span class="text-on-surface/10 font-black text-6xl italic group-hover:text-secondary/10 transition-colors">01</span>
+</div>
+<h3 class="font-display-lg text-headline-md uppercase mb-4">Modern Equipments</h3>
+<p class="text-on-surface-variant font-body-md">Precision-engineered machines from world-leading brands for maximum muscle activation and safety.</p>
+<div class="mt-8 border-t border-white/10 pt-4 flex gap-2 overflow-x-auto hide-scrollbar">
+<span class="text-[10px] font-label-bold bg-white/5 px-2 py-1 rounded">STRENGTH</span>
+<span class="text-[10px] font-label-bold bg-white/5 px-2 py-1 rounded">CARDIO</span>
+<span class="text-[10px] font-label-bold bg-white/5 px-2 py-1 rounded">OLYMPIC</span>
+</div>
+</div>
+<!-- Certified Training -->
+<div class="group relative overflow-hidden bg-surface-container border border-white/5 p-8 transition-all hover:border-secondary">
+<div class="mb-6 flex justify-between items-start">
+<span class="material-symbols-outlined text-secondary text-5xl">verified_user</span>
+<span class="text-on-surface/10 font-black text-6xl italic group-hover:text-secondary/10 transition-colors">02</span>
+</div>
+<h3 class="font-display-lg text-headline-md uppercase mb-4">Certified Training</h3>
+<p class="text-on-surface-variant font-body-md">Personalized coaching from IIFN-certified performance architects who track every rep of your journey.</p>
+<div class="mt-8 border-t border-white/10 pt-4 flex gap-2 overflow-x-auto hide-scrollbar">
+<span class="text-[10px] font-label-bold bg-white/5 px-2 py-1 rounded">PERSONAL</span>
+<span class="text-[10px] font-label-bold bg-white/5 px-2 py-1 rounded">TRANSFORMATION</span>
+</div>
+</div>
+<!-- Expert Dietitians -->
+<div class="group relative overflow-hidden bg-surface-container border border-white/5 p-8 transition-all hover:border-secondary">
+<div class="mb-6 flex justify-between items-start">
+<span class="material-symbols-outlined text-secondary text-5xl">restaurant</span>
+<span class="text-on-surface/10 font-black text-6xl italic group-hover:text-secondary/10 transition-colors">03</span>
+</div>
+<h3 class="font-display-lg text-headline-md uppercase mb-4">Expert Dietitians</h3>
+<p class="text-on-surface-variant font-body-md">Clinical nutrition protocols tailored to your metabolism for guaranteed fat loss and muscle gain results.</p>
+<div class="mt-8 border-t border-white/10 pt-4 flex gap-2 overflow-x-auto hide-scrollbar">
+<span class="text-[10px] font-label-bold bg-white/5 px-2 py-1 rounded">DIET CHART</span>
+<span class="text-[10px] font-label-bold bg-white/5 px-2 py-1 rounded">SUPPLEMENTS</span>
+</div>
+</div>
+</div>
+</section><section class="py-section-gap-desktop bg-background" id="gallery">
+<div class="px-margin max-w-7xl mx-auto">
+<div class="mb-16 text-center">
+<h2 class="font-display-lg text-display-lg uppercase mb-4">THE PERFORMANCE LAB</h2>
+<p class="text-secondary font-label-bold tracking-widest uppercase">Visualizing Excellence</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="group relative overflow-hidden border border-secondary/30 rounded-lg">
+<div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-500 z-10"></div>
+<img alt="Gym Interior 1" class="w-full h-[500px] object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9HvUgp1opZBGJaTPxXEMgVOXFLxAZppOkkuUJi0yWsoKc3z7CeSgEy7B2dsMPPsgDdQKqaOAVvphdiiycYl7iZ5nnln4H4RG4xgbvm54kpkYxuDL8Cfs66lRFXOIXDeksse2b6O3kMybQvOt16purl44qhf50us4qFPP0Zik60CqOuJg5t7q7iBuu__lfMvsSe_TxxiPWVPv5MXS84BKKdzB9RZd-sIbSd30SKLJuwVB6hccUFHC8t40deeEFBLvo8ji0kYjXvBI"/>
+<div class="absolute bottom-0 left-0 p-8 z-20">
+<span class="text-secondary font-label-bold uppercase tracking-widest">Unit 1 - Main Floor</span>
+</div>
+</div>
+<div class="group relative overflow-hidden border border-secondary/30 rounded-lg">
+<div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-500 z-10"></div>
+<img alt="Gym Interior 2" class="w-full h-[500px] object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCLEXf3RPmhouM71MNCtbVYgtcJMujeb9Vb-puOMxogxn0_rBxG35YHjyTidebqitFA3uL_DtbtLHe2EemuAAcG_KL61i_7izFAtfNxFo-2PUFJUkiSBnejPK5FWcIST3u4CHW-GoB8q11lA7QJSipCetNkm8e3PXPSbzn-osDfwqxIxhrYb70M3u46JjOkzFfsFl4QRQh1dTByuuBrv5RS6hNGSQ7raV0gsKEXgkqJPmgKFtfYa8YAG7qJF6A4b3iMemkdaIM-OM"/>
+<div class="absolute bottom-0 left-0 p-8 z-20">
+<span class="text-secondary font-label-bold uppercase tracking-widest">Unit 2 - Elite Zone</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Plans -->
+<section class="py-section-gap-desktop bg-surface-container-lowest" id="plans">
+<div class="px-margin max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-display-lg text-display-lg uppercase mb-4">THE LAB ACCESS</h2>
+<p class="text-secondary font-label-bold tracking-widest uppercase">Start your evolution today</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+<!-- Unit 1 Monthly -->
+<div class="relative bg-surface-container border-2 border-white/10 p-12 hover:border-secondary transition-all group overflow-hidden">
+<div class="absolute -right-8 -top-8 text-[120px] font-black opacity-[0.03] group-hover:opacity-[0.05] italic">U1</div>
+<span class="font-label-bold text-label-bold uppercase text-secondary mb-4 block">Unit 1 Plan</span>
+<h3 class="font-display-lg text-headline-lg uppercase mb-2">Monthly</h3>
+<div class="text-6xl font-black text-white mb-8">₹400 <span class="text-sm font-normal text-on-surface/50">/ mo</span></div>
+<ul class="space-y-4 mb-10 text-on-surface-variant">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Certified Trainer Support</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Professional Dietitian</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> All High-End Equipments</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> AC Environment &amp; Music Zone</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Locker &amp; Shower Facilities</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> RO Drinking Water</li>
+</ul>
+<button class="w-full py-5 bg-secondary-container text-white font-label-bold uppercase red-heat-glow tracking-widest">ENROLL AT UNIT 1</button>
+</div>
+<!-- Unit 2 Monthly -->
+<div class="relative bg-surface-container border-2 border-secondary p-12 red-heat-glow group overflow-hidden">
+<div class="absolute -right-8 -top-8 text-[120px] font-black opacity-[0.03] italic">U2</div>
+<div class="absolute top-0 right-0 bg-secondary text-black px-4 py-1 font-label-bold text-[10px] uppercase">New Center</div>
+<span class="font-label-bold text-label-bold uppercase text-secondary mb-4 block">Unit 2 Plan</span>
+<h3 class="font-display-lg text-headline-lg uppercase mb-2">Monthly</h3>
+<div class="text-6xl font-black text-white mb-8">₹500 <span class="text-sm font-normal text-on-surface/50">/ mo</span></div>
+<ul class="space-y-4 mb-10 text-on-surface">
+<li class="flex items-center gap-3 font-bold"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Guaranteed Fatloss/Muscle Gain</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Certified Elite Trainers</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Professional Dietitian Chart</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> All Premium Equipments</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Locker &amp; Clean Showers</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> AC &amp; High-Fidelity Music</li>
+</ul>
+<button class="w-full py-5 bg-white text-black font-label-bold uppercase hover:bg-secondary hover:text-white transition-all tracking-widest shadow-2xl">ENROLL AT UNIT 2</button>
+</div>
+</div>
+<div class="mt-16 text-center">
+<p class="text-on-surface-variant uppercase font-label-bold tracking-widest mb-4">Core Benefits Across All Units</p>
+<div class="flex flex-wrap justify-center gap-8 text-on-surface/60">
+<div class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary">verified</span> CERTIFIED TRAINERS</div>
+<div class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary">nutrition</span> DIETITIAN</div>
+<div class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary">ac_unit</span> AC ENVIRONMENT</div>
+<div class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary">water_drop</span> RO WATER</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Locations & Contact -->
+<section class="py-section-gap-desktop bg-surface-container-lowest" id="trainers">
+<div class="px-margin max-w-7xl mx-auto">
+<div class="mb-16">
+<h2 class="font-display-lg text-headline-lg uppercase border-l-4 border-secondary pl-6 mb-4">THE ARCHITECTS OF IRON</h2>
+<p class="text-on-surface-variant font-body-md max-w-xl italic">Elite coaching for those who demand the best.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+<!-- Lead Trainer: Jewel Roy -->
+<div class="bg-surface-container border-2 border-secondary p-8 flex flex-col md:flex-row gap-8 items-center red-heat-glow">
+<div class="w-48 h-48 bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-6xl text-secondary/50">person</span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-secondary">nutrition</span>
+<span class="text-secondary font-label-bold uppercase tracking-widest text-xs">Chief Performance Architect</span>
+</div>
+<h3 class="font-display-lg text-headline-md uppercase mb-4">JEWEL ROY</h3>
+<div class="grid grid-cols-3 gap-4 border-t border-white/10 pt-4">
+<div class="text-center">
+<div class="text-secondary font-black text-xl">5+</div>
+<div class="text-[10px] text-on-surface/50 uppercase">Years Exp</div>
+</div>
+<div class="text-center">
+<div class="text-secondary font-black text-xl">1000+</div>
+<div class="text-[10px] text-on-surface/50 uppercase">Clients</div>
+</div>
+<div class="text-center">
+<div class="text-secondary font-black text-xl">100%</div>
+<div class="text-[10px] text-on-surface/50 uppercase">Results</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Other Trainers Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div class="bg-surface-container p-6 border border-white/5">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-secondary text-sm">fitness_center</span>
+<span class="text-on-surface/50 text-[10px] uppercase font-bold">Strength Specialist</span>
+</div>
+<h4 class="font-display-lg text-lg uppercase">Vikram Singh</h4>
+</div>
+<div class="bg-surface-container p-6 border border-white/5">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-secondary text-sm">bolt</span>
+<span class="text-on-surface/50 text-[10px] uppercase font-bold">HIIT Expert</span>
+</div>
+<h4 class="font-display-lg text-lg uppercase">Sarah D'Souza</h4>
+</div>
+<div class="bg-surface-container p-6 border border-white/5">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-secondary text-sm">monitoring</span>
+<span class="text-on-surface/50 text-[10px] uppercase font-bold">Body Recomp</span>
+</div>
+<h4 class="font-display-lg text-lg uppercase">Arjun Khanna</h4>
+</div>
+<div class="bg-surface-container p-6 border border-white/5 flex items-center justify-center border-dashed border-white/20">
+<span class="text-on-surface/30 font-label-bold uppercase text-xs">Join the Team</span>
+</div>
+</div>
+</div>
+</div>
+</section><section class="py-section-gap-desktop border-t border-white/5" id="locations">
+<div class="px-margin max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10">
+<div class="bg-background p-12 md:p-20">
+<h2 class="font-display-lg text-headline-lg uppercase mb-12">THE CENTERS</h2>
+<div class="space-y-12">
+<div class="flex gap-6 group">
+<span class="material-symbols-outlined text-secondary text-4xl group-hover:scale-110 transition-transform">location_on</span>
+<div>
+<h5 class="font-display-lg text-headline-md text-white mb-2 uppercase">Unit 1 - Gangpur</h5>
+<p class="text-on-surface-variant font-body-md">Swastipally, Gangpur,<br/>Burdwan - 713104</p>
+</div>
+</div>
+<div class="flex gap-6 group">
+<span class="material-symbols-outlined text-secondary text-4xl group-hover:scale-110 transition-transform">location_on</span>
+<div>
+<h5 class="font-display-lg text-headline-md text-white mb-2 uppercase">Unit 2 - Barsul</h5>
+<p class="text-on-surface-variant font-body-md">Jagarani Club, Unnayani,<br/>Barsul - 713124</p>
+</div>
+</div>
+<div class="flex gap-6 border-t border-white/5 pt-12" id="contact">
+<span class="material-symbols-outlined text-secondary text-4xl">call</span>
+<div>
+<h5 class="font-display-lg text-headline-md text-white mb-2 uppercase">RECRUITMENT &amp; ENQUIRY</h5>
+<p class="text-on-surface-variant font-display-lg text-headline-md tracking-widest">+91 7001625285</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-secondary-container p-12 md:p-20 flex flex-col justify-center items-start text-white relative overflow-hidden">
+<div class="absolute -right-20 -bottom-20 text-[200px] font-black opacity-10 select-none italic">JEWEL</div>
+<h2 class="font-display-lg text-display-lg md:text-[56px] leading-tight uppercase mb-6 relative z-10">CLAIM YOUR <br/> STATUS</h2>
+<p class="text-white/80 font-body-lg mb-10 max-w-md relative z-10">Ready to break your limits? Fill out the form for a priority membership assessment.</p>
+<form class="w-full space-y-4 relative z-10">
+<input class="w-full bg-black/20 border-white/30 text-white placeholder:text-white/50 focus:border-white focus:ring-0 py-4 px-6 uppercase font-label-bold text-label-bold" placeholder="NAME" type="text"/>
+<select class="w-full bg-black/20 border-white/30 text-white focus:border-white focus:ring-0 py-4 px-6 uppercase font-label-bold text-label-bold">
+<option class="text-black">SELECT UNIT</option>
+<option class="text-black">UNIT 1 - GANGPUR</option>
+<option class="text-black">UNIT 2 - BARSUL</option>
+</select>
+<input class="w-full bg-black/20 border-white/30 text-white placeholder:text-white/50 focus:border-white focus:ring-0 py-4 px-6 uppercase font-label-bold text-label-bold" placeholder="PHONE NUMBER" type="tel"/>
+<button class="w-full bg-white text-black py-5 font-label-bold text-label-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all shadow-xl font-bold">JOIN THE PERFORMANCE LAB</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap-desktop bg-surface-container-lowest border-t-4 border-secondary">
+<div class="grid grid-cols-1 md:grid-cols-5 gap-gutter px-margin mx-auto max-w-7xl">
+<div class="md:col-span-2">
+<div class="flex items-center gap-3 mb-6">
+<img alt="Jewel Gym" class="h-12 w-12 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASLaKSdtiyWH3cOll9aw_4THiak1TrHj431cceF3VIKMHZVSkSLG43fn20ntc0IUUvinQuaChIJBiq8qRPD0BbYJWwCX7H641_suCXNXK6uDvaclcThTHsshipyqc3b-Sz6z9hbX6UB3aquqd5APNF_9WbeAV00Gl4LUEU0oOf9i-BLEx8dCPpvETSFGjbq3qzCUA3dz23BUCL7MTQR7-y7UkHWa7n1bDiwnX5-NmVnw1Mi0wL4KJRESuxOCtmJ3TC9Rs5MPrezuc"/>
+<div class="font-display-lg text-headline-lg text-secondary uppercase leading-none">JEWEL<br/><span class="text-[12px] tracking-[0.5em] text-white">GYM</span></div>
+</div>
+<p class="text-on-surface-variant font-body-md max-w-xs mb-8">Jewel Gym is a premier performance-focused fitness sub-brand powered by IIFN. We are dedicated to providing high-level athletic training environments accessible to everyone.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-secondary hover:text-black transition-all" href="#"><span class="material-symbols-outlined text-sm">share</span></a>
+<a class="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-secondary hover:text-black transition-all" href="#"><span class="material-symbols-outlined text-sm">public</span></a>
+<a class="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-secondary hover:text-black transition-all" href="#"><span class="material-symbols-outlined text-sm">videocam</span></a>
+</div>
+</div>
+<div>
+<h6 class="font-label-bold text-label-bold uppercase text-white mb-6">Explore</h6>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-secondary font-body-md transition-all" href="#facilities">Equipments</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary font-body-md transition-all" href="#plans">Pricing</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary font-body-md transition-all" href="#locations">Locations</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary font-body-md transition-all" href="#contact">Contact</a></li>
+</ul>
+</div>
+<div>
+<h6 class="font-label-bold text-label-bold uppercase text-white mb-6">Units</h6>
+<ul class="space-y-4">
+<li><span class="text-on-surface-variant font-body-md">Unit 1 - Gangpur</span></li>
+<li><span class="text-on-surface-variant font-body-md">Unit 2 - Barsul</span></li>
+<li><span class="text-on-surface-variant font-body-md">Chamber - Gangpur</span></li>
+</ul>
+</div>
+<div>
+<h6 class="font-label-bold text-label-bold uppercase text-white mb-6">Operation</h6>
+<p class="text-on-surface-variant font-body-md mb-4 italic">High-Intensity Hours<br/>Daily: 05:00 AM - 11:00 PM</p>
+<p class="text-secondary font-label-bold text-label-bold animate-pulse">ADMISSIONS OPEN FOR 2024</p>
+</div>
+</div>
+<div class="mt-20 px-margin text-center">
+<p class="text-on-surface-variant/40 font-label-bold text-[10px] uppercase tracking-[0.2em]">© 2024 Jewel Gym - Powered by IIFN. All Rights Reserved.</p>
+</div>
+</footer>
+<script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const sideNav = document.getElementById('side-nav');
+    const closeNav = document.getElementById('close-nav');
+
+    menuToggle.addEventListener('click', () => {
+        sideNav.classList.remove('translate-x-full');
+    });
+
+    closeNav.addEventListener('click', () => {
+        sideNav.classList.add('translate-x-full');
+    });
+
+    // Close side nav when clicking links
+    document.querySelectorAll('#side-nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            sideNav.classList.add('translate-x-full');
+        });
+    });
+
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('opacity-100', 'translate-y-0');
+                entry.target.classList.remove('opacity-0', 'translate-y-10');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(section => {
+        section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+        observer.observe(section);
+    });
+</script>
+</body></html>

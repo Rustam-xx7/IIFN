@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>IIFN Admin | Performance Lab Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&amp;family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(17, 17, 17, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .red-glow-hover:hover {
+            box-shadow: 0 0 20px rgba(224, 6, 0, 0.3);
+            background-color: #e10600;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333333;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e10600;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#000000",
+                        "on-error": "#690005",
+                        "on-primary-fixed": "#1b1b1b",
+                        "secondary-container": "#e00600",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-secondary-container": "#fff1ef",
+                        "on-primary-fixed-variant": "#474747",
+                        "on-surface-variant": "#cfc4c5",
+                        "inverse-primary": "#5e5e5e",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "surface": "#131313",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-secondary-fixed-variant": "#930300",
+                        "on-secondary-fixed": "#410100",
+                        "on-tertiary-container": "#747576",
+                        "on-primary-container": "#757575",
+                        "primary-container": "#000000",
+                        "tertiary-fixed": "#e2e2e2",
+                        "inverse-surface": "#e5e2e1",
+                        "error-container": "#93000a",
+                        "outline-variant": "#4c4546",
+                        "secondary": "#ffb4a8",
+                        "error": "#ffb4ab",
+                        "outline": "#988e90",
+                        "primary-fixed": "#e2e2e2",
+                        "surface-container-low": "#1c1b1b",
+                        "secondary-fixed-dim": "#ffb4a8",
+                        "on-primary": "#303030",
+                        "surface-bright": "#393939",
+                        "on-background": "#e5e2e1",
+                        "primary": "#c6c6c6",
+                        "surface-dim": "#131313",
+                        "primary-fixed-dim": "#c6c6c6",
+                        "surface-container-highest": "#353535",
+                        "inverse-on-surface": "#313030",
+                        "background": "#131313",
+                        "on-tertiary": "#2f3131",
+                        "surface-container-lowest": "#0e0e0e",
+                        "secondary-fixed": "#ffdad4",
+                        "on-surface": "#e5e2e1",
+                        "on-secondary": "#680200",
+                        "tertiary": "#c6c6c7",
+                        "surface-variant": "#353535",
+                        "surface-tint": "#c6c6c6",
+                        "surface-container": "#20201f",
+                        "surface-container-high": "#2a2a2a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "section-gap-mobile": "64px",
+                        "base": "8px",
+                        "section-gap-desktop": "120px",
+                        "grid-columns": "12",
+                        "margin": "40px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Montserrat"],
+                        "label-bold": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                        "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                        "label-bold": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary-container selection:text-white overflow-hidden">
+<!-- Dashboard Layout Wrapper -->
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-20 md:w-72 bg-surface-container-lowest border-r border-white/5 flex flex-col z-[70] transition-all duration-300">
+<div class="p-6 flex items-center gap-4">
+<div class="w-10 h-10 bg-secondary-container flex items-center justify-center rounded-sm shrink-0">
+<span class="material-symbols-outlined text-white text-2xl" data-weight="fill">fitness_center</span>
+</div>
+<div class="hidden md:block">
+<h1 class="font-display-lg text-headline-md text-secondary tracking-tighter">IIFN</h1>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Performance Lab</p>
+</div>
+</div>
+<nav class="flex-1 mt-8 px-4 space-y-2">
+<a class="flex items-center gap-4 p-4 rounded-lg bg-secondary-container text-white font-bold transition-all group shadow-[0_0_20px_rgba(224,6,0,0.2)]" href="#">
+<span class="material-symbols-outlined" data-weight="fill">dashboard</span>
+<span class="hidden md:inline font-label-bold">DASHBOARD</span>
+</a>
+<a class="flex items-center gap-4 p-4 rounded-lg text-on-surface-variant hover:bg-white/5 hover:text-white transition-all group" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="hidden md:inline font-label-bold">USERS</span>
+</a>
+<a class="flex items-center gap-4 p-4 rounded-lg text-on-surface-variant hover:bg-white/5 hover:text-white transition-all group" href="#">
+<span class="material-symbols-outlined">reviews</span>
+<span class="hidden md:inline font-label-bold">REVIEWS</span>
+</a>
+<a class="flex items-center gap-4 p-4 rounded-lg text-on-surface-variant hover:bg-white/5 hover:text-white transition-all group" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="hidden md:inline font-label-bold">COURSES</span>
+</a>
+<a class="flex items-center gap-4 p-4 rounded-lg text-on-surface-variant hover:bg-white/5 hover:text-white transition-all group" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="hidden md:inline font-label-bold">ANALYTICS</span>
+</a>
+</nav>
+<div class="p-4 border-t border-white/5 space-y-2">
+<a class="flex items-center gap-4 p-4 rounded-lg text-on-surface-variant hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="hidden md:inline font-label-bold">SETTINGS</span>
+</a>
+<div class="bg-surface-container-high p-4 rounded-xl hidden md:block border border-white/5">
+<p class="text-[10px] text-on-surface-variant uppercase mb-2 font-bold tracking-widest">Active Server</p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+<span class="text-xs font-label-bold">MUMBAI-SC-01</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 bg-background overflow-y-auto relative">
+<!-- Top App Bar -->
+<header class="sticky top-0 h-20 glass-panel z-50 flex items-center justify-between px-margin border-b border-white/10">
+<div class="flex items-center gap-8">
+<h2 class="font-headline-md text-on-surface uppercase tracking-tight">Admin Dashboard</h2>
+<div class="hidden lg:flex items-center bg-surface-container-low px-4 py-2 rounded border border-white/5 min-w-[300px]">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm text-on-surface placeholder:text-on-surface-variant/50 w-full ml-2" placeholder="Search entries..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative text-on-surface hover:text-secondary-container transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute -top-1 -right-1 w-4 h-4 bg-secondary-container text-[10px] flex items-center justify-center rounded-full text-white font-bold">4</span>
+</button>
+<div class="h-8 w-px bg-white/10 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-label-bold text-white leading-none">Vikram Singh</p>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-tighter">Chief Administrator</p>
+</div>
+<div class="w-10 h-10 rounded-lg overflow-hidden border border-white/20 ring-2 ring-secondary-container/20">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a high-performance athletic director in his 40s, looking confident and authoritative. He has a sharp jawline and is wearing a sleek black IIFN branded performance polo. The background is a dimly lit, high-end gym with soft red ambient lighting and premium fitness equipment blurred in the distance. The lighting is cinematic and high-contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4BIQMb7cq_eMEQ7Ssxk-XPvPveZuVlI8Xo8rS6jJvQpTqsqeFfntU9o07pdbnWGXLMGxMK3KBN7YbYJDGwtgL0Th3Bhme0R__2bYgPwJpq2E1a0yTuoUfbVRBz2tmuskKfNBxOfVAdoBJgFVVzfclsNyDGGouBehxUe2VWEuYqDDRKqwz880SfpkUw518OioaziIGezw0nwpVOa92DiCN519FWmF84kgxBIXTfUmfrk55SJUxaNcHTh42Ct_MVoxU7XwrPJU9grc"/>
+</div>
+</div>
+</div>
+</header>
+<div class="p-margin space-y-section-gap-mobile">
+<!-- Statistics Section -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="bg-surface-container-low p-8 border border-white/5 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary-container/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-500"></div>
+<p class="text-on-surface-variant font-label-bold uppercase tracking-widest text-[12px] mb-4">Total Students</p>
+<div class="flex items-end justify-between">
+<h3 class="text-5xl font-black text-white">4,892</h3>
+<span class="text-green-500 font-bold text-sm mb-2 flex items-center"><span class="material-symbols-outlined text-sm mr-1">trending_up</span>+12%</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-8 border border-white/5 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary-container/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-500"></div>
+<p class="text-on-surface-variant font-label-bold uppercase tracking-widest text-[12px] mb-4">Active Reviews</p>
+<div class="flex items-end justify-between">
+<h3 class="text-5xl font-black text-white">128</h3>
+<span class="text-secondary-container font-bold text-sm mb-2 uppercase tracking-tighter">Needs Review</span>
+</div>
+</div>
+<div class="bg-secondary-container p-8 relative overflow-hidden group shadow-[0_0_40px_rgba(224,6,0,0.15)]">
+<div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+<p class="text-white/80 font-label-bold uppercase tracking-widest text-[12px] mb-4">Course Sales</p>
+<div class="flex items-end justify-between">
+<h3 class="text-5xl font-black text-white">₹2.4M</h3>
+<span class="text-white font-bold text-sm mb-2 uppercase tracking-tighter">This Month</span>
+</div>
+</div>
+</section>
+<!-- User Management Section -->
+<section>
+<div class="flex items-center justify-between mb-8">
+<div>
+<h4 class="font-headline-md text-white uppercase tracking-tight">User Management</h4>
+<p class="text-on-surface-variant text-sm">Manage student profiles and enrollment status</p>
+</div>
+<button class="bg-white text-black px-6 py-2 font-label-bold uppercase text-xs hover:bg-secondary-container hover:text-white transition-all">Export CSV</button>
+</div>
+<div class="bg-surface-container-low border border-white/5 overflow-hidden">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-black/40 border-b border-white/5">
+<th class="px-6 py-4 font-label-bold uppercase text-xs tracking-widest text-on-surface-variant">Name</th>
+<th class="px-6 py-4 font-label-bold uppercase text-xs tracking-widest text-on-surface-variant">Course</th>
+<th class="px-6 py-4 font-label-bold uppercase text-xs tracking-widest text-on-surface-variant">Enrolled Date</th>
+<th class="px-6 py-4 font-label-bold uppercase text-xs tracking-widest text-on-surface-variant">Status</th>
+<th class="px-6 py-4 font-label-bold uppercase text-xs tracking-widest text-on-surface-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<tr class="hover:bg-white/5 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-high rounded-sm flex items-center justify-center font-bold text-secondary">AM</div>
+<div>
+<p class="text-white font-bold">Arjun Mehta</p>
+<p class="text-[11px] text-on-surface-variant">arjun.m@example.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface">Advanced Personal Training</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">12 Oct 2023</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-green-500/10 text-green-500 uppercase">Active</span>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 text-on-surface-variant hover:text-white transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="p-2 text-on-surface-variant hover:text-secondary-container transition-colors"><span class="material-symbols-outlined text-lg">delete</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-high rounded-sm flex items-center justify-center font-bold text-secondary">SK</div>
+<div>
+<p class="text-white font-bold">Saira Khan</p>
+<p class="text-[11px] text-on-surface-variant">s.khan@example.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface">Sports Nutrition Certification</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">20 Nov 2023</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-yellow-500/10 text-yellow-500 uppercase">Pending</span>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 text-on-surface-variant hover:text-white transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="p-2 text-on-surface-variant hover:text-secondary-container transition-colors"><span class="material-symbols-outlined text-lg">delete</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-high rounded-sm flex items-center justify-center font-bold text-secondary">RD</div>
+<div>
+<p class="text-white font-bold">Rohan Das</p>
+<p class="text-[11px] text-on-surface-variant">rohan.d@example.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface">Master Diploma in Bodybuilding</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">05 Jan 2024</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-green-500/10 text-green-500 uppercase">Active</span>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 text-on-surface-variant hover:text-white transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="p-2 text-on-surface-variant hover:text-secondary-container transition-colors"><span class="material-symbols-outlined text-lg">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Review Moderation Section -->
+<section>
+<div class="flex items-center justify-between mb-8">
+<div>
+<h4 class="font-headline-md text-white uppercase tracking-tight">Review Moderation</h4>
+<p class="text-on-surface-variant text-sm">Control social proof on the main website</p>
+</div>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-gutter">
+<!-- Review Card -->
+<div class="bg-surface-container-low p-6 border border-white/5 relative flex flex-col justify-between group hover:border-secondary-container/30 transition-all">
+<div>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-white/10">
+<img class="w-full h-full object-cover" data-alt="A close-up shot of a muscular female athlete, sweating after a workout, smiling warmly. She is wearing red athletic wear. The lighting is focused and warm, highlighting her determination and success. The background is a clean, dark-themed gym interior with subtle IIFN branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_Ds1yKAak9FEJjT5LAfaJccpwcQuu4UOkVa0U_J0P9oyaghRtjWPhXkEaW1SvrKLCmZy9yYyl2DIeOjKLR4OgvkDD-Z7SWECNcXl5YHc_BYj4PBKg3EuTV23UlsLYzXa9HrhDyv17-NyTwZTSJYUlhY-ZLAU58KtP-VcufaVkZ19KdlqX8l90Ax5QidcO7EnKxONGe0n46n2GKtW-ZFT1Tl-2cwF3PD4imGhst5xMFnHjevVt94A3aEJUFKo6oKOTAowJyks8sBk"/>
+</div>
+<div>
+<p class="text-white font-bold leading-none">Priya Sharma</p>
+<div class="flex text-secondary-container mt-1">
+<span class="material-symbols-outlined text-sm" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-sm" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-sm" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-sm" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-sm" data-weight="fill">star</span>
+</div>
+</div>
+</div>
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-widest">14 Feb 2024</p>
+</div>
+<p class="text-on-surface-variant text-sm italic leading-relaxed mb-6">"The Advanced Personal Training course completely transformed my approach to client programming. The biomechanics module was particularly eye-opening. Highly recommended for professionals!"</p>
+</div>
+<div class="flex items-center justify-between border-t border-white/5 pt-4">
+<div class="flex items-center gap-4">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary-container"></div>
+<span class="ml-3 text-xs font-label-bold text-on-surface uppercase tracking-wider">Approve to Show</span>
+</label>
+</div>
+<button class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-secondary-container hover:underline">
+<span class="material-symbols-outlined text-sm">delete</span> Delete Review
+                                </button>
+</div>
+</div>
+<!-- Review Card 2 -->
+<div class="bg-surface-container-low p-6 border border-white/5 relative flex flex-col justify-between group hover:border-secondary-container/30 transition-all">
+<div>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-white/10">
+<img class="w-full h-full object-cover" data-alt="A focused male trainer in his early 30s, wearing high-tech fitness gear, looking directly at the camera with an intense, professional expression. He is holding a digital tablet showing anatomy diagrams. The background is a sleek, black and red fitness laboratory with neon accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV2o0xKlIhMV5UoprijyIPZD-uqX185psK3gC9i5RJuLeJqBYCc8brzD0YuSBzqjbrzVghGxhPHKu1PLLOz-S-Zd1_aA9FgXQuJB_Aa03zmsKKyIHGZQGxvd3wjSrEP-5e8mIUQ8kztPYwaJ5Z4KTrGrWzZ8-qGGxhOEkOVc6VTte8y85Vl7clBIul71iIdg5p1fPqH_cKwVPC0gib_tlYh9xuApDIWAFnTAWVbtAGGCgZOqlvKVm0eHBWcYFGhzmNKd-6vUrywGE"/>
+</div>
+<div>
+<p class="text-white font-bold leading-none">Kabir Varma</p>
+<div class="flex text-secondary-container mt-1">
+<span class="material-symbols-outlined text-sm" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-sm" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-sm" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-sm" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+</div>
+</div>
+</div>
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-widest">12 Feb 2024</p>
+</div>
+<p class="text-on-surface-variant text-sm italic leading-relaxed mb-6">"Excellent depth in the Sports Nutrition course. Some of the case studies were slightly outdated but the core principles are solid and scientifically backed. Ready to implement these with my athletes."</p>
+</div>
+<div class="flex items-center justify-between border-t border-white/5 pt-4">
+<div class="flex items-center gap-4">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary-container"></div>
+<span class="ml-3 text-xs font-label-bold text-on-surface-variant uppercase tracking-wider">Approve to Show</span>
+</label>
+</div>
+<button class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-secondary-container hover:underline">
+<span class="material-symbols-outlined text-sm">delete</span> Delete Review
+                                </button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Dashboard Footer -->
+<footer class="mt-auto px-margin py-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 bg-surface-container-lowest">
+<p class="text-xs text-on-surface-variant">© 2024 Indian Institute of Fitness &amp; Nutrition. Admin Portal v2.4.1</p>
+<div class="flex gap-6">
+<a class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant hover:text-white transition-colors" href="#">Documentation</a>
+<a class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant hover:text-white transition-colors" href="#">Support API</a>
+<a class="text-[10px] font-bold uppercase tracking-widest text-secondary-container" href="#">Performance Stats</a>
+</div>
+</footer>
+<!-- Atmospheric Overlay Background -->
+<div class="fixed inset-0 pointer-events-none z-[-1] opacity-20">
+<div class="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary-container/20 blur-[150px]"></div>
+<div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/5 blur-[120px]"></div>
+</div>
+</main>
+</div>
+<script>
+        // Micro-interaction for table rows and buttons
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.style.cursor = 'pointer';
+            });
+        });
+
+        // Simple Toggle Feedback
+        const toggles = document.querySelectorAll('input[type="checkbox"]');
+        toggles.forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                const label = this.parentElement.querySelector('span');
+                if(this.checked) {
+                    label.classList.remove('text-on-surface-variant');
+                    label.classList.add('text-on-surface');
+                } else {
+                    label.classList.add('text-on-surface-variant');
+                    label.classList.remove('text-on-surface');
+                }
+            });
+        });
+    </script>
+</body></html>

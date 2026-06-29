@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Course Catalog | IIFN Academy</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#131313",
+                    "secondary-container": "#e00600",
+                    "on-background": "#e5e2e1",
+                    "surface-tint": "#c6c6c6",
+                    "on-primary": "#303030",
+                    "tertiary-fixed": "#e2e2e2",
+                    "tertiary-container": "#000000",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-secondary-fixed": "#410100",
+                    "on-error": "#690005",
+                    "outline-variant": "#4c4546",
+                    "inverse-on-surface": "#313030",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "on-tertiary": "#2f3131",
+                    "tertiary": "#c6c6c7",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "on-primary-fixed": "#1b1b1b",
+                    "primary-fixed-dim": "#c6c6c6",
+                    "background": "#131313",
+                    "surface-container-highest": "#353535",
+                    "surface-container": "#20201f",
+                    "on-secondary-container": "#fff1ef",
+                    "on-primary-fixed-variant": "#474747",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-dim": "#131313",
+                    "on-surface-variant": "#cfc4c5",
+                    "surface-bright": "#393939",
+                    "secondary-fixed": "#ffdad4",
+                    "surface-container-high": "#2a2a2a",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#930300",
+                    "error": "#ffb4ab",
+                    "secondary-fixed-dim": "#ffb4a8",
+                    "error-container": "#93000a",
+                    "on-primary-container": "#757575",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "on-surface": "#e5e2e1",
+                    "surface-container-low": "#1c1b1b",
+                    "secondary": "#ffb4a8",
+                    "on-tertiary-container": "#747576",
+                    "surface-variant": "#353535",
+                    "primary": "#c6c6c6",
+                    "outline": "#988e90",
+                    "primary-fixed": "#e2e2e2",
+                    "on-secondary": "#680200",
+                    "primary-container": "#000000",
+                    "inverse-primary": "#5e5e5e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "section-gap-desktop": "120px",
+                    "gutter": "24px",
+                    "section-gap-mobile": "64px",
+                    "base": "8px",
+                    "grid-columns": "12",
+                    "margin": "40px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Montserrat"],
+                    "headline-lg": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "label-bold": ["Inter"],
+                    "headline-lg-mobile": ["Montserrat"],
+                    "display-lg": ["Montserrat"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-bold": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .red-glow-hover:hover {
+            box-shadow: 0 0 30px rgba(224, 6, 0, 0.35);
+        }
+        .glass-nav {
+            background: rgba(19, 19, 19, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .course-card-border {
+            border: 1px solid #222222;
+        }
+        .course-card-border:hover {
+            border-color: #e00600;
+        }
+        body {
+            background-color: #000000;
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body class="font-body-md">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl border-b border-white/10">
+<div class="flex justify-between items-center px-10 py-6 max-w-[1440px] mx-auto">
+<div class="font-display-lg text-headline-md font-black text-on-surface tracking-tighter">
+                IIFN ACADEMY
+            </div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="font-label-bold text-label-bold uppercase tracking-widest text-secondary-container border-b-2 border-secondary-container pb-1" href="#">Programs</a>
+<a class="font-label-bold text-label-bold uppercase tracking-widest text-on-surface hover:text-secondary-container transition-colors duration-300" href="#">Faculty</a>
+<a class="font-label-bold text-label-bold uppercase tracking-widest text-on-surface hover:text-secondary-container transition-colors duration-300" href="#">Research</a>
+<a class="font-label-bold text-label-bold uppercase tracking-widest text-on-surface hover:text-secondary-container transition-colors duration-300" href="#">Performance Lab</a>
+</nav>
+<div class="flex items-center gap-6">
+<button class="hidden lg:block font-label-bold text-label-bold uppercase tracking-widest text-on-surface hover:opacity-80 transition-all duration-200 active:scale-95">
+                    Student Portal
+                </button>
+<span class="material-symbols-outlined text-on-surface cursor-pointer text-2xl">account_circle</span>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-24">
+<!-- Hero Title Section -->
+<section class="max-w-[1440px] mx-auto px-10 mb-20">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-8 border-l-4 border-secondary-container pl-8">
+<div>
+<h1 class="font-display-lg text-headline-lg md:text-[64px] uppercase tracking-tighter leading-none mb-4">
+                        Elite Performance<br/><span class="text-secondary-container">Curriculum</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                        Industry-leading certifications designed for the next generation of high-performance coaches and clinical nutrition specialists. Driven by science, tested in the lab.
+                    </p>
+</div>
+<div class="flex flex-col items-start md:items-end gap-2">
+<span class="font-label-bold text-label-bold text-secondary-container tracking-[0.2em] uppercase">Status: Open Enrollment</span>
+<div class="h-1 w-32 bg-secondary-container"></div>
+</div>
+</div>
+</section>
+<!-- Bento Course Grid -->
+<section class="max-w-[1440px] mx-auto px-10 grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Course 1: Diploma in Personal Training + CPR -->
+<div class="md:col-span-8 bg-[#111111] course-card-border group transition-all duration-500 overflow-hidden relative">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary-container"></div>
+<div class="flex flex-col md:flex-row h-full">
+<div class="md:w-1/2 relative min-h-[300px]">
+<div class="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="A high-intensity, cinematic action shot of a professional fitness trainer instructing an athlete in a moody, dark-mode gym setting. The lighting is dramatic, with strong rim lights highlighting muscle definition and movement. The color palette is dominated by deep blacks and cool grays, with intense red light spilling from a nearby neon sign, creating a premium performance-lab atmosphere." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCENVZjyNej6lROQXyzRyLnN7teC3Vqz0H_ENB2VzABFDTQqOatSJW44Yx4BMleNPRqaYAlj7bseQtUYppiab8Ym3qPj66otPWrG_4jbsrIp5h_eRAB-6pRgPNPLaQzP_UexlkGsN5oJ2L4uQ2em29HDXWk1TQnhWNRayasrkWnqEr8ruZbon9qY7nU28uz6hm7jStn950bKQSyxnGEwvEF9eVAzs6DPasg0Llj86BM0T17RuZcnNP5WXYzF0AgdJKSyxMKG6oi2fQ')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-transparent to-[#111111] hidden md:block"></div>
+</div>
+<div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-4 mb-6">
+<span class="bg-secondary-container text-white px-3 py-1 font-label-bold text-[10px] uppercase tracking-widest">Most Popular</span>
+<span class="text-on-surface-variant font-label-bold text-[12px] flex items-center gap-1 uppercase">
+<span class="material-symbols-outlined text-sm">schedule</span> 6 Months
+                                </span>
+</div>
+<h2 class="font-headline-lg text-headline-md md:text-headline-lg mb-4 leading-tight uppercase">
+                                Diploma in <span class="text-secondary-container">Personal Training</span> + CPR
+                            </h2>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3 text-on-surface-variant font-body-md">
+<span class="material-symbols-outlined text-secondary-container">check_circle</span>
+                                    Live practical training sessions
+                                </li>
+<li class="flex items-center gap-3 text-on-surface-variant font-body-md">
+<span class="material-symbols-outlined text-secondary-container">check_circle</span>
+                                    10+ Global Certifications included
+                                </li>
+<li class="flex items-center gap-3 text-on-surface-variant font-body-md">
+<span class="material-symbols-outlined text-secondary-container">check_circle</span>
+                                    Hybrid Mode: Online + Offline access
+                                </li>
+</ul>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="flex-1 bg-secondary-container text-white font-label-bold py-4 px-6 uppercase tracking-widest red-glow-hover transition-all duration-300 active:scale-95">
+                                Enroll Now
+                            </button>
+<button class="flex-1 border-white/20 border-2 text-white font-label-bold py-4 px-6 uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">
+                                View Syllabus
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Stats/Atmosphere Block -->
+<div class="md:col-span-4 bg-secondary-container p-8 flex flex-col justify-center items-center text-center">
+<span class="material-symbols-outlined text-6xl mb-4 text-white">fitness_center</span>
+<div class="font-display-lg text-[64px] font-black text-white leading-none">25K+</div>
+<div class="font-label-bold text-white uppercase tracking-[0.3em] mt-2">Elite Graduates</div>
+<p class="mt-6 text-white/80 font-body-md">Join India's most intensive training ecosystem.</p>
+</div>
+<!-- Course 2: Diploma in Applied Nutrition, Food Science & Dietetics -->
+<div class="md:col-span-6 bg-[#111111] course-card-border group transition-all duration-500 flex flex-col">
+<div class="relative h-64 overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="A clean, laboratory-style overhead shot of high-end clinical nutrition supplies, fresh organic vegetables, and scientific measuring tools on a black slate surface. The lighting is sharp and sterile, evoking a food science research facility. Splashes of vibrant red from sliced peppers and berries contrast sharply with the dark background, maintaining the premium fitness academy brand identity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBbzkTT9n9GINxd9I815zzoFmqNYVTUZQVP1K3uVwMxmiQO4FI1WTkdoelveL7C98LF-UMqjwmE83HIh8tWp4fHZJgOi_YkyBCFr6wbGep9kVrNUnYdRvIooW1gywK8seTv2F8pqN72xbAgZ919sOYeu2NZtWnlLQPqURv_bVSSO9s21jJYiGjaOusTRdntw5GGnDus6RO9Sj8cH_y1mq6BuySp_L395oWWFiwwUmBJy0Io_MU2wm5jxQE8eFUwQ41L52zYktgPYwA')"></div>
+<div class="absolute top-4 right-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-bold text-[10px] text-white uppercase">Advanced Level</div>
+</div>
+<div class="p-8 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-4 mb-6">
+<span class="text-on-surface-variant font-label-bold text-[12px] flex items-center gap-1 uppercase">
+<span class="material-symbols-outlined text-sm">schedule</span> 12 Months
+                            </span>
+<span class="text-on-surface-variant font-label-bold text-[12px] flex items-center gap-1 uppercase">
+<span class="material-symbols-outlined text-sm">language</span> Online
+                            </span>
+</div>
+<h2 class="font-headline-md text-headline-md mb-6 leading-tight uppercase">
+                            Diploma in <span class="text-secondary-container">Applied Nutrition</span>, Food Science & Dietetics
+                        </h2>
+<p class="text-on-surface-variant mb-8 line-clamp-3">Master the clinical side of fitness. From metabolic pathways to medical nutrition therapy, become a certified specialist in performance fueling.</p>
+</div>
+<div class="flex flex-col gap-4">
+<button class="w-full bg-secondary-container text-white font-label-bold py-4 px-6 uppercase tracking-widest red-glow-hover transition-all duration-300">
+                            Enroll Now
+                        </button>
+<button class="w-full border-white/10 border font-label-bold py-4 px-6 uppercase tracking-widest text-on-surface-variant hover:text-white hover:border-white transition-all duration-300">
+                            View Syllabus
+                        </button>
+</div>
+</div>
+</div>
+<!-- Course 3: Certification in Applied Nutrition -->
+<div class="md:col-span-6 bg-[#111111] course-card-border group transition-all duration-500 flex flex-col">
+<div class="relative h-64 overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="A close-up shot of a modern tablet displaying complex nutritional data charts and macro-nutrient breakdowns, resting on a dark gym floor next to a sleek water bottle. The lighting is dramatic, using a single red spotlight to create a strong mood. The visual style is high-tech and data-driven, emphasizing the scientific approach of the Indian Institute of Fitness and Nutrition." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCOHdlYbqCSQNXtp1e7KBFO87WWenoVDAhESJ3FjAWJjmO3vQthDKGtPxGRFYx96QTKakFBU3TaN_fbO1LgoWt-z3-8PG240Wixg8e7V-8y1TsgT7fP4-Kfs_EMEw-LCLiJf7jhuqfOY5MavmF7mz2H-chY8Xx_x4ib5sACQkpD90DB6AMABR2OR53mCTlRvG3t9tWfvg4SZE2H4l5JP4uw3q5_essflB8E7NFZTse4kZTDH3ZJGN0DgztdcLSxI8lYlSWRpOfLMhg')"></div>
+<div class="absolute top-4 right-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-bold text-[10px] text-white uppercase">Foundation</div>
+</div>
+<div class="p-8 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-4 mb-6">
+<span class="text-on-surface-variant font-label-bold text-[12px] flex items-center gap-1 uppercase">
+<span class="material-symbols-outlined text-sm">schedule</span> 4 Months
+                            </span>
+<span class="text-on-surface-variant font-label-bold text-[12px] flex items-center gap-1 uppercase">
+<span class="material-symbols-outlined text-sm">bolt</span> Fast-track
+                            </span>
+</div>
+<h2 class="font-headline-md text-headline-md mb-6 leading-tight uppercase">
+                            Certification in <span class="text-secondary-container">Applied Nutrition</span>
+</h2>
+<p class="text-on-surface-variant mb-8 line-clamp-3">Perfect for athletes and entry-level coaches looking to master the fundamentals of macros, micros, and effective supplement strategies.</p>
+</div>
+<div class="flex flex-col gap-4">
+<button class="w-full bg-secondary-container text-white font-label-bold py-4 px-6 uppercase tracking-widest red-glow-hover transition-all duration-300">
+                            Enroll Now
+                        </button>
+<button class="w-full border-white/10 border font-label-bold py-4 px-6 uppercase tracking-widest text-on-surface-variant hover:text-white hover:border-white transition-all duration-300">
+                            View Syllabus
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Lab CTA Section -->
+<section class="max-w-[1440px] mx-auto px-10 mt-32">
+<div class="bg-[#0e0e0e] border border-white/5 p-12 md:p-24 flex flex-col items-center text-center relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-secondary-container to-transparent opacity-50"></div>
+<h3 class="font-display-lg text-headline-lg mb-8 uppercase tracking-tighter">Not sure which path to take?</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-12">
+                    Our academic advisors are available for a 1-on-1 performance consultation to map out your career in the fitness industry.
+                </p>
+<button class="border-2 border-white text-white px-10 py-5 font-label-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-500">
+                    Talk to an Advisor
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 bg-surface-container-lowest border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin max-w-[1440px] mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="font-headline-md text-headline-md text-on-surface mb-6 uppercase tracking-tighter">IIFN ACADEMY</div>
+<p class="text-on-surface-variant text-body-md mb-8">Elevating Indian fitness standards through elite education and clinical research.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-secondary-container cursor-pointer transition-colors">face_nod</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-secondary-container cursor-pointer transition-colors">share</span>
+</div>
+</div>
+<div>
+<h4 class="font-label-bold text-label-bold text-secondary-container uppercase mb-6 tracking-widest">Programs</h4>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-secondary-container transition-colors font-body-md" href="#">Personal Training</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary-container transition-colors font-body-md" href="#">Applied Nutrition</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary-container transition-colors font-body-md" href="#">Sports Science</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-bold text-label-bold text-secondary-container uppercase mb-6 tracking-widest">Institution</h4>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-secondary-container transition-colors font-body-md" href="#">About IIFN</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary-container transition-colors font-body-md" href="#">Faculty</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary-container transition-colors font-body-md" href="#">Accreditation</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-bold text-label-bold text-secondary-container uppercase mb-6 tracking-widest">Support</h4>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-secondary-container transition-colors font-body-md" href="#">Privacy Policy</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary-container transition-colors font-body-md" href="#">Terms of Service</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary-container transition-colors font-body-md" href="#">Contact Support</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-[1440px] mx-auto px-margin mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-on-surface-variant font-body-md text-sm">© 2024 Indian Institute of Fitness & Nutrition. Elite Performance Standards.</p>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></div>
+<span class="text-xs uppercase font-label-bold text-on-surface-variant tracking-widest">Server Status: Optimal</span>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.style.transform = 'scale(0.96)';
+            });
+            button.addEventListener('mouseup', () => {
+                button.style.transform = 'scale(1)';
+            });
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'scale(1)';
+            });
+        });
+
+        // Simple scroll effect for header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('py-4');
+                header.classList.remove('py-6');
+            } else {
+                header.classList.add('py-6');
+                header.classList.remove('py-4');
+            }
+        });
+    </script>
+</body></html>
