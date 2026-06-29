@@ -46,11 +46,11 @@ export default function Footer() {
           <ul className="space-y-4 font-body text-on-surface-variant text-sm">
             <li className="flex gap-2">
               <span className="material-symbols-outlined text-secondary-container text-sm">location_on</span> 
-              New Delhi, India
+              West Bengal , India 
             </li>
             <li className="flex gap-2">
               <span className="material-symbols-outlined text-secondary-container text-sm">call</span> 
-              +91 999 000 111
+              +91 7001625285(Jewel Roy)
             </li>
             <li className="flex gap-2">
               <span className="material-symbols-outlined text-secondary-container text-sm">schedule</span> 

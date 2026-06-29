@@ -182,6 +182,76 @@ export default function Courses() {
               </div>
             </div>
           </div>
+
+          {/* Course 3: Certification in Applied Nutrition */}
+          <div className="md:col-span-6 bg-[#111111] border border-white/5 hover:border-secondary-container/50 transition-all duration-500 flex flex-col rounded group overflow-hidden">
+            <div className="relative h-64 overflow-hidden">
+              <div 
+                className="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-700" 
+                style={{ backgroundImage: `url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=2070&auto=format&fit=crop')` }}
+              />
+              <div className="absolute top-4 right-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-body font-bold text-[9px] text-white uppercase rounded-sm border border-white/5">Foundation</div>
+            </div>
+            <div className="p-8 md:p-10 flex-1 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="text-on-surface-variant font-body font-bold text-[11px] flex items-center gap-1 uppercase">
+                    <span className="material-symbols-outlined text-sm">schedule</span> 4 Months
+                  </span>
+                  <span className="text-on-surface-variant font-body font-bold text-[11px] flex items-center gap-1 uppercase">
+                    <span className="material-symbols-outlined text-sm">bolt</span> Fast-track
+                  </span>
+                </div>
+                <h2 className="font-display font-black text-xl md:text-2xl mb-4 leading-tight uppercase text-white">
+                  Certification in <span className="text-secondary-container">Applied Nutrition</span>
+                </h2>
+                <p className="text-on-surface-variant font-body text-sm mb-8 leading-relaxed">Perfect for athletes and entry-level coaches looking to master the fundamentals of macros, micros, and effective supplement strategies.</p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4 mt-auto">
+                <Link href="/cpt" className="flex-1 text-center bg-secondary-container text-white font-body font-bold text-xs py-4 px-6 uppercase tracking-widest red-glow-hover transition-all duration-300">
+                  Enroll Now
+                </Link>
+                <Link href="/cpt" className="flex-1 text-center border-white/10 border font-body font-bold text-xs py-4 px-6 uppercase tracking-widest text-on-surface-variant hover:text-white hover:border-white transition-all duration-300">
+                  View Syllabus
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Course 3: Certification in Applied Nutrition */}
+          <div className="md:col-span-6 bg-[#111111] border border-white/5 hover:border-secondary-container/50 transition-all duration-500 flex flex-col rounded group overflow-hidden">
+            <div className="relative h-64 overflow-hidden">
+              <div 
+                className="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-700" 
+                style={{ backgroundImage: `url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=2070&auto=format&fit=crop')` }}
+              />
+              <div className="absolute top-4 right-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-body font-bold text-[9px] text-white uppercase rounded-sm border border-white/5">Foundation</div>
+            </div>
+            <div className="p-8 md:p-10 flex-1 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="text-on-surface-variant font-body font-bold text-[11px] flex items-center gap-1 uppercase">
+                    <span className="material-symbols-outlined text-sm">schedule</span> 4 Months
+                  </span>
+                  <span className="text-on-surface-variant font-body font-bold text-[11px] flex items-center gap-1 uppercase">
+                    <span className="material-symbols-outlined text-sm">bolt</span> Fast-track
+                  </span>
+                </div>
+                <h2 className="font-display font-black text-xl md:text-2xl mb-4 leading-tight uppercase text-white">
+                  Certification in <span className="text-secondary-container">Applied Nutrition</span>
+                </h2>
+                <p className="text-on-surface-variant font-body text-sm mb-8 leading-relaxed">Perfect for athletes and entry-level coaches looking to master the fundamentals of macros, micros, and effective supplement strategies.</p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4 mt-auto">
+                <Link href="/cpt" className="flex-1 text-center bg-secondary-container text-white font-body font-bold text-xs py-4 px-6 uppercase tracking-widest red-glow-hover transition-all duration-300">
+                  Enroll Now
+                </Link>
+                <Link href="/cpt" className="flex-1 text-center border-white/10 border font-body font-bold text-xs py-4 px-6 uppercase tracking-widest text-on-surface-variant hover:text-white hover:border-white transition-all duration-300">
+                  View Syllabus
+                </Link>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Lab Advisor CTA Section */}

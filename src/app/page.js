@@ -39,12 +39,63 @@ export default function Home() {
     }
   };
 
-  const mediaPartners = [
-    "ANI News", "The Print", "Indian Express", "Zee5", "DailyHunt", "Telegraph"
+  const pressLogos = [
+    { name: "ANI News", src: "/press/ANI-1.png.webp" },
+    { name: "Live Today", src: "/press/LY_LOGO.svg_.png.webp" },
+    { name: "The Telegraph", src: "/press/The-Telegraph.png.webp" },
+    { name: "The Print", src: "/press/ThePrint_logo.png.webp" },
+    { name: "Zee5", src: "/press/Zee-5-Logo.png.webp" },
+    { name: "DailyHunt", src: "/press/daily-hunt.png.webp" },
   ];
 
-  const alumniBrands = [
-    "Gold's Gym", "Cult.fit", "Anytime Fitness", "Talwalkars", "Fitness First", "Snap Fitness"
+  const alumniLogos = [
+    { name: "Anytime Fitness", src: "/alumni/Anytime_Fitness_logo_wordmark.png.webp" },
+    { name: "Apollo", src: "/alumni/Apollo-png-01.png.webp" },
+    { name: "Gold's Gym", src: "/alumni/Golds_Gym_logo.svg_.png.webp" },
+    { name: "J.W. Marriott", src: "/alumni/J-W-Marriot.png.webp" },
+    { name: "Kick Fitness", src: "/alumni/Kick-Fitness-Studio.png.webp" },
+    { name: "Starmark Fitness", src: "/alumni/Starmark_Fitness_Studio.png.webp" },
+    { name: "Sugar.fit", src: "/alumni/Sugar.fit_.png.webp" },
+    { name: "Talwalkars", src: "/alumni/Talwalkars.png.webp" },
+    { name: "Cult.fit", src: "/alumni/cult-fit-logo.png.webp" },
+    { name: "Fitness Factory", src: "/alumni/fitness-factory.png.webp" },
+    { name: "Fitnet", src: "/alumni/fitnet-png-logo.png.webp" },
+    { name: "Fitwit", src: "/alumni/fitwit-png.png.webp" },
+    { name: "HealthifyMe", src: "/alumni/healthifyme-logo.png.webp" },
+    { name: "ITC Hotel", src: "/alumni/itchotel.png.webp" },
+    { name: "Rival Fitness", src: "/alumni/rival-png.png.webp" },
+    { name: "Stark Fitness", src: "/alumni/stark-fitness.png.webp" },
+    { name: "Calcutta Fitness Studio", src: "/alumni/the-calcutta-fitness-studio-png.png.webp" },
+    { name: "Tribell Fitness", src: "/alumni/tribell-fitness.png.webp" },
+  ];
+
+  const affiliationLogos = [
+    { name: "MSME", src: "/affilations/MSME-Logo.png.webp" },
+    { name: "NSDC", src: "/affilations/NSDC-Logo.png.webp" },
+    { name: "Startup India", src: "/affilations/StartupIndia-Logo.png.webp" },
+    { name: "ISO Logo 1", src: "/affilations/iso-1.png.webp" },
+    { name: "ISO Logo 2", src: "/affilations/iso2.png.webp" },
+    { name: "ISO Logo 3", src: "/affilations/iso3-1.png.webp" },
+    { name: "Medhavi", src: "/affilations/medhavi.png.webp" },
+    { name: "RLSS", src: "/affilations/rlss.png.webp" },
+    { name: "Skill India", src: "/affilations/skill-india.png.webp" },
+    { name: "SPFL", src: "/affilations/spfl.png.webp" },
+  ];
+
+  const candidates = [
+    { name: "Rupali", src: "/candidates/Rupali-testi.jpg.webp" },
+    { name: "Ankita", src: "/candidates/ankita-testi.jpg.webp" },
+    { name: "Dr. Moushumi G.", src: "/candidates/dr.-moushumi-g.jpg.webp" },
+    { name: "Dr. Moushumi", src: "/candidates/dr.-moushumi.jpg.webp" },
+    { name: "Kunal", src: "/candidates/kunal-testi.jpg.webp" },
+    { name: "Mahammad", src: "/candidates/mahammad-testi.jpg.webp" },
+    { name: "Nandita", src: "/candidates/nandita.jpg.webp" },
+    { name: "Priya", src: "/candidates/priya.jpg.webp" },
+    { name: "Rekha", src: "/candidates/rekha.jpg.webp" },
+    { name: "Sukriti", src: "/candidates/sukriti.jpg.webp" },
+    { name: "Suprio", src: "/candidates/suprio-testi.jpg.webp" },
+    { name: "Swapnil", src: "/candidates/swapnil.jpg.webp" },
+    { name: "Tanupriya", src: "/candidates/tanupriya.jpg.webp" },
   ];
 
   const stats = [
@@ -116,11 +167,14 @@ export default function Home() {
           <p className="font-display text-lg font-black uppercase">As Featured In Global Media</p>
         </div>
         <div className="relative w-full flex overflow-x-hidden">
-          <div className="animate-marquee flex gap-12 whitespace-nowrap py-4">
-            {/* First Set */}
-            {mediaPartners.concat(mediaPartners).map((partner, index) => (
-              <div key={index} className="mx-8 text-xl font-display font-black tracking-tighter text-on-surface/30 uppercase hover:text-white transition-colors duration-300">
-                {partner}
+          <div className="animate-marquee flex gap-12 items-center whitespace-nowrap py-4">
+            {pressLogos.concat(pressLogos).map((partner, index) => (
+              <div key={index} className="mx-6 shrink-0 select-none bg-white p-3 rounded-sm shadow-md flex items-center justify-center h-14 w-32">
+                <img
+                  src={partner.src}
+                  alt={partner.name}
+                  className="h-8 max-w-full object-contain hover:scale-105 transition-transform duration-300"
+                />
               </div>
             ))}
           </div>
@@ -128,7 +182,7 @@ export default function Home() {
       </section>
 
       {/* Global Affiliations */}
-      <section className="py-20 bg-surface-container-low border-b border-white/5">
+      <section className="py-20 bg-surface-container-low border-b border-white/5 overflow-hidden">
         <div className="px-6 max-w-screen-xl mx-auto flex flex-col items-center gap-12">
           <div className="text-center">
             <h2 className="font-display text-3xl font-black uppercase tracking-tight mb-3">Elite Global Affiliations</h2>
@@ -136,23 +190,18 @@ export default function Home() {
             <div className="w-16 h-1 bg-secondary-container mx-auto mt-4"></div>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 justify-items-center w-full max-w-5xl">
-            {[
-              { title: "NSDC Approved", subtitle: "Skill India Partner", icon: "verified" },
-              { title: "ISO 9001:2015", subtitle: "Quality Management", icon: "shield_with_heart" },
-              { title: "EREPS Level 4", subtitle: "European Standards", icon: "military_tech" },
-              { title: "MSME Registered", subtitle: "Govt. of India", icon: "domain" }
-            ].map((aff, index) => (
-              <div key={index} className="flex flex-col items-center gap-4 group text-center bg-black/20 p-6 border border-white/5 hover:border-secondary-container/40 transition-all rounded w-full max-w-[200px]">
-                <span className="material-symbols-outlined text-4xl text-secondary-container group-hover:scale-110 transition-transform">
-                  {aff.icon}
-                </span>
-                <div>
-                  <p className="font-body font-bold text-on-surface uppercase text-xs">{aff.title}</p>
-                  <p className="text-[10px] text-on-surface/40 uppercase mt-1">{aff.subtitle}</p>
+          <div className="relative w-full flex overflow-x-hidden max-w-5xl">
+            <div className="animate-marquee flex gap-12 items-center whitespace-nowrap py-4">
+              {affiliationLogos.concat(affiliationLogos).map((logo, index) => (
+                <div key={index} className="mx-6 shrink-0 select-none bg-white p-3 rounded-sm shadow-md flex items-center justify-center h-16 w-36">
+                  <img
+                    src={logo.src}
+                    alt={logo.name}
+                    className="h-10 max-w-full object-contain hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -284,10 +333,14 @@ export default function Home() {
           <p className="font-display text-lg font-black uppercase">Our Alumni Drive The Global Industry</p>
         </div>
         <div className="relative w-full flex overflow-x-hidden">
-          <div className="animate-marquee flex gap-12 whitespace-nowrap py-2">
-            {alumniBrands.concat(alumniBrands).map((brand, index) => (
-              <div key={index} className="mx-12 text-2xl font-display font-black tracking-tighter text-on-surface/20 uppercase hover:text-white transition-colors duration-300">
-                {brand}
+          <div className="animate-marquee flex gap-12 items-center whitespace-nowrap py-2">
+            {alumniLogos.concat(alumniLogos).map((brand, index) => (
+              <div key={index} className="mx-6 shrink-0 select-none bg-white p-3 rounded-sm shadow-md flex items-center justify-center h-14 w-32">
+                <img
+                  src={brand.src}
+                  alt={brand.name}
+                  className="h-8 max-w-full object-contain hover:scale-105 transition-transform duration-300"
+                />
               </div>
             ))}
           </div>
@@ -335,6 +388,41 @@ export default function Home() {
               <p className="text-on-surface/70 italic text-sm leading-relaxed font-body">"{t.comment}"</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Candidate Gallery */}
+      <section className="py-24 bg-surface-container-low border-t border-white/5" id="gallery">
+        <div className="px-6 max-w-screen-xl mx-auto">
+          <div className="flex flex-col items-center text-center mb-16">
+            <h2 className="font-display text-3xl font-black uppercase mb-3">Our Certified Professionals</h2>
+            <p className="text-secondary-container font-body font-bold uppercase tracking-[0.2em] text-[10px]">IIFN Transformation &amp; Placement Gallery</p>
+            <div className="w-16 h-1 bg-secondary-container mx-auto mt-4"></div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {candidates.map((candidate, index) => (
+              <div 
+                key={index} 
+                className="group relative overflow-hidden bg-black border border-white/10 rounded-sm hover:border-secondary-container/50 transition-all duration-300"
+              >
+                <div className="h-64 overflow-hidden relative">
+                  <img
+                    src={candidate.src}
+                    alt={candidate.name}
+                    className="w-full h-full object-cover scale-100 group-hover:scale-105 transition-all duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300"></div>
+                </div>
+                <div className="p-4 text-center border-t border-white/5">
+                  <h4 className="font-display font-bold text-sm uppercase text-white tracking-wide group-hover:text-secondary-container transition-colors">
+                    {candidate.name}
+                  </h4>
+                  <p className="text-[10px] text-on-surface/40 uppercase mt-1">Certified Specialist</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

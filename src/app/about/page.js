@@ -88,7 +88,7 @@ export default function About() {
         <section className="py-16 relative z-20 px-6 max-w-7xl mx-auto -mt-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {stats.map((stat, idx) => (
-              <div key={idx} className="glass-panel p-8 text-center group transition-all hover:border-secondary-container/50 rounded">
+              <div key={idx} className="glass-panel p-8 text-center group transition-all hover:border-secondary-container/50 rounded ">
                 <div className="font-display text-4xl font-black text-secondary-container mb-2 text-glow">{stat.value}</div>
                 <div className="font-body font-bold text-xs uppercase tracking-widest text-on-surface-variant group-hover:text-white transition-colors">{stat.label}</div>
               </div>
