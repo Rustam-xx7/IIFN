@@ -15,6 +15,7 @@ export default function Navbar() {
     { name: "Home", path: "/" },
     { name: "Courses", path: "/courses" },
     { name: "CPT Program", path: "/cpt" },
+    { name: "Jewel Gym", path: "/gym" },
     { name: "About Us", path: "/about" },
     { name: "Contact", path: "/contact" },
     { name: "Admin Dashboard", path: "/admin" },
