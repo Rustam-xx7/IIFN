@@ -9,6 +9,7 @@ export default function Courses() {
   const [showAdvisorModal, setShowAdvisorModal] = useState(false);
   const [counselorSubmitted, setCounselorSubmitted] = useState(false);
   const [advisorForm, setAdvisorForm] = useState({ name: "", phone: "", email: "" });
+  const [expandedSyllabusId, setExpandedSyllabusId] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +27,89 @@ export default function Courses() {
       }, 4000);
     }
   };
+
+  const courseList = [
+    {
+      id: "cpt",
+      title: "Certified Personal Trainer (CPT)",
+      tag: "Best Seller",
+      desc: "Master the physiology, biomechanics, and program design required to become an elite fitness coach.",
+      img: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069&auto=format&fit=crop",
+    },
+    {
+      id: "csn",
+      title: "Certified Sports Nutritionist (CSN)",
+      tag: "Advanced",
+      desc: "Biochemistry, macronutrient guidelines, metabolism, and lifestyle diet planning for performance.",
+      img: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2070&auto=format&fit=crop",
+    },
+    {
+      id: "cfc",
+      title: "Certified Fitness Coach (CFC)",
+      tag: "Popular",
+      desc: "Integrate fitness education, posture checks, and behavioral science to drive sustainable client results.",
+      img: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=2070&auto=format&fit=crop",
+    },
+    {
+      id: "cbrs",
+      title: "Certified Body Recomposition Specialist",
+      tag: "Specialty",
+      desc: "Scientific protocols for concurrent fat loss and hypertrophic muscle gains in modern clients.",
+      img: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=2070&auto=format&fit=crop",
+    },
+    {
+      id: "cwmc",
+      title: "Certified Weight Management Coach",
+      tag: "Specialty",
+      desc: "Obesity mechanics, metabolic assessments, and calorie management guidelines for health coaches.",
+      img: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=2070&auto=format&fit=crop",
+    },
+    {
+      id: "cscs",
+      title: "Strength & Conditioning Specialist",
+      tag: "Elite",
+      desc: "Athletic preparation patterns, speed conditioning, plyometrics, and injury mitigation methodologies.",
+      img: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=2070&auto=format&fit=crop",
+    },
+    {
+      id: "mdfs",
+      title: "Master Diploma in Fitness Sciences",
+      tag: "Premium",
+      desc: "Dual certification in CPT and Sports Nutrition for ultimate authority and premium job placements.",
+      img: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069&auto=format&fit=crop",
+    },
+  ];
+
+  const syllabusModules = [
+    {
+      title: "🧠 MODULE 1: HUMAN ANATOMY & PHYSIOLOGY",
+      items: ["Muscular System", "Skeletal System", "Joints & Movement Patterns", "Cardiovascular & Respiratory Basics"]
+    },
+    {
+      title: "🏋️ MODULE 2: EXERCISE SCIENCE",
+      items: ["Types of Exercises", "Resistance Training Principles", "Cardio & Endurance Training", "Warm-up, Cool-down & Stretching"]
+    },
+    {
+      title: "🔄 MODULE 3: PRACTICAL TRAINING (LIVE)",
+      items: ["Exercise Demonstrations", "Correct Form & Posture", "Beginner to Advanced Progressions", "Common Gym Mistakes Correction"]
+    },
+    {
+      title: "🔥 MODULE 4: HUMAN BODY COMPONENTS",
+      items: ["Training strategies", "Program Design Basics", "Lifestyle & Recovery Factors", "Client Transformation Approach"]
+    },
+    {
+      title: "🛡️ MODULE 5: INJURY PREVENTION & SAFETY",
+      items: ["Common Gym Injuries", "Injury Prevention Techniques", "Safe Training Guidelines", "Client Risk Management"]
+    },
+    {
+      title: "🥗 MODULE 6: NUTRITION",
+      items: ["Macronutrients & Micronutrients", "Diet Planning Basics", "Fat Loss & Muscle Gain Nutrition", "Supplement Awareness"]
+    },
+    {
+      title: "◀️ MODULE 7: PROFESSIONAL PRACTICE & CAREER DEVELOPMENT",
+      items: ["Exercise & Diet Samples", "Client Case Studies", "Introduction To CPR", "Trainer Job Role", "Marketing Your Skill"]
+    }
+  ];
 
   return (
     <>
@@ -52,206 +136,90 @@ export default function Courses() {
         </section>
 
         {/* Bento Course Grid */}
-        <section className="max-w-[1440px] mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-8">
-          
-          {/* Course 1: Diploma in Personal Training */}
-          <div className="md:col-span-8 bg-[#111] border border-white/5 hover:border-secondary-container/50 transition-all duration-500 overflow-hidden relative rounded group">
-            <div className="absolute top-0 left-0 w-1.5 h-full bg-secondary-container"></div>
-            <div className="flex flex-col lg:flex-row h-full">
+        <section className="max-w-[1440px] mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {courseList.map((course, index) => {
+            const isExpanded = expandedSyllabusId === course.id;
+            const isFeatured = index === 0;
+            return (
               <div 
-                className="lg:w-1/2 relative min-h-[300px] bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-700"
-                style={{ backgroundImage: `url('https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069&auto=format&fit=crop')` }}
+                key={course.id} 
+                className={`bg-[#111111] border border-white/5 hover:border-secondary-container/50 transition-all duration-500 rounded group overflow-hidden flex flex-col justify-between relative ${isFeatured ? "lg:col-span-2" : ""}`}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#111111] hidden lg:block" />
-              </div>
-              <div className="lg:w-1/2 p-8 md:p-10 flex flex-col justify-between">
+                <div className="absolute top-0 left-0 w-1.5 h-full bg-secondary-container"></div>
+                
                 <div>
-                  <div className="flex items-center gap-4 mb-6">
-                    <span className="bg-secondary-container text-white px-3 py-1 font-body font-bold text-[9px] uppercase tracking-widest">Most Popular</span>
-                    <span className="text-on-surface-variant font-body font-bold text-[11px] flex items-center gap-1 uppercase">
-                      <span className="material-symbols-outlined text-sm">schedule</span> 6 Months
-                    </span>
+                  <div className="relative h-64 overflow-hidden">
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-700" 
+                      style={{ backgroundImage: `url('${course.img}')` }}
+                    />
+                    <div className="absolute top-4 right-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-body font-bold text-[9px] text-white uppercase rounded-sm border border-white/5">
+                      {course.tag}
+                    </div>
                   </div>
-                  <h2 className="font-display font-black text-2xl md:text-3xl mb-4 leading-tight uppercase text-white">
-                    Diploma in <span class="text-secondary-container">Personal Training</span> + CPR
-                  </h2>
-                  <ul className="space-y-3 mb-8">
-                    <li className="flex items-center gap-3 text-on-surface-variant font-body text-sm">
-                      <span className="material-symbols-outlined text-secondary-container text-base">check_circle</span>
-                      Live practical training sessions
-                    </li>
-                    <li className="flex items-center gap-3 text-on-surface-variant font-body text-sm">
-                      <span className="material-symbols-outlined text-secondary-container text-base">check_circle</span>
-                      10+ Global Certifications included
-                    </li>
-                    <li className="flex items-center gap-3 text-on-surface-variant font-body text-sm">
-                      <span className="material-symbols-outlined text-secondary-container text-base">check_circle</span>
-                      Hybrid Mode: Online + Offline access
-                    </li>
-                  </ul>
+                  
+                  <div className="p-8 md:p-10 flex flex-col">
+                    <div className="flex items-center gap-4 mb-6">
+                      <span className="text-on-surface-variant font-body font-bold text-[11px] flex items-center gap-1 uppercase">
+                        <span className="material-symbols-outlined text-sm">schedule</span> 3 Months
+                      </span>
+                      <span className="text-on-surface-variant font-body font-bold text-[11px] flex items-center gap-1 uppercase">
+                        <span className="material-symbols-outlined text-sm">language</span> Online
+                      </span>
+                    </div>
+                    
+                    <h2 className="font-display font-black text-xl md:text-2xl mb-4 leading-tight uppercase text-white">
+                      {course.title}
+                    </h2>
+                    
+                    <p className="text-on-surface-variant font-body text-sm mb-2 leading-relaxed">
+                      {course.desc}
+                    </p>
+                  </div>
                 </div>
-                <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-                  <Link href="/cpt" className="flex-1 text-center bg-secondary-container text-white font-body font-bold text-xs py-4 px-6 uppercase tracking-widest red-glow-hover transition-all duration-300 active:scale-95">
-                    Enroll Now
-                  </Link>
-                  <Link href="/cpt" className="flex-1 text-center border-white/20 border-2 text-white font-body font-bold text-xs py-4 px-6 uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">
-                    View Syllabus
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          {/* Stats/Atmosphere Block */}
-          <div className="md:col-span-4 bg-secondary-container p-8 flex flex-col justify-center items-center text-center rounded relative overflow-hidden group">
-            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
-            <div className="relative z-10">
-              <span className="material-symbols-outlined text-5xl mb-4 text-white">fitness_center</span>
-              <div className="font-display text-5xl font-black text-white leading-none">25K+</div>
-              <div className="font-body font-bold text-white uppercase tracking-[0.2em] text-[10px] mt-2">Elite Graduates</div>
-              <p className="mt-6 text-white/80 font-body text-sm max-w-[200px] mx-auto leading-relaxed">Join India's most intensive training ecosystem.</p>
-            </div>
-          </div>
+                <div className="px-8 pb-8 mt-auto flex flex-col gap-4">
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Link href="/cpt" className="flex-1 text-center bg-secondary-container text-white font-body font-bold text-xs py-4 px-6 uppercase tracking-widest red-glow-hover transition-all duration-300">
+                      Enroll Now
+                    </Link>
+                    <button 
+                      onClick={() => setExpandedSyllabusId(isExpanded ? null : course.id)}
+                      className="flex-1 text-center border-white/10 border font-body font-bold text-xs py-4 px-6 uppercase tracking-widest text-on-surface-variant hover:text-white hover:border-white transition-all duration-300"
+                    >
+                      {isExpanded ? "Hide Syllabus" : "View Syllabus"}
+                    </button>
+                  </div>
 
-          {/* Course 2: Diploma in Applied Nutrition */}
-          <div className="md:col-span-6 bg-[#111111] border border-white/5 hover:border-secondary-container/50 transition-all duration-500 flex flex-col rounded group overflow-hidden">
-            <div className="relative h-64 overflow-hidden">
-              <div 
-                className="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-700" 
-                style={{ backgroundImage: `url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2070&auto=format&fit=crop')` }}
-              />
-              <div className="absolute top-4 right-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-body font-bold text-[9px] text-white uppercase rounded-sm border border-white/5">Advanced Level</div>
-            </div>
-            <div className="p-8 md:p-10 flex-1 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-4 mb-6">
-                  <span className="text-on-surface-variant font-body font-bold text-[11px] flex items-center gap-1 uppercase">
-                    <span className="material-symbols-outlined text-sm">schedule</span> 12 Months
-                  </span>
-                  <span className="text-on-surface-variant font-body font-bold text-[11px] flex items-center gap-1 uppercase">
-                    <span className="material-symbols-outlined text-sm">language</span> Online
-                  </span>
+                  {/* Expandable Syllabus Section */}
+                  {isExpanded && (
+                    <div className="mt-6 border-t border-white/10 pt-6 animate-fadeIn">
+                      <h3 className="font-display font-bold text-xs uppercase text-white mb-4 tracking-wider">
+                        Syllabus Modules
+                      </h3>
+                      <div className="space-y-4 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
+                        {syllabusModules.map((module, modIdx) => (
+                          <div key={modIdx} className="bg-black/40 p-4 border border-white/5 rounded-sm">
+                            <h4 className="font-display font-bold text-[11px] text-[#ffb4a8] uppercase mb-2">
+                              {module.title}
+                            </h4>
+                            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1">
+                              {module.items.map((item, itemIdx) => (
+                                <li key={itemIdx} className="flex items-center gap-2 text-xs text-on-surface-variant font-body">
+                                  <span className="h-1.5 w-1.5 rounded-full bg-secondary-container"></span>
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
-                <h2 className="font-display font-black text-xl md:text-2xl mb-4 leading-tight uppercase text-white">
-                  Diploma in <span className="text-secondary-container">Applied Nutrition</span>, Food Science &amp; Dietetics
-                </h2>
-                <p className="text-on-surface-variant font-body text-sm mb-8 leading-relaxed">Master the clinical side of fitness. From metabolic pathways to medical nutrition therapy, become a certified specialist in performance fueling.</p>
               </div>
-              <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-                <Link href="/cpt" className="flex-1 text-center bg-secondary-container text-white font-body font-bold text-xs py-4 px-6 uppercase tracking-widest red-glow-hover transition-all duration-300">
-                  Enroll Now
-                </Link>
-                <Link href="/cpt" className="flex-1 text-center border-white/10 border font-body font-bold text-xs py-4 px-6 uppercase tracking-widest text-on-surface-variant hover:text-white hover:border-white transition-all duration-300">
-                  View Syllabus
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Course 3: Certification in Applied Nutrition */}
-          <div className="md:col-span-6 bg-[#111111] border border-white/5 hover:border-secondary-container/50 transition-all duration-500 flex flex-col rounded group overflow-hidden">
-            <div className="relative h-64 overflow-hidden">
-              <div 
-                className="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-700" 
-                style={{ backgroundImage: `url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=2070&auto=format&fit=crop')` }}
-              />
-              <div className="absolute top-4 right-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-body font-bold text-[9px] text-white uppercase rounded-sm border border-white/5">Foundation</div>
-            </div>
-            <div className="p-8 md:p-10 flex-1 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-4 mb-6">
-                  <span className="text-on-surface-variant font-body font-bold text-[11px] flex items-center gap-1 uppercase">
-                    <span className="material-symbols-outlined text-sm">schedule</span> 4 Months
-                  </span>
-                  <span className="text-on-surface-variant font-body font-bold text-[11px] flex items-center gap-1 uppercase">
-                    <span className="material-symbols-outlined text-sm">bolt</span> Fast-track
-                  </span>
-                </div>
-                <h2 className="font-display font-black text-xl md:text-2xl mb-4 leading-tight uppercase text-white">
-                  Certification in <span className="text-secondary-container">Applied Nutrition</span>
-                </h2>
-                <p className="text-on-surface-variant font-body text-sm mb-8 leading-relaxed">Perfect for athletes and entry-level coaches looking to master the fundamentals of macros, micros, and effective supplement strategies.</p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-                <Link href="/cpt" className="flex-1 text-center bg-secondary-container text-white font-body font-bold text-xs py-4 px-6 uppercase tracking-widest red-glow-hover transition-all duration-300">
-                  Enroll Now
-                </Link>
-                <Link href="/cpt" className="flex-1 text-center border-white/10 border font-body font-bold text-xs py-4 px-6 uppercase tracking-widest text-on-surface-variant hover:text-white hover:border-white transition-all duration-300">
-                  View Syllabus
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Course 3: Certification in Applied Nutrition */}
-          <div className="md:col-span-6 bg-[#111111] border border-white/5 hover:border-secondary-container/50 transition-all duration-500 flex flex-col rounded group overflow-hidden">
-            <div className="relative h-64 overflow-hidden">
-              <div 
-                className="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-700" 
-                style={{ backgroundImage: `url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=2070&auto=format&fit=crop')` }}
-              />
-              <div className="absolute top-4 right-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-body font-bold text-[9px] text-white uppercase rounded-sm border border-white/5">Foundation</div>
-            </div>
-            <div className="p-8 md:p-10 flex-1 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-4 mb-6">
-                  <span className="text-on-surface-variant font-body font-bold text-[11px] flex items-center gap-1 uppercase">
-                    <span className="material-symbols-outlined text-sm">schedule</span> 4 Months
-                  </span>
-                  <span className="text-on-surface-variant font-body font-bold text-[11px] flex items-center gap-1 uppercase">
-                    <span className="material-symbols-outlined text-sm">bolt</span> Fast-track
-                  </span>
-                </div>
-                <h2 className="font-display font-black text-xl md:text-2xl mb-4 leading-tight uppercase text-white">
-                  Certification in <span className="text-secondary-container">Applied Nutrition</span>
-                </h2>
-                <p className="text-on-surface-variant font-body text-sm mb-8 leading-relaxed">Perfect for athletes and entry-level coaches looking to master the fundamentals of macros, micros, and effective supplement strategies.</p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-                <Link href="/cpt" className="flex-1 text-center bg-secondary-container text-white font-body font-bold text-xs py-4 px-6 uppercase tracking-widest red-glow-hover transition-all duration-300">
-                  Enroll Now
-                </Link>
-                <Link href="/cpt" className="flex-1 text-center border-white/10 border font-body font-bold text-xs py-4 px-6 uppercase tracking-widest text-on-surface-variant hover:text-white hover:border-white transition-all duration-300">
-                  View Syllabus
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Course 3: Certification in Applied Nutrition */}
-          <div className="md:col-span-6 bg-[#111111] border border-white/5 hover:border-secondary-container/50 transition-all duration-500 flex flex-col rounded group overflow-hidden">
-            <div className="relative h-64 overflow-hidden">
-              <div 
-                className="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-700" 
-                style={{ backgroundImage: `url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=2070&auto=format&fit=crop')` }}
-              />
-              <div className="absolute top-4 right-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-body font-bold text-[9px] text-white uppercase rounded-sm border border-white/5">Foundation</div>
-            </div>
-            <div className="p-8 md:p-10 flex-1 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-4 mb-6">
-                  <span className="text-on-surface-variant font-body font-bold text-[11px] flex items-center gap-1 uppercase">
-                    <span className="material-symbols-outlined text-sm">schedule</span> 4 Months
-                  </span>
-                  <span className="text-on-surface-variant font-body font-bold text-[11px] flex items-center gap-1 uppercase">
-                    <span className="material-symbols-outlined text-sm">bolt</span> Fast-track
-                  </span>
-                </div>
-                <h2 className="font-display font-black text-xl md:text-2xl mb-4 leading-tight uppercase text-white">
-                  Certification in <span className="text-secondary-container">Applied Nutrition</span>
-                </h2>
-                <p className="text-on-surface-variant font-body text-sm mb-8 leading-relaxed">Perfect for athletes and entry-level coaches looking to master the fundamentals of macros, micros, and effective supplement strategies.</p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-                <Link href="/cpt" className="flex-1 text-center bg-secondary-container text-white font-body font-bold text-xs py-4 px-6 uppercase tracking-widest red-glow-hover transition-all duration-300">
-                  Enroll Now
-                </Link>
-                <Link href="/cpt" className="flex-1 text-center border-white/10 border font-body font-bold text-xs py-4 px-6 uppercase tracking-widest text-on-surface-variant hover:text-white hover:border-white transition-all duration-300">
-                  View Syllabus
-                </Link>
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </section>
 
         {/* Lab Advisor CTA Section */}
