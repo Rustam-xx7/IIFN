@@ -95,7 +95,6 @@ export default function Home() {
     { name: "Sukriti", src: "/candidates/sukriti.jpg.webp" },
     { name: "Suprio", src: "/candidates/suprio-testi.jpg.webp" },
     { name: "Swapnil", src: "/candidates/swapnil.jpg.webp" },
-    { name: "Tanupriya", src: "/candidates/tanupriya.jpg.webp" },
   ];
 
   const stats = [
@@ -169,11 +168,11 @@ export default function Home() {
         <div className="relative w-full flex overflow-x-hidden">
           <div className="animate-marquee flex gap-12 items-center whitespace-nowrap py-4">
             {pressLogos.concat(pressLogos).map((partner, index) => (
-              <div key={index} className="mx-6 shrink-0 select-none bg-white p-3 rounded-sm shadow-md flex items-center justify-center h-14 w-32">
+              <div key={index} className="mx-6 shrink-0 select-none bg-white p-3 rounded-sm shadow-md flex items-center justify-center h-24 w-42">
                 <img
                   src={partner.src}
                   alt={partner.name}
-                  className="h-8 max-w-full object-contain hover:scale-105 transition-transform duration-300"
+                  className="h-16 max-w-full object-contain hover:scale-105 transition-transform duration-300"
                 />
               </div>
             ))}
@@ -193,11 +192,11 @@ export default function Home() {
           <div className="relative w-full flex overflow-x-hidden max-w-5xl">
             <div className="animate-marquee flex gap-12 items-center whitespace-nowrap py-4">
               {affiliationLogos.concat(affiliationLogos).map((logo, index) => (
-                <div key={index} className="mx-6 shrink-0 select-none bg-white p-3 rounded-sm shadow-md flex items-center justify-center h-16 w-36">
+                <div key={index} className="mx-6 shrink-0 select-none bg-white p-3 rounded-sm shadow-md flex items-center justify-center h-36 w-48">
                   <img
                     src={logo.src}
                     alt={logo.name}
-                    className="h-10 max-w-full object-contain hover:scale-105 transition-transform duration-300"
+                    className="h-20 max-w-full object-contain hover:scale-105 transition-transform duration-300"
                   />
                 </div>
               ))}
@@ -335,11 +334,11 @@ export default function Home() {
         <div className="relative w-full flex overflow-x-hidden">
           <div className="animate-marquee flex gap-12 items-center whitespace-nowrap py-2">
             {alumniLogos.concat(alumniLogos).map((brand, index) => (
-              <div key={index} className="mx-6 shrink-0 select-none bg-white p-3 rounded-sm shadow-md flex items-center justify-center h-14 w-32">
+              <div key={index} className="mx-6 shrink-0 select-none bg-white p-3 rounded-sm shadow-md flex items-center justify-center h-34 w-52">
                 <img
                   src={brand.src}
                   alt={brand.name}
-                  className="h-8 max-w-full object-contain hover:scale-105 transition-transform duration-300"
+                  className="h-18 max-w-full object-contain hover:scale-105 transition-transform duration-300"
                 />
               </div>
             ))}
