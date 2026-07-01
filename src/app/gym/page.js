@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { addEnquiry } from "@/service/firestore.service";
 
 export default function GymPage() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,23 +13,41 @@ export default function GymPage() {
     phone: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitError("");
     if (formData.name && formData.phone) {
-      setFormSubmitted(true);
-      setTimeout(() => {
-        setFormSubmitted(false);
+      setIsSubmitting(true);
+      try {
+        await addEnquiry({
+          name: formData.name,
+          phone: formData.phone,
+          unit: formData.unit,
+          course: `Jewel Gym Membership Enquiry (${formData.unit})`,
+        });
+        setFormSubmitted(true);
         setFormData({
           name: "",
           unit: "UNIT 1 - GANGPUR",
           phone: "",
         });
-      }, 5000);
+        setTimeout(() => {
+          setFormSubmitted(false);
+        }, 5000);
+      } catch (err) {
+        console.error(err);
+        setSubmitError("Failed to submit membership request. Please try again.");
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -228,7 +247,7 @@ export default function GymPage() {
               TRANSFORM <br /> <span className="text-[#ffb4a8] not-italic">YOUR LIMITS</span>
             </h1>
             <p className="font-body text-sm sm:text-lg text-on-surface/90 max-w-2xl mx-auto mb-10 tracking-widest uppercase font-bold">
-              At Jewel Gym, we don't just train; we build champions. Experience a high-intensity performance lab designed for the elite.
+              At Jewel Gym, we don&apos;t just train; we build champions. Experience a high-intensity performance lab designed for the elite.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
@@ -563,7 +582,7 @@ export default function GymPage() {
                     <span className="material-symbols-outlined text-[#ffb4a8] text-base">bolt</span>
                     <span className="text-on-surface/50 text-[10px] uppercase font-bold">HIIT Expert</span>
                   </div>
-                  <h4 className="font-display font-bold text-lg uppercase text-white">Sarah D'Souza</h4>
+                  <h4 className="font-display font-bold text-lg uppercase text-white">Sarah D&apos;Souza</h4>
                 </div>
                 <div className="bg-[#20201f] p-6 border border-white/5 rounded-sm flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-2">
@@ -699,10 +718,14 @@ export default function GymPage() {
                     </div>
                     <button
                       type="submit"
-                      className="w-full bg-white text-black py-4 rounded-sm font-body font-bold text-xs uppercase tracking-widest hover:bg-black hover:text-white transition-all shadow-xl font-bold"
+                      disabled={isSubmitting}
+                      className="w-full bg-white text-black py-4 rounded-sm font-body font-bold text-xs uppercase tracking-widest hover:bg-black hover:text-white transition-all shadow-xl font-bold disabled:opacity-50 disabled:pointer-events-none"
                     >
-                      JOIN THE PERFORMANCE LAB
+                      {isSubmitting ? "SUBMITTING..." : "JOIN THE PERFORMANCE LAB"}
                     </button>
+                    {submitError && (
+                      <p className="text-white text-xs mt-2 font-body font-bold text-center">{submitError}</p>
+                    )}
                   </form>
                 )}
               </div>

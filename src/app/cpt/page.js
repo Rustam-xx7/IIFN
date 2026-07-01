@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { addEnrollment } from "@/service/firestore.service";
 
 export default function CPTCourse() {
   const [activeSyllabus, setActiveSyllabus] = useState(0);
@@ -15,6 +16,9 @@ export default function CPTCourse() {
     experience: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+
   const toggleAccordion = (index) => {
     setActiveSyllabus(activeSyllabus === index ? null : index);
   };
@@ -24,12 +28,22 @@ export default function CPTCourse() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleEnrollSubmit = (e) => {
+  const handleEnrollSubmit = async (e) => {
     e.preventDefault();
+    setSubmitError("");
     if (formData.name && formData.email && formData.phone) {
-      setEnrollSubmitted(true);
-      setTimeout(() => {
-        setEnrollSubmitted(false);
+      setIsSubmitting(true);
+      try {
+        await addEnrollment({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          occupation: formData.occupation,
+          experience: formData.experience,
+          course: "Certified Personal Trainer (CPT)",
+          investment: "₹5,999",
+        });
+        setEnrollSubmitted(true);
         setFormData({
           name: "",
           email: "",
@@ -37,7 +51,15 @@ export default function CPTCourse() {
           occupation: "Student",
           experience: "",
         });
-      }, 5000);
+        setTimeout(() => {
+          setEnrollSubmitted(false);
+        }, 5000);
+      } catch (err) {
+        console.error(err);
+        setSubmitError("Failed to enroll. Please check network connection.");
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -321,10 +343,17 @@ export default function CPTCourse() {
                   <span className="ml-auto font-display font-black text-2xl text-secondary-container">₹5,999</span>
                 </div>
                 
-                <button type="submit" className="w-full bg-secondary-container text-white py-6 font-display font-black text-sm uppercase red-glow hover:scale-[1.01] active:scale-95 transition-all">
-                  Complete Enrollment
+                 <button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="w-full bg-secondary-container text-white py-6 font-display font-black text-sm uppercase red-glow hover:scale-[1.01] active:scale-95 transition-all disabled:opacity-50 disabled:pointer-events-none"
+                >
+                  {isSubmitting ? "Processing..." : "Complete Enrollment"}
                 </button>
-                <p className="text-[9px] text-on-surface-variant text-center uppercase tracking-widest font-body">By clicking above, you agree to IIFN's Code of Conduct and Terms of Service.</p>
+                {submitError && (
+                  <p className="text-red-500 text-xs mt-2 font-body font-bold text-center">{submitError}</p>
+                )}
+                <p className="text-[9px] text-on-surface-variant text-center uppercase tracking-widest font-body mt-2">By clicking above, you agree to IIFN&apos;s Code of Conduct and Terms of Service.</p>
               </form>
             )}
           </div>

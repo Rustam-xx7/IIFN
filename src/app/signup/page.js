@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { signupUser } from "@/service/firestore.service";
 
 export default function Signup() {
   const router = useRouter();
@@ -16,12 +17,14 @@ export default function Signup() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
@@ -43,11 +46,28 @@ export default function Signup() {
       return;
     }
 
-    setSuccess(true);
-    setTimeout(() => {
-      // Redirect to student/admin dashboard
-      router.push("/admin");
-    }, 2000);
+    setIsSubmitting(true);
+    try {
+      const user = await signupUser(
+        formData.name,
+        formData.email,
+        formData.phone,
+        formData.password,
+        formData.course
+      );
+      // Save user session in localStorage for local state check on admin page if needed
+      localStorage.setItem("iifn_user", JSON.stringify(user));
+      setSuccess(true);
+      setTimeout(() => {
+        // Redirect to student/admin dashboard
+        router.push("/admin");
+      }, 2000);
+    } catch (err) {
+      console.error(err);
+      setError(err.message || "Failed to create student account.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -149,8 +169,12 @@ export default function Signup() {
               </select>
             </div>
 
-            <button type="submit" className="w-full bg-secondary-container text-white py-4 font-display font-black text-sm uppercase tracking-widest red-glow hover:scale-[1.01] active:scale-95 transition-all mt-6">
-              Create Student Account
+             <button 
+              type="submit" 
+              disabled={isSubmitting}
+              className="w-full bg-secondary-container text-white py-4 font-display font-black text-sm uppercase tracking-widest red-glow hover:scale-[1.01] active:scale-95 transition-all mt-6 disabled:opacity-50 disabled:pointer-events-none"
+            >
+              {isSubmitting ? "Creating Account..." : "Create Student Account"}
             </button>
           </form>
         )}

@@ -18,7 +18,7 @@ export default function AdminSidebar() {
   return (
     <aside className="w-20 md:w-72 bg-surface-container-lowest border-r border-white/5 flex flex-col z-[40] transition-all duration-300">
       {/* Brand Header */}
-      <div className="p-6 flex items-center gap-4 border-b border-white/5 h-20 shrink-0">
+      <Link href="/" className="p-6 flex items-center gap-4 border-b border-white/5 h-20 shrink-0 hover:opacity-80 transition-all cursor-pointer">
         <div className="w-10 h-10 bg-secondary-container flex items-center justify-center rounded-sm shrink-0">
           <span className="material-symbols-outlined text-white text-2xl">fitness_center</span>
         </div>
@@ -26,7 +26,7 @@ export default function AdminSidebar() {
           <h1 className="font-display text-lg font-black text-white tracking-tighter uppercase leading-none">IIFN</h1>
           <p className="text-[9px] uppercase tracking-widest text-on-surface-variant font-bold mt-1">Performance Lab</p>
         </div>
-      </div>
+      </Link>
 
       {/* Nav Menu */}
       <nav className="flex-1 mt-8 px-4 space-y-2">
@@ -53,13 +53,16 @@ export default function AdminSidebar() {
 
       {/* Sidebar Footer */}
       <div className="p-4 border-t border-white/5 space-y-2">
-        <Link 
-          href="/login" 
-          className="flex items-center gap-4 p-4 rounded-lg text-on-surface-variant hover:bg-white/5 hover:text-white transition-all"
+        <button 
+          onClick={() => {
+            localStorage.removeItem("iifn_user");
+            window.location.href = "/";
+          }}
+          className="w-full flex items-center gap-4 p-4 rounded-lg text-on-surface-variant hover:bg-white/5 hover:text-white transition-all text-left cursor-pointer"
         >
           <span className="material-symbols-outlined">logout</span>
           <span className="hidden md:inline font-body font-bold text-xs uppercase tracking-wider">Logout</span>
-        </Link>
+        </button>
         <div className="bg-surface-container-high p-4 rounded-xl hidden md:block border border-white/5">
           <p className="text-[9px] text-on-surface-variant uppercase mb-2 font-bold tracking-widest">Active Server</p>
           <div className="flex items-center gap-2">

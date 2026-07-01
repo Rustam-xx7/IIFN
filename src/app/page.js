@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import LoadingScreen from "@/components/LoadingScreen";
+import { addEnquiry } from "@/service/firestore.service";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -17,17 +18,28 @@ export default function Home() {
     course: "Certified Personal Trainer",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEnquiry((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleEnquirySubmit = (e) => {
+  const handleEnquirySubmit = async (e) => {
     e.preventDefault();
+    setSubmitError("");
     if (enquiry.name && enquiry.phone && enquiry.email) {
-      setFormSubmitted(true);
-      setTimeout(() => {
-        setFormSubmitted(false);
+      setIsSubmitting(true);
+      try {
+        await addEnquiry({
+          name: enquiry.name,
+          phone: enquiry.phone,
+          email: enquiry.email,
+          city: enquiry.city,
+          course: enquiry.course,
+        });
+        setFormSubmitted(true);
         setEnquiry({
           name: "",
           phone: "",
@@ -35,7 +47,15 @@ export default function Home() {
           city: "",
           course: "Certified Personal Trainer",
         });
-      }, 5000);
+        setTimeout(() => {
+          setFormSubmitted(false);
+        }, 5000);
+      } catch (err) {
+        console.error(err);
+        setSubmitError("Failed to submit enquiry. Please try again.");
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -384,7 +404,7 @@ export default function Home() {
                   <p className="text-secondary-container text-xs font-body">{t.role}</p>
                 </div>
               </div>
-              <p className="text-on-surface/70 italic text-sm leading-relaxed font-body">"{t.comment}"</p>
+              <p className="text-on-surface/70 italic text-sm leading-relaxed font-body">&ldquo;{t.comment}&rdquo;</p>
             </div>
           ))}
         </div>
@@ -508,9 +528,16 @@ export default function Home() {
                   </div>
                 </div>
                 
-                <button type="submit" className="bg-secondary-container text-white py-4 font-display font-black text-sm uppercase red-glow mt-2 hover:scale-[1.02] active:scale-95 transition-all">
-                  Send Online Enquiry
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="bg-secondary-container text-white py-4 font-display font-black text-sm uppercase red-glow mt-2 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50 disabled:pointer-events-none"
+                >
+                  {isSubmitting ? "Sending..." : "Send Online Enquiry"}
                 </button>
+                {submitError && (
+                  <p className="text-red-500 text-xs mt-2 font-body font-bold text-center">{submitError}</p>
+                )}
               </form>
             )}
           </div>

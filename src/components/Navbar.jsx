@@ -1,25 +1,45 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("iifn_user");
+    if (storedUser) {
+      setTimeout(() => {
+        setUser(JSON.parse(storedUser));
+      }, 0);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("iifn_user");
+    setUser(null);
+    setIsOpen(false);
+    window.location.href = "/";
+  };
 
   // Helper to check active link
   const isActive = (path) => pathname === path;
 
-  const links = [
+  const baseLinks = [
     { name: "Home", path: "/" },
     { name: "Courses", path: "/courses" },
     { name: "CPT Program", path: "/cpt" },
     { name: "Jewel Gym", path: "/gym" },
     { name: "About Us", path: "/about" },
     { name: "Contact", path: "/contact" },
-    { name: "Admin Dashboard", path: "/admin" },
   ];
+
+  const links = user?.role === "admin" 
+    ? [...baseLinks, { name: "Admin Dashboard", path: "/admin" }]
+    : baseLinks;
 
   return (
     <>
@@ -47,12 +67,38 @@ export default function Navbar() {
 
         {/* Action Buttons */}
         <div className="flex items-center gap-4">
-          <Link href="/login" className="hidden lg:block border border-secondary-container text-on-surface font-body font-bold text-xs px-6 py-2 uppercase transition-all hover:bg-secondary-container/10">
-            LOGIN
-          </Link>
-          <Link href="/signup" className="hidden lg:block bg-transparent border border-white/20 hover:border-white text-on-surface font-body font-bold text-xs px-6 py-2 uppercase transition-all">
-            SIGN UP
-          </Link>
+          {user ? (
+            <div className="relative group cursor-pointer">
+              <div className="w-9 h-9 rounded-full bg-secondary-container flex items-center justify-center font-display font-black text-white text-sm uppercase border border-white/10 hover:border-secondary-container transition-colors">
+                {user.name ? user.name[0] : "U"}
+              </div>
+              {/* Tooltip Menu */}
+              <div className="absolute right-0 top-10 bg-black border border-white/10 p-3 rounded shadow-xl hidden group-hover:block w-44 z-50">
+                <p className="text-[9px] text-on-surface-variant font-body font-bold uppercase tracking-wider mb-1">Signed In</p>
+                <p className="text-xs text-white font-body font-bold truncate mb-2">{user.name}</p>
+                {user.role === "admin" && (
+                  <Link href="/admin" className="block text-[10px] font-body font-bold text-secondary-container hover:underline mb-2 uppercase tracking-wide">
+                    Admin Panel
+                  </Link>
+                )}
+                <button 
+                  onClick={handleLogout}
+                  className="w-full text-left text-[10px] font-body font-bold text-red-500 hover:underline uppercase tracking-wide cursor-pointer"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          ) : (
+            <>
+              <Link href="/login" className="hidden lg:block border border-secondary-container text-on-surface font-body font-bold text-xs px-6 py-2 uppercase transition-all hover:bg-secondary-container/10">
+                LOGIN
+              </Link>
+              <Link href="/signup" className="hidden lg:block bg-transparent border border-white/20 hover:border-white text-on-surface font-body font-bold text-xs px-6 py-2 uppercase transition-all">
+                SIGN UP
+              </Link>
+            </>
+          )}
           <Link href="/cpt#enroll" className="bg-secondary-container text-white font-body font-bold text-xs px-6 py-2 uppercase red-glow-hover transition-all active:scale-95">
             ENROLL NOW
           </Link>
@@ -106,20 +152,42 @@ export default function Navbar() {
         </nav>
 
         <div className="mt-auto pt-8 border-t border-white/10 flex flex-col gap-4">
-          <Link 
-            href="/login" 
-            onClick={() => setIsOpen(false)}
-            className="w-full text-center py-3 border border-white/20 text-white font-body font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-all"
-          >
-            Login
-          </Link>
-          <Link 
-            href="/signup" 
-            onClick={() => setIsOpen(false)}
-            className="w-full text-center py-3 bg-secondary-container text-white font-body font-bold text-sm uppercase tracking-widest red-glow-hover transition-all"
-          >
-            Sign Up
-          </Link>
+          {user ? (
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 bg-white/5 p-3 border border-white/5 rounded-sm">
+                <div className="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center font-display font-black text-white text-xs uppercase">
+                  {user.name ? user.name[0] : "U"}
+                </div>
+                <div className="truncate">
+                  <p className="text-xs text-white font-body font-bold truncate">{user.name}</p>
+                  <p className="text-[9px] text-on-surface-variant uppercase tracking-wider">{user.role}</p>
+                </div>
+              </div>
+              <button 
+                onClick={handleLogout}
+                className="w-full text-center py-3 bg-red-600/20 hover:bg-red-600 border border-red-500/20 text-white font-body font-bold text-sm uppercase tracking-widest transition-all rounded-sm cursor-pointer"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <>
+              <Link 
+                href="/login" 
+                onClick={() => setIsOpen(false)}
+                className="w-full text-center py-3 border border-white/20 text-white font-body font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-all"
+              >
+                Login
+              </Link>
+              <Link 
+                href="/signup" 
+                onClick={() => setIsOpen(false)}
+                className="w-full text-center py-3 bg-secondary-container text-white font-body font-bold text-sm uppercase tracking-widest red-glow-hover transition-all"
+              >
+                Sign Up
+              </Link>
+            </>
+          )}
         </div>
       </aside>
     </>

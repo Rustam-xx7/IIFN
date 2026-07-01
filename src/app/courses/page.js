@@ -4,27 +4,46 @@ import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import { addEnquiry } from "@/service/firestore.service";
 
 export default function Courses() {
   const [showAdvisorModal, setShowAdvisorModal] = useState(false);
   const [counselorSubmitted, setCounselorSubmitted] = useState(false);
   const [advisorForm, setAdvisorForm] = useState({ name: "", phone: "", email: "" });
   const [expandedSyllabusId, setExpandedSyllabusId] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setAdvisorForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleAdvisorSubmit = (e) => {
+  const handleAdvisorSubmit = async (e) => {
     e.preventDefault();
+    setSubmitError("");
     if (advisorForm.name && advisorForm.phone && advisorForm.email) {
-      setCounselorSubmitted(true);
-      setTimeout(() => {
-        setCounselorSubmitted(false);
-        setShowAdvisorModal(false);
+      setIsSubmitting(true);
+      try {
+        await addEnquiry({
+          name: advisorForm.name,
+          phone: advisorForm.phone,
+          email: advisorForm.email,
+          city: "",
+          course: "Advisor Consultation Request",
+        });
+        setCounselorSubmitted(true);
         setAdvisorForm({ name: "", phone: "", email: "" });
-      }, 4000);
+        setTimeout(() => {
+          setCounselorSubmitted(false);
+          setShowAdvisorModal(false);
+        }, 4000);
+      } catch (err) {
+        console.error(err);
+        setSubmitError("Failed to submit request. Please try again.");
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -297,12 +316,16 @@ export default function Courses() {
                     placeholder="arjun@example.com"
                   />
                 </div>
-                <button 
+                 <button 
                   type="submit" 
-                  className="w-full bg-secondary-container text-white py-4 font-body font-bold text-xs uppercase tracking-widest hover:scale-105 active:scale-95 red-glow-hover transition-all"
+                  disabled={isSubmitting}
+                  className="w-full bg-secondary-container text-white py-4 font-body font-bold text-xs uppercase tracking-widest hover:scale-105 active:scale-95 red-glow-hover transition-all disabled:opacity-50 disabled:pointer-events-none"
                 >
-                  Request Consultation
+                  {isSubmitting ? "Requesting..." : "Request Consultation"}
                 </button>
+                {submitError && (
+                  <p className="text-red-500 text-xs mt-2 font-body font-bold text-center">{submitError}</p>
+                )}
               </form>
             )}
           </div>

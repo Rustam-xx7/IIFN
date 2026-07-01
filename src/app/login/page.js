@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { loginUser } from "@/service/firestore.service";
 
 export default function Login() {
   const router = useRouter();
@@ -12,7 +13,9 @@ export default function Login() {
   const [success, setSuccess] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
@@ -26,11 +29,22 @@ export default function Login() {
       return;
     }
 
-    setSuccess(true);
-    setTimeout(() => {
-      // Redirect to admin dashboard
-      router.push("/admin");
-    }, 1500);
+    setIsSubmitting(true);
+    try {
+      const user = await loginUser(email, password);
+      // Store user session in localStorage for local state checking in admin
+      localStorage.setItem("iifn_user", JSON.stringify(user));
+      setSuccess(true);
+      setTimeout(() => {
+        // Redirect to admin dashboard
+        router.push("/admin");
+      }, 1500);
+    } catch (err) {
+      console.error(err);
+      setError(err.message || "Invalid email or password.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -102,8 +116,12 @@ export default function Login() {
               </div>
             </div>
 
-            <button type="submit" className="w-full bg-secondary-container text-white py-4 font-display font-black text-sm uppercase tracking-widest red-glow hover:scale-[1.01] active:scale-95 transition-all mt-4">
-              Authorize Login
+             <button 
+              type="submit" 
+              disabled={isSubmitting}
+              className="w-full bg-secondary-container text-white py-4 font-display font-black text-sm uppercase tracking-widest red-glow hover:scale-[1.01] active:scale-95 transition-all mt-4 disabled:opacity-50 disabled:pointer-events-none"
+            >
+              {isSubmitting ? "Authorizing..." : "Authorize Login"}
             </button>
           </form>
         )}

@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { addEnquiry } from "@/service/firestore.service";
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -14,17 +15,28 @@ export default function Contact() {
     experience: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitError("");
     if (form.name && form.email && form.phone) {
-      setSubmitted(true);
-      setTimeout(() => {
-        setSubmitted(false);
+      setIsSubmitting(true);
+      try {
+        await addEnquiry({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          course: form.course,
+          experience: form.experience,
+        });
+        setSubmitted(true);
         setForm({
           name: "",
           email: "",
@@ -32,7 +44,15 @@ export default function Contact() {
           course: "Advanced Personal Training",
           experience: "",
         });
-      }, 5000);
+        setTimeout(() => {
+          setSubmitted(false);
+        }, 5000);
+      } catch (err) {
+        console.error(err);
+        setSubmitError("Failed to submit application. Please try again.");
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -48,7 +68,7 @@ export default function Contact() {
             Elite <span className="text-secondary-container">Admissions</span>
           </h1>
           <p className="font-body text-base text-on-surface-variant max-w-2xl leading-relaxed">
-            Elevate your professional trajectory at India's premier fitness research institute. Join the league of elite performance specialists.
+            Elevate your professional trajectory at India&apos;s premier fitness research institute. Join the league of elite performance specialists.
           </p>
         </header>
 
@@ -134,10 +154,16 @@ export default function Contact() {
                     rows="4"
                   />
                 </div>
-                
-                <button type="submit" className="w-full py-4 bg-secondary-container text-white font-body font-bold uppercase tracking-[0.2em] red-glow-hover transition-all hover:scale-[1.01] active:scale-95 text-xs">
-                  SUBMIT APPLICATION
+                                <button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="w-full py-4 bg-secondary-container text-white font-body font-bold uppercase tracking-[0.2em] red-glow-hover transition-all hover:scale-[1.01] active:scale-95 text-xs disabled:opacity-50 disabled:pointer-events-none"
+                >
+                  {isSubmitting ? "SUBMITTING..." : "SUBMIT APPLICATION"}
                 </button>
+                {submitError && (
+                  <p className="text-red-500 text-xs mt-2 font-body font-bold text-center">{submitError}</p>
+                )}
               </form>
             )}
           </section>
