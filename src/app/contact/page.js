@@ -177,7 +177,7 @@ export default function Contact() {
                   <div>
                     <h3 className="font-body font-bold text-xs uppercase text-secondary-container tracking-wider">Headquarters</h3>
                     <p className="text-on-surface-variant text-sm mt-1 leading-relaxed">
-                      IIFN Performance Lab, Sector 18,<br/>High-Intensity Zone, Gurugram, India
+                      IIFN Performance Lab,<br/>Swastipally, Est Burdwan-713104, West Bengal, India
                     </p>
                   </div>
                 </div>

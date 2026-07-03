@@ -60,7 +60,7 @@ export default function GymPage() {
             <img
               alt="Jewel Gym Logo"
               className="h-10 w-10 object-contain"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuASLaKSdtiyWH3cOll9aw_4THiak1TrHj431cceF3VIKMHZVSkSLG43fn20ntc0IUUvinQuaChIJBiq8qRPD0BbYJWwCX7H641_suCXNXK6uDvaclcThTHsshipyqc3b-Sz6z9hbX6UB3aquqd5APNF_9WbeAV00Gl4LUEU0oOf9i-BLEx8dCPpvETSFGjbq3qzCUA3dz23BUCL7MTQR7-y7UkHWa7n1bDiwnX5-NmVnw1Mi0wL4KJRESuxOCtmJ3TC9Rs5MPrezuc"
+              src="/gymlogo.png"
             />
             <div className="font-display text-lg font-black text-[#e5e2e1] tracking-tighter uppercase leading-none">
               JEWEL<br />
@@ -241,13 +241,13 @@ export default function GymPage() {
             <img
               alt="Jewel Gym logo animation icon"
               className="w-24 mx-auto mb-6 animate-pulse"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuASLaKSdtiyWH3cOll9aw_4THiak1TrHj431cceF3VIKMHZVSkSLG43fn20ntc0IUUvinQuaChIJBiq8qRPD0BbYJWwCX7H641_suCXNXK6uDvaclcThTHsshipyqc3b-Sz6z9hbX6UB3aquqd5APNF_9WbeAV00Gl4LUEU0oOf9i-BLEx8dCPpvETSFGjbq3qzCUA3dz23BUCL7MTQR7-y7UkHWa7n1bDiwnX5-NmVnw1Mi0wL4KJRESuxOCtmJ3TC9Rs5MPrezuc"
+              src="/gymlogo.png"
             />
             <h1 className="font-display text-4xl sm:text-6xl md:text-8xl uppercase italic leading-[0.9] font-black tracking-tight mb-8">
               TRANSFORM <br /> <span className="text-[#ffb4a8] not-italic">YOUR LIMITS</span>
             </h1>
             <p className="font-body text-sm sm:text-lg text-on-surface/90 max-w-2xl mx-auto mb-10 tracking-widest uppercase font-bold">
-              At Jewel Gym, we don&apos;t just train; we build champions. Experience a high-intensity performance lab designed for the elite.
+              At Jewel Gym, we don&apos;t just train; we build champions. Experience a high-intensity performance GYM designed for the elite.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
@@ -260,7 +260,7 @@ export default function GymPage() {
                 href="#facilities"
                 className="border-2 border-white text-white px-10 py-4 font-body font-bold text-xs uppercase tracking-widest text-center hover:bg-white hover:text-black transition-all"
               >
-                EXPLORE LAB
+                EXPLORE GYM
               </a>
             </div>
           </div>
@@ -353,21 +353,21 @@ export default function GymPage() {
           <div className="px-6 max-w-7xl mx-auto">
             <div className="mb-16 text-center">
               <h2 className="font-display text-3xl md:text-5xl font-black uppercase mb-4">
-                THE PERFORMANCE LAB
+                THE GYM GALLERY
               </h2>
               <p className="text-[#ffb4a8] font-body font-bold tracking-widest uppercase text-xs">
                 Visualizing Excellence
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="group relative overflow-hidden border border-[#ffb4a8]/35 rounded-sm">
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-500 z-10" />
                 <img
                   alt="Gym Interior 1 - Unit 1 Main Floor"
-                  className="w-full h-[350px] md:h-[450px] object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-[350px] object-cover transition-transform duration-500 group-hover:scale-105"
                   src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop"
                 />
-                <div className="absolute bottom-0 left-0 p-8 z-20">
+                <div className="absolute bottom-0 left-0 p-6 z-20">
                   <span className="text-[#ffb4a8] font-body font-bold text-xs uppercase tracking-widest bg-black/60 px-3 py-1 rounded-sm">
                     Unit 1 - Main Floor
                   </span>
@@ -376,13 +376,39 @@ export default function GymPage() {
               <div className="group relative overflow-hidden border border-[#ffb4a8]/35 rounded-sm">
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-500 z-10" />
                 <img
+                  alt="Gym Poster 1"
+                  className="w-full h-[350px] object-cover transition-transform duration-500 group-hover:scale-105"
+                  src="/poster1.png"
+                />
+                <div className="absolute bottom-0 left-0 p-6 z-20">
+                  <span className="text-[#ffb4a8] font-body font-bold text-xs uppercase tracking-widest bg-black/60 px-3 py-1 rounded-sm">
+                    Special Program Offer
+                  </span>
+                </div>
+              </div>
+              <div className="group relative overflow-hidden border border-[#ffb4a8]/35 rounded-sm">
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-500 z-10" />
+                <img
                   alt="Gym Interior 2 - Unit 2 Elite Zone"
-                  className="w-full h-[350px] md:h-[450px] object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-[350px] object-cover transition-transform duration-500 group-hover:scale-105"
                   src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=2070&auto=format&fit=crop"
                 />
-                <div className="absolute bottom-0 left-0 p-8 z-20">
+                <div className="absolute bottom-0 left-0 p-6 z-20">
                   <span className="text-[#ffb4a8] font-body font-bold text-xs uppercase tracking-widest bg-black/60 px-3 py-1 rounded-sm">
                     Unit 2 - Elite Zone
+                  </span>
+                </div>
+              </div>
+              <div className="group relative overflow-hidden border border-[#ffb4a8]/35 rounded-sm">
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-500 z-10" />
+                <img
+                  alt="Gym Poster 2"
+                  className="w-full h-[350px] object-cover transition-transform duration-500 group-hover:scale-105"
+                  src="/poster2.png"
+                />
+                <div className="absolute bottom-0 left-0 p-6 z-20">
+                  <span className="text-[#ffb4a8] font-body font-bold text-xs uppercase tracking-widest bg-black/60 px-3 py-1 rounded-sm">
+                    Elite Training Campus
                   </span>
                 </div>
               </div>
@@ -395,7 +421,7 @@ export default function GymPage() {
           <div className="px-6 max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="font-display text-3xl md:text-5xl font-black uppercase mb-4">
-                THE LAB ACCESS
+                THE GYM ACCESS
               </h2>
               <p className="text-[#ffb4a8] font-body font-bold tracking-widest uppercase text-xs">
                 Start your evolution today
@@ -721,7 +747,7 @@ export default function GymPage() {
                       disabled={isSubmitting}
                       className="w-full bg-white text-black py-4 rounded-sm font-body font-bold text-xs uppercase tracking-widest hover:bg-black hover:text-white transition-all shadow-xl font-bold disabled:opacity-50 disabled:pointer-events-none"
                     >
-                      {isSubmitting ? "SUBMITTING..." : "JOIN THE PERFORMANCE LAB"}
+                      {isSubmitting ? "SUBMITTING..." : "JOIN THE PERFORMANCE GYM"}
                     </button>
                     {submitError && (
                       <p className="text-white text-xs mt-2 font-body font-bold text-center">{submitError}</p>
@@ -742,7 +768,7 @@ export default function GymPage() {
               <img
                 alt="Jewel Gym logo mark"
                 className="h-12 w-12 object-contain"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuASLaKSdtiyWH3cOll9aw_4THiak1TrHj431cceF3VIKMHZVSkSLG43fn20ntc0IUUvinQuaChIJBiq8qRPD0BbYJWwCX7H641_suCXNXK6uDvaclcThTHsshipyqc3b-Sz6z9hbX6UB3aquqd5APNF_9WbeAV00Gl4LUEU0oOf9i-BLEx8dCPpvETSFGjbq3qzCUA3dz23BUCL7MTQR7-y7UkHWa7n1bDiwnX5-NmVnw1Mi0wL4KJRESuxOCtmJ3TC9Rs5MPrezuc"
+                src="/gymlogo.png"
               />
               <div className="font-display text-xl text-[#ffb4a8] uppercase leading-none font-black">
                 JEWEL<br />
