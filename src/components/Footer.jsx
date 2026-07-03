@@ -1,7 +1,53 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { addReview } from "@/service/firestore.service";
 
 export default function Footer() {
+  const [user, setUser] = useState(null);
+  const [rating, setRating] = useState(5);
+  const [comment, setComment] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("iifn_user");
+    if (storedUser) {
+      setTimeout(() => {
+        setUser(JSON.parse(storedUser));
+      }, 0);
+    }
+  }, []);
+
+  const handleReviewSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitError("");
+    if (!comment.trim()) return;
+    setIsSubmitting(true);
+    try {
+      // Pass logged in user credentials (name, email, phone) alongside rating and comment
+      await addReview(
+        user.name || "Anonymous",
+        user.email || "",
+        user.phone || "",
+        rating,
+        comment
+      );
+      setSubmitted(true);
+      setComment("");
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 5000);
+    } catch (err) {
+      console.error(err);
+      setSubmitError("Failed to submit review. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <footer className="w-full py-16 md:py-24 bg-surface-container-lowest border-t-4 border-secondary-container mt-auto">
       <div className="grid grid-cols-1 md:grid-cols-5 gap-12 px-6 md:px-12 mx-auto max-w-7xl">
@@ -9,10 +55,10 @@ export default function Footer() {
           <div className="font-display text-2xl font-black text-secondary-container mb-6 tracking-tighter uppercase">
             IIFN
           </div>
-          <p className="font-body text-on-surface-variant max-w-sm mb-8 leading-relaxed">
+          <p className="font-body text-on-surface-variant max-w-sm mb-6 leading-relaxed">
             The Indian Institute of Fitness & Nutrition is a premier academic institution dedicated to high-performance fitness education and science-based research.
           </p>
-          <div className="flex gap-4">
+          <div className="flex gap-4 mb-6">
             <a href="#" className="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-secondary-container transition-all group">
               <span className="material-symbols-outlined text-white text-base">share</span>
             </a>
@@ -20,6 +66,51 @@ export default function Footer() {
               <span className="material-symbols-outlined text-white text-base">mail</span>
             </a>
           </div>
+
+          {user && (
+            <div className="bg-white/5 border border-white/10 p-5 rounded-sm max-w-sm">
+              <h5 className="font-display font-black text-white text-[10px] uppercase mb-3 tracking-widest">Leave a Review</h5>
+              {submitted ? (
+                <p className="text-[10px] text-green-500 font-body font-bold uppercase tracking-wider">✓ Thank you for your feedback!</p>
+              ) : (
+                <form onSubmit={handleReviewSubmit} className="space-y-3">
+                  <div className="flex items-center gap-1">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <button
+                        type="button"
+                        key={star}
+                        onClick={() => setRating(star)}
+                        className={`material-symbols-outlined text-base cursor-pointer hover:scale-110 transition-transform active:scale-90 ${
+                          star <= rating ? "text-red-600" : "text-gray-500"
+                        }`}
+                      >
+                        {star <= rating ? "star" : "star_rate"}
+                      </button>
+                    ))}
+                    <span className="text-[10px] uppercase font-bold text-on-surface-variant/80 ml-2">{rating} Star{rating > 1 ? 's' : ''}</span>
+                  </div>
+                  <textarea
+                    required
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    rows="3"
+                    className="w-full bg-black/40 border border-white/10 rounded p-2 text-xs text-white outline-none focus:border-secondary-container placeholder:text-white/20 font-body"
+                    placeholder="Share your experience at IIFN..."
+                  />
+                  {submitError && (
+                    <p className="text-red-500 text-[10px] font-bold font-body">{submitError}</p>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="bg-secondary-container text-white text-[10px] font-bold uppercase py-2 px-4 rounded-sm tracking-wider cursor-pointer hover:bg-secondary-container/85 disabled:opacity-50 transition-all font-body active:scale-95"
+                  >
+                    {isSubmitting ? "Submitting..." : "Submit Review"}
+                  </button>
+                </form>
+              )}
+            </div>
+          )}
         </div>
 
         <div>

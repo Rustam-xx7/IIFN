@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import AdminSidebar from "@/components/AdminSidebar";
-import { getEnquiries, getEnrollments, getUsers } from "@/service/firestore.service";
+import { getEnquiries, getEnrollments, getUsers, getReviews, approveReview, deleteReview } from "@/service/firestore.service";
 
 export default function AdminDashboard() {
   const router = useRouter();
@@ -15,7 +15,8 @@ export default function AdminDashboard() {
   const [enquiries, setEnquiries] = useState([]);
   const [enrollments, setEnrollments] = useState([]);
   const [users, setUsers] = useState([]);
-  const [activeTab, setActiveTab] = useState("enquiries"); // 'enquiries' | 'enrollments' | 'users'
+  const [reviews, setReviews] = useState([]);
+  const [activeTab, setActiveTab] = useState("enquiries"); // 'enquiries' | 'enrollments' | 'users' | 'reviews'
   const [searchQuery, setSearchQuery] = useState("");
 
   // Verification & Loading Session Check
@@ -41,9 +42,11 @@ export default function AdminDashboard() {
         const enq = await getEnquiries();
         const enr = await getEnrollments();
         const usr = await getUsers();
+        const rev = await getReviews();
         setEnquiries(enq);
         setEnrollments(enr);
         setUsers(usr);
+        setReviews(rev);
       } catch (err) {
         console.error("Error fetching admin data:", err);
       } finally {
@@ -59,6 +62,28 @@ export default function AdminDashboard() {
     if (ts.toDate) return ts.toDate().toLocaleDateString("en-IN", { day: '2-digit', month: 'short', year: 'numeric' });
     if (ts.seconds) return new Date(ts.seconds * 1000).toLocaleDateString("en-IN", { day: '2-digit', month: 'short', year: 'numeric' });
     return new Date(ts).toLocaleDateString("en-IN", { day: '2-digit', month: 'short', year: 'numeric' });
+  };
+
+  // Handlers for review moderation
+  const handleApproveReview = async (id, currentApproved) => {
+    try {
+      await approveReview(id, !currentApproved);
+      setReviews(prev => prev.map(r => r.id === id ? { ...r, approved: !currentApproved } : r));
+    } catch (err) {
+      console.error(err);
+      alert("Failed to update review status.");
+    }
+  };
+
+  const handleDeleteReviewItem = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this review?")) return;
+    try {
+      await deleteReview(id);
+      setReviews(prev => prev.filter(r => r.id !== id));
+    } catch (err) {
+      console.error(err);
+      alert("Failed to delete review.");
+    }
   };
 
   if (loading || !isAdmin) {
@@ -85,6 +110,12 @@ export default function AdminDashboard() {
         (item.email || "").toLowerCase().includes(query) ||
         (item.phone || "").toLowerCase().includes(query) ||
         (item.course || "").toLowerCase().includes(query)
+      );
+    } else if (activeTab === "reviews") {
+      return reviews.filter(item => 
+        (item.name || "").toLowerCase().includes(query) || 
+        (item.email || "").toLowerCase().includes(query) ||
+        (item.comment || "").toLowerCase().includes(query)
       );
     } else {
       return users.filter(item => 
@@ -138,7 +169,7 @@ export default function AdminDashboard() {
         <div className="p-6 md:p-10 space-y-12">
           
           {/* Statistics Grid */}
-          <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <section className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div className="bg-surface-container-low p-6 md:p-8 border border-white/5 relative overflow-hidden group rounded">
               <p className="text-on-surface-variant font-body font-bold uppercase tracking-widest text-[10px] mb-4">Total Enquiries</p>
               <div className="flex items-end justify-between">
@@ -152,6 +183,14 @@ export default function AdminDashboard() {
               <div className="flex items-end justify-between">
                 <h3 className="text-4xl md:text-5xl font-black text-white font-display">{enrollments.length}</h3>
                 <span className="text-secondary-container font-bold text-xs uppercase tracking-wider font-body">enrollment</span>
+              </div>
+            </div>
+
+            <div className="bg-surface-container-low p-6 md:p-8 border border-white/5 relative overflow-hidden group rounded">
+              <p className="text-on-surface-variant font-body font-bold uppercase tracking-widest text-[10px] mb-4">Total Reviews</p>
+              <div className="flex items-end justify-between">
+                <h3 className="text-4xl md:text-5xl font-black text-white font-display">{reviews.length}</h3>
+                <span className="text-secondary-container font-bold text-xs uppercase tracking-wider font-body">reviews</span>
               </div>
             </div>
             
@@ -173,10 +212,11 @@ export default function AdminDashboard() {
               </div>
               
               {/* Tab Selector */}
-              <div className="flex gap-2 bg-surface-container-low p-1.5 border border-white/5 rounded-sm shrink-0">
+              <div className="flex flex-wrap gap-2 bg-surface-container-low p-1.5 border border-white/5 rounded-sm shrink-0">
                 {[
                   { id: "enquiries", label: "Enquiries", count: enquiries.length },
                   { id: "enrollments", label: "Enrollments", count: enrollments.length },
+                  { id: "reviews", label: "Reviews", count: reviews.length },
                   { id: "users", label: "Users", count: users.length }
                 ].map((tab) => (
                   <button
@@ -220,6 +260,15 @@ export default function AdminDashboard() {
                           <th className="px-6 py-4 font-body font-bold uppercase text-[10px] tracking-widest text-on-surface-variant">Investment</th>
                           <th className="px-6 py-4 font-body font-bold uppercase text-[10px] tracking-widest text-on-surface-variant">Date</th>
                           <th className="px-6 py-4 font-body font-bold uppercase text-[10px] tracking-widest text-on-surface-variant">Role</th>
+                        </>
+                      )}
+                      {activeTab === "reviews" && (
+                        <>
+                          <th className="px-6 py-4 font-body font-bold uppercase text-[10px] tracking-widest text-on-surface-variant">Reviewer / Contact</th>
+                          <th className="px-6 py-4 font-body font-bold uppercase text-[10px] tracking-widest text-on-surface-variant">Rating</th>
+                          <th className="px-6 py-4 font-body font-bold uppercase text-[10px] tracking-widest text-on-surface-variant">Comment</th>
+                          <th className="px-6 py-4 font-body font-bold uppercase text-[10px] tracking-widest text-on-surface-variant">Status</th>
+                          <th className="px-6 py-4 font-body font-bold uppercase text-[10px] tracking-widest text-on-surface-variant text-right">Actions</th>
                         </>
                       )}
                       {activeTab === "users" && (
@@ -281,6 +330,65 @@ export default function AdminDashboard() {
                               </td>
                             </>
                           )}
+                          {activeTab === "reviews" && (
+                            <>
+                              <td className="px-6 py-4">
+                                <div className="flex items-center gap-3">
+                                  <div className="w-8 h-8 bg-surface-container-high rounded flex items-center justify-center font-display font-black text-secondary-container text-xs shrink-0">
+                                    {(item.name || "R")[0].toUpperCase()}
+                                  </div>
+                                  <div>
+                                    <p className="text-white font-bold font-body">{item.name || "N/A"}</p>
+                                    <p className="text-[10px] text-on-surface-variant font-body">{item.email || "N/A"} | {item.phone || "N/A"}</p>
+                                  </div>
+                                </div>
+                              </td>
+                              <td className="px-6 py-4">
+                                <div className="flex gap-0.5">
+                                  {[...Array(5)].map((_, i) => (
+                                    <span 
+                                      key={i} 
+                                      className={`material-symbols-outlined text-xs ${
+                                        i < Number(item.rating || 0) ? "text-red-600" : "text-gray-500"
+                                      }`}
+                                    >
+                                      {i < Number(item.rating || 0) ? "star" : "star_rate"}
+                                    </span>
+                                  ))}
+                                </div>
+                              </td>
+                              <td className="px-6 py-4 text-on-surface-variant font-body text-xs max-w-xs truncate" title={item.comment}>{item.comment || "N/A"}</td>
+                              <td className="px-6 py-4">
+                                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider border ${
+                                  item.approved 
+                                    ? "bg-green-500/10 text-green-500 border-green-500/20" 
+                                    : "bg-yellow-500/10 text-yellow-500 border-yellow-500/20"
+                                }`}>
+                                  {item.approved ? "Approved" : "Pending"}
+                                </span>
+                              </td>
+                              <td className="px-6 py-4 text-right">
+                                <div className="flex items-center justify-end gap-3">
+                                  <button 
+                                    onClick={() => handleApproveReview(item.id, item.approved)}
+                                    title={item.approved ? "Hide Review" : "Approve Review"}
+                                    className="p-1 text-on-surface-variant hover:text-white transition-colors cursor-pointer"
+                                  >
+                                    <span className="material-symbols-outlined text-base">
+                                      {item.approved ? "visibility_off" : "visibility"}
+                                    </span>
+                                  </button>
+                                  <button 
+                                    onClick={() => handleDeleteReviewItem(item.id)}
+                                    title="Delete Review"
+                                    className="p-1 text-on-surface-variant hover:text-secondary-container transition-colors cursor-pointer"
+                                  >
+                                    <span className="material-symbols-outlined text-base">delete</span>
+                                  </button>
+                                </div>
+                              </td>
+                            </>
+                          )}
                           {activeTab === "users" && (
                             <>
                               <td className="px-6 py-4">
@@ -313,7 +421,7 @@ export default function AdminDashboard() {
 
         {/* Dashboard Footer */}
         <footer className="mt-auto px-6 md:px-10 py-6 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 bg-surface-container-lowest shrink-0">
-          <p className="text-[10px] text-on-surface-variant font-body">© 2026 Indian Institute of Fitness &amp; Nutrition. Admin Portal v3.0.0</p>
+          <p className="text-[10px] text-on-surface-variant font-body">© 2026 Indian Institute of Fitness &amp; Nutrition. All Rights Reserved.</p>
           <div className="flex gap-6">
             <a href="#" className="text-[9px] font-body font-bold uppercase tracking-wider text-on-surface-variant hover:text-white transition-colors">Documentation</a>
             <a href="#" className="text-[9px] font-body font-bold uppercase tracking-wider text-on-surface-variant hover:text-white transition-colors">System Support</a>

@@ -1,5 +1,5 @@
 import { db } from "@/lib/firebase";
-import { collection, addDoc, getDocs, query, where, serverTimestamp } from "firebase/firestore";
+import { collection, addDoc, getDocs, query, where, serverTimestamp, doc, updateDoc, deleteDoc } from "firebase/firestore";
 
 // Add new enquiry to Firestore (collection: enquary)
 export async function addEnquiry(data) {
@@ -126,6 +126,62 @@ export async function getUsers() {
     return list;
   } catch (error) {
     console.error("Error fetching users: ", error);
+    throw error;
+  }
+}
+
+// Add a new student review (collection: reviews)
+export async function addReview(name, email, phone, rating, comment) {
+  try {
+    const docRef = await addDoc(collection(db, "reviews"), {
+      name,
+      email: email.toLowerCase(),
+      phone: phone || "",
+      rating: Number(rating),
+      comment,
+      approved: false, // Moderated default
+      createdAt: serverTimestamp(),
+    });
+    return docRef.id;
+  } catch (error) {
+    console.error("Error adding review: ", error);
+    throw error;
+  }
+}
+
+// Fetch all reviews (collection: reviews)
+export async function getReviews() {
+  try {
+    const querySnapshot = await getDocs(collection(db, "reviews"));
+    const list = [];
+    querySnapshot.forEach((doc) => {
+      list.push({ id: doc.id, ...doc.data() });
+    });
+    return list;
+  } catch (error) {
+    console.error("Error fetching reviews: ", error);
+    throw error;
+  }
+}
+
+// Approve or reject review display status
+export async function approveReview(reviewId, approved) {
+  try {
+    const reviewRef = doc(db, "reviews", reviewId);
+    await updateDoc(reviewRef, { approved });
+  } catch (error) {
+    console.error("Error approving review: ", error);
+    throw error;
+  }
+}
+
+// Delete review from database
+export async function deleteReview(reviewId) {
+  try {
+    const reviewRef = doc(db, "reviews", reviewId);
+    await deleteDoc(reviewRef);
+  } catch (error) {
+    console.error("Error deleting review: ", error);
     throw error;
   }
 }

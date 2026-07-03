@@ -1,15 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import LoadingScreen from "@/components/LoadingScreen";
-import { addEnquiry } from "@/service/firestore.service";
+import { addEnquiry, getReviews } from "@/service/firestore.service";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [approvedReviews, setApprovedReviews] = useState([]);
+
   const [enquiry, setEnquiry] = useState({
     name: "",
     phone: "",
@@ -17,6 +19,19 @@ export default function Home() {
     city: "",
     course: "Certified Personal Trainer",
   });
+
+  useEffect(() => {
+    const fetchApprovedReviews = async () => {
+      try {
+        const allReviews = await getReviews();
+        const approved = allReviews.filter(r => r.approved);
+        setApprovedReviews(approved);
+      } catch (err) {
+        console.error("Failed to fetch approved reviews:", err);
+      }
+    };
+    fetchApprovedReviews();
+  }, []);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -387,24 +402,38 @@ export default function Home() {
         
         <div className="flex gap-6 overflow-x-auto pb-8 custom-scrollbar px-6 max-w-7xl mx-auto">
           {[
-            { name: "Rahul Sharma", role: "Online CPT Graduate", comment: "IIFN's online CPT course completely changed my approach. The emphasis on scientific biomechanics gave me the edge I needed to work at elite gyms." },
-            { name: "Ananya Gupta", role: "Nutrition Specialist", comment: "The bilingual support was a lifesaver. Being able to understand complex nutritional science online helped me score high in the certification." },
-            { name: "Vikram Singh", role: "Master Diploma Graduate", comment: "I only hire IIFN certified trainers now. The quality of knowledge they bring from their online training is incomparable to other generic certifications." }
+            { name: "Rahul Sharma", role: "Online CPT Graduate", comment: "IIFN&apos;s online CPT course completely changed my approach. The emphasis on scientific biomechanics gave me the edge I needed to work at elite gyms.", rating: 5 },
+            { name: "Ananya Gupta", role: "Nutrition Specialist", comment: "The bilingual support was a lifesaver. Being able to understand complex nutritional science online helped me score high in the certification.", rating: 5 },
+            { name: "Vikram Singh", role: "Master Diploma Graduate", comment: "I only hire IIFN certified trainers now. The quality of knowledge they bring from their online training is incomparable to other generic certifications.", rating: 5 }
           ].map((t, index) => (
-            <div key={index} className="min-w-[300px] md:min-w-[400px] bg-surface-container-lowest p-8 border border-white/5 relative rounded">
-              <span className="material-symbols-outlined text-6xl text-secondary-container/10 absolute top-4 right-8 select-none">
-                format_quote
-              </span>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center font-display font-black text-white text-lg">
-                  {t.name[0]}
+            <div key={index} className="min-w-[300px] md:min-w-[400px] bg-surface-container-lowest p-8 border border-white/5 relative rounded flex flex-col justify-between">
+              <div>
+                <span className="material-symbols-outlined text-6xl text-secondary-container/10 absolute top-4 right-8 select-none">
+                  format_quote
+                </span>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center font-display font-black text-white text-lg shrink-0">
+                    {t.name[0]}
+                  </div>
+                  <div>
+                    <p className="font-display font-bold text-white text-base uppercase leading-tight">{t.name}</p>
+                    <p className="text-secondary-container text-xs font-body">{t.role}</p>
+                    <div className="flex gap-0.5 mt-1">
+                      {[...Array(5)].map((_, i) => (
+                        <span 
+                          key={i} 
+                          className={`material-symbols-outlined text-[12px] leading-none ${
+                            i < t.rating ? "text-red-600" : "text-gray-500"
+                          }`}
+                        >
+                          {i < t.rating ? "star" : "star_rate"}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <p className="font-display font-bold text-white text-base uppercase leading-tight">{t.name}</p>
-                  <p className="text-secondary-container text-xs font-body">{t.role}</p>
-                </div>
+                <p className="text-on-surface/70 italic text-sm leading-relaxed font-body">&ldquo;{t.comment}&rdquo;</p>
               </div>
-              <p className="text-on-surface/70 italic text-sm leading-relaxed font-body">&ldquo;{t.comment}&rdquo;</p>
             </div>
           ))}
         </div>
@@ -444,6 +473,57 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Verified Student Reviews Section */}
+      {approvedReviews.length > 0 && (
+        <section className="py-24 bg-surface-container-lowest border-t border-white/5" id="reviews">
+          <div className="px-6 max-w-screen-xl mx-auto">
+            <div className="flex flex-col items-center text-center mb-16">
+              <h2 className="font-display text-3xl font-black uppercase mb-3">Student Reviews</h2>
+              <p className="text-secondary-container font-body font-bold uppercase tracking-[0.2em] text-[10px]">Real Experiences of Our Certified Professionals</p>
+              <div className="w-16 h-1 bg-secondary-container mx-auto mt-4"></div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {approvedReviews.map((rev) => (
+                <div key={rev.id} className="bg-surface-container-low p-8 border border-white/5 rounded relative flex flex-col justify-between hover:border-secondary-container/30 transition-all duration-300">
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-secondary-container/10 flex items-center justify-center font-display font-black text-secondary-container text-sm">
+                          {(rev.name || "S")[0].toUpperCase()}
+                        </div>
+                        <div>
+                          <p className="text-white font-bold leading-none font-body">{rev.name}</p>
+                          <div className="flex gap-0.5 mt-1">
+                            {[...Array(5)].map((_, i) => (
+                              <span 
+                                key={i} 
+                                className={`material-symbols-outlined text-[10px] leading-none ${
+                                  i < Number(rev.rating || 0) ? "text-red-600" : "text-gray-500"
+                                }`}
+                              >
+                                {i < Number(rev.rating || 0) ? "star" : "star_rate"}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-on-surface/70 italic text-sm leading-relaxed mb-6 font-body">
+                      &ldquo;{rev.comment}&rdquo;
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between border-t border-white/5 pt-4 text-[10px] font-body uppercase text-on-surface-variant font-bold tracking-wider">
+                    <span>Verified Graduate</span>
+                    <span>{rev.createdAt ? new Date(rev.createdAt.seconds ? rev.createdAt.seconds * 1000 : rev.createdAt).toLocaleDateString("en-IN", { day: '2-digit', month: 'short' }) : "Recently"}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Enquiry Form and FAQ */}
       <section className="py-24 bg-black">
