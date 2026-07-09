@@ -15,7 +15,8 @@ const inter = Inter({
 
 export const metadata = {
   title: "IIFN | Online Fitness Certification & Science-Based Education",
-  description: "The Gold Standard in Professional Online Fitness Education. Science-based online excellence at the Indian Institute of Fitness & Nutrition.",
+  description:
+    "The Gold Standard in Professional Online Fitness Education. Science-based online excellence at the Indian Institute of Fitness & Nutrition.",
 };
 
 export default function RootLayout({ children }) {
@@ -27,9 +28,14 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body className={`${montserrat.variable} ${inter.variable} min-h-full flex flex-col bg-background text-on-surface font-body overflow-x-hidden`}>
+      <body
+        className={`${montserrat.variable} ${inter.variable} min-h-full flex flex-col bg-background text-on-surface font-body overflow-x-hidden`}
+      >
         {/* {children} */}
-        <div className="h-screen w-full bg-neutral-900 text-shadow-white text-2xl font-semibold flex justify-center items-center">UNDER CONSTRUCTION</div>
+        <div className="h-screen w-full bg-neutral-900 text-shadow-white  flex flex-col justify-center items-center">
+          <span className="text-2xl font-semibold">SERVER UNDER MAINTENANCE</span>
+          <span className="text-sm text-red-600">error 503</span>
+        </div>
       </body>
     </html>
   );
