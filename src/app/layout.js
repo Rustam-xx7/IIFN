@@ -28,7 +28,8 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={`${montserrat.variable} ${inter.variable} min-h-full flex flex-col bg-background text-on-surface font-body overflow-x-hidden`}>
-        {children}
+        {/* {children} */}
+        <div className="h-screen w-full bg-neutral-900 text-shadow-white text-2xl font-semibold flex justify-center items-center">UNDER CONSTRUCTION</div>
       </body>
     </html>
   );
