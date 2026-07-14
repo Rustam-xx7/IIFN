@@ -206,7 +206,7 @@ export default function About() {
                   Join thousands of elite fitness professionals. Registration for the next Cohort is now open.
                 </p>
               </div>
-              <a href="/cpt#enroll" className="whitespace-nowrap bg-secondary-container text-white font-body font-bold text-sm px-10 py-5 uppercase red-heat-glow hover:scale-105 transition-all text-center">
+              <a href="/courses#enroll" className="whitespace-nowrap bg-secondary-container text-white font-body font-bold text-sm px-10 py-5 uppercase red-heat-glow hover:scale-105 transition-all text-center">
                 Enroll Today
               </a>
             </div>

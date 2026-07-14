@@ -349,7 +349,7 @@ export default function Home() {
                   </div>
                   <h3 className="font-display font-bold text-lg uppercase mb-2 text-white">{course.title}</h3>
                   <p className="text-on-surface/60 text-sm mb-6 leading-relaxed line-clamp-2">{course.desc}</p>
-                  <Link href="/cpt" className="block text-center w-full py-3 border border-white/20 text-white font-body font-bold text-xs uppercase hover:bg-white hover:text-black transition-all">
+                  <Link href="/courses" className="block text-center w-full py-3 border border-white/20 text-white font-body font-bold text-xs uppercase hover:bg-white hover:text-black transition-all">
                     Course Details
                   </Link>
                 </div>

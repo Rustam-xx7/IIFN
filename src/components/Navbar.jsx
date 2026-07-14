@@ -38,7 +38,6 @@ export default function Navbar() {
   const baseLinks = [
     { name: "Home", path: "/" },
     { name: "Courses", path: "/courses" },
-    { name: "CPT Program", path: "/cpt" },
     { name: "Jewel Gym", path: "/gym" },
     { name: "About Us", path: "/about" },
     { name: "Contact", path: "/contact" },
@@ -124,7 +123,7 @@ export default function Navbar() {
             </>
           )}
           <Link
-            href="/cpt#enroll"
+            href="/courses#enroll"
             className="bg-secondary-container text-white font-body font-bold text-xs px-6 py-2 uppercase red-glow-hover transition-all active:scale-95"
           >
             ENROLL NOW

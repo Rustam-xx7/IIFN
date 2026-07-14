@@ -3,20 +3,35 @@
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Link from "next/link";
-import { addEnquiry } from "@/service/firestore.service";
+import { addEnquiry, addEnrollment } from "@/service/firestore.service";
 
 export default function Courses() {
   const [showAdvisorModal, setShowAdvisorModal] = useState(false);
   const [counselorSubmitted, setCounselorSubmitted] = useState(false);
   const [advisorForm, setAdvisorForm] = useState({ name: "", phone: "", email: "" });
   const [expandedSyllabusId, setExpandedSyllabusId] = useState(null);
+  
+  // Enrollment Form States
+  const [enrollSubmitted, setEnrollSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    occupation: "Student",
+    experience: "",
+    course: "Certified Personal Trainer (CPT)",
+  });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setAdvisorForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleEnrollInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleAdvisorSubmit = async (e) => {
@@ -47,86 +62,117 @@ export default function Courses() {
     }
   };
 
+  const handleEnrollSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitError("");
+    if (formData.name && formData.email && formData.phone) {
+      setIsSubmitting(true);
+      try {
+        let userId = null;
+        try {
+          const storedUser = localStorage.getItem("iifn_user");
+          if (storedUser) {
+            const user = JSON.parse(storedUser);
+            if (user && user.id) {
+              userId = user.id;
+            }
+          }
+        } catch (err) {
+          console.error("Error reading user session for enrollment", err);
+        }
+
+        // Determine price based on course
+        let investment = "₹5,999";
+        if (formData.course.includes("Combo")) {
+          investment = "₹9,999";
+        }
+
+        await addEnrollment({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          occupation: formData.occupation,
+          experience: formData.experience,
+          course: formData.course,
+          investment: investment,
+          ...(userId ? { userId } : {}),
+        });
+        setEnrollSubmitted(true);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          occupation: "Student",
+          experience: "",
+          course: "Certified Personal Trainer (CPT)",
+        });
+        setTimeout(() => {
+          setEnrollSubmitted(false);
+        }, 5000);
+      } catch (err) {
+        console.error(err);
+        setSubmitError("Failed to enroll. Please check network connection.");
+      } finally {
+        setIsSubmitting(false);
+      }
+    }
+  };
+
+  const handleEnrollClick = (courseTitle) => {
+    setFormData((prev) => ({ ...prev, course: courseTitle }));
+    const element = document.getElementById("enroll");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const courseList = [
     {
       id: "cpt",
       title: "Certified Personal Trainer (CPT)",
       tag: "Best Seller",
-      desc: "Master the physiology, biomechanics, and program design required to become an elite fitness coach.",
+      price: "₹5,999",
+      desc: "Learn: Human Anatomy & Physiology, Exercise Science, Strength & Conditioning, Fat Loss & Muscle Gain Training, Workout Programming, Client Assessment, Gym Floor Practical Training, Injury Prevention, Professional Ethics.",
       img: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069&auto=format&fit=crop",
+      syllabus: [
+        { title: "🧠 MODULE 1: HUMAN ANATOMY & PHYSIOLOGY", items: ["Muscular System", "Skeletal System", "Joints & Movement Patterns", "Cardiovascular & Respiratory Basics"] },
+        { title: "🏋️ MODULE 2: EXERCISE SCIENCE", items: ["Types of Exercises", "Resistance Training Principles", "Cardio & Endurance Training", "Warm-up, Cool-down & Stretching"] },
+        { title: "🔄 MODULE 3: PRACTICAL TRAINING (LIVE)", items: ["Exercise Demonstrations", "Correct Form & Posture", "Beginner to Advanced Progressions", "Common Gym Mistakes Correction"] },
+        { title: "🔥 MODULE 4: HUMAN BODY COMPONENTS", items: ["Training strategies", "Program Design Basics", "Lifestyle & Recovery Factors", "Client Transformation Approach"] },
+        { title: "🛡️ MODULE 5: INJURY PREVENTION & SAFETY", items: ["Common Gym Injuries", "Injury Prevention Techniques", "Safe Training Guidelines", "Client Risk Management"] },
+        { title: "🥗 MODULE 6: NUTRITION", items: ["Macronutrients & Micronutrients", "Diet Planning Basics", "Fat Loss & Muscle Gain Nutrition", "Supplement Awareness"] },
+        { title: "◀️ MODULE 7: PROFESSIONAL PRACTICE & CAREER DEVELOPMENT", items: ["Exercise & Diet Samples", "Client Case Studies", "Introduction To CPR", "Trainer Job Role", "Marketing Your Skill"] }
+      ]
     },
     {
-      id: "csn",
-      title: "Certified Sports Nutritionist (CSN)",
-      tag: "Advanced",
-      desc: "Biochemistry, macronutrient guidelines, metabolism, and lifestyle diet planning for performance.",
+      id: "nutrition",
+      title: "Certification in Nutrition & Dietetics",
+      tag: "Advanced Specialty",
+      price: "₹5,999",
+      desc: "Learn: Fundamentals of Nutrition, Macronutrients & Micronutrients, Weight Loss & Weight Gain Diet Planning, Sports Nutrition, Clinical Nutrition Basics, Meal Planning, Supplement Basics, Client Diet Consultation.",
       img: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2070&auto=format&fit=crop",
+      syllabus: [
+        { title: "🥗 MODULE 1: FUNDAMENTALS OF NUTRITION", items: ["Introduction to Nutrients", "Digestive System & Absorption", "Metabolism & Energy Balance", "Caloric Calculations"] },
+        { title: "🍎 MODULE 2: MACRONUTRIENTS & MICRONUTRIENTS", items: ["Proteins, Carbs & Fats Role", "Vitamins & Minerals Science", "Hydration Protocols", "Electrolyte Balancing"] },
+        { title: "⚖️ MODULE 3: WEIGHT MANAGEMENT DIET PLANNING", items: ["Fat Loss Diet Design", "Muscle Gain Nutrition Plans", "Caloric Deficit vs Surpluses", "Refeed & Cheat Meal Strategy"] },
+        { title: "🏃 MODULE 4: SPORTS NUTRITION", items: ["Pre/Intra/Post Workout Fueling", "Glycogen Supercompensation", "Supplement Selection (Creatine, Whey, Caffeine)", "Endurance vs Strength Fueling"] },
+        { title: "🩺 MODULE 5: CLINICAL NUTRITION BASICS", items: ["Dietary Approaches to Hypertension", "Diabetes Management Basics", "Thyroid & PCOS Support Diets", "Gastrointestinal Diet Adjustments"] },
+        { title: "🍽️ MODULE 6: MEAL PLANNING & APPLICATION", items: ["Grocery Tour & Food Selection", "Meal Prepping Guidelines", "Reading Nutrition Labels", "Menu Adjustments for Travel"] },
+        { title: "💬 MODULE 7: DIET CONSULTATION & ETHICS", items: ["Client Intake Assessments", "Tracking Progress Parameters", "Psychology of Food Habits", "Dietitian vs Coach Scope"] }
+      ]
     },
     {
-      id: "cfc",
-      title: "Certified Fitness Coach (CFC)",
-      tag: "Popular",
-      desc: "Integrate fitness education, posture checks, and behavioral science to drive sustainable client results.",
+      id: "combo",
+      title: "Combo Course (CPT + Nutrition & Dietetics)",
+      tag: "Best Value / Dual Degree",
+      price: "₹9,999",
+      desc: "✔ Complete Fitness Professional Certification\n✔ Personal Training + Nutrition Expertise\n✔ Practical Learning\n✔ Certificate on Successful Completion\n✔ Ideal for Aspiring Fitness Trainers, Gym Owners & Fitness Enthusiasts",
       img: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=2070&auto=format&fit=crop",
-    },
-    {
-      id: "cbrs",
-      title: "Certified Body Recomposition Specialist",
-      tag: "Specialty",
-      desc: "Scientific protocols for concurrent fat loss and hypertrophic muscle gains in modern clients.",
-      img: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=2070&auto=format&fit=crop",
-    },
-    {
-      id: "cwmc",
-      title: "Certified Weight Management Coach",
-      tag: "Specialty",
-      desc: "Obesity mechanics, metabolic assessments, and calorie management guidelines for health coaches.",
-      img: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=2070&auto=format&fit=crop",
-    },
-    {
-      id: "cscs",
-      title: "Strength & Conditioning Specialist",
-      tag: "Elite",
-      desc: "Athletic preparation patterns, speed conditioning, plyometrics, and injury mitigation methodologies.",
-      img: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=2070&auto=format&fit=crop",
-    },
-    {
-      id: "mdfs",
-      title: "Master Diploma in Fitness Sciences",
-      tag: "Premium",
-      desc: "Dual certification in CPT and Sports Nutrition for ultimate authority and premium job placements.",
-      img: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069&auto=format&fit=crop",
-    },
-  ];
-
-  const syllabusModules = [
-    {
-      title: "🧠 MODULE 1: HUMAN ANATOMY & PHYSIOLOGY",
-      items: ["Muscular System", "Skeletal System", "Joints & Movement Patterns", "Cardiovascular & Respiratory Basics"]
-    },
-    {
-      title: "🏋️ MODULE 2: EXERCISE SCIENCE",
-      items: ["Types of Exercises", "Resistance Training Principles", "Cardio & Endurance Training", "Warm-up, Cool-down & Stretching"]
-    },
-    {
-      title: "🔄 MODULE 3: PRACTICAL TRAINING (LIVE)",
-      items: ["Exercise Demonstrations", "Correct Form & Posture", "Beginner to Advanced Progressions", "Common Gym Mistakes Correction"]
-    },
-    {
-      title: "🔥 MODULE 4: HUMAN BODY COMPONENTS",
-      items: ["Training strategies", "Program Design Basics", "Lifestyle & Recovery Factors", "Client Transformation Approach"]
-    },
-    {
-      title: "🛡️ MODULE 5: INJURY PREVENTION & SAFETY",
-      items: ["Common Gym Injuries", "Injury Prevention Techniques", "Safe Training Guidelines", "Client Risk Management"]
-    },
-    {
-      title: "🥗 MODULE 6: NUTRITION",
-      items: ["Macronutrients & Micronutrients", "Diet Planning Basics", "Fat Loss & Muscle Gain Nutrition", "Supplement Awareness"]
-    },
-    {
-      title: "◀️ MODULE 7: PROFESSIONAL PRACTICE & CAREER DEVELOPMENT",
-      items: ["Exercise & Diet Samples", "Client Case Studies", "Introduction To CPR", "Trainer Job Role", "Marketing Your Skill"]
+      syllabus: [
+        { title: "🏋️ Part A: Personal Trainer Core (CPT)", items: ["Human Anatomy & Physiology", "Strength & Conditioning Protocols", "Gym Floor Exercises Demonstration", "Injury Prevention & Posture Correction"] },
+        { title: "🥗 Part B: Sports Nutritionist & Dietetics Core", items: ["Diet Design for Weight Loss/Gain", "Metabolic Profiling & Meal Planning", "Clinical Nutrition & Supplement Science", "Client Consultation Strategy"] },
+        { title: "📈 Part C: Professional Fitness Entrepreneurship", items: ["Gym Management & Business Scaling", "Personal Branding & Digital Marketing", "Career & Placement Preparation"] }
+      ]
     }
   ];
 
@@ -135,6 +181,7 @@ export default function Courses() {
       <Navbar />
 
       <main className="pt-32 pb-24 bg-black min-h-screen">
+        
         {/* Hero Title Section */}
         <section className="max-w-[1440px] mx-auto px-6 md:px-12 mb-16">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 border-l-4 border-secondary-container pl-8">
@@ -155,14 +202,13 @@ export default function Courses() {
         </section>
 
         {/* Bento Course Grid */}
-        <section className="max-w-[1440px] mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {courseList.map((course, index) => {
+        <section className="max-w-[1440px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {courseList.map((course) => {
             const isExpanded = expandedSyllabusId === course.id;
-            const isFeatured = index === 0;
             return (
               <div 
                 key={course.id} 
-                className={`bg-[#111111] border border-white/5 hover:border-secondary-container/50 transition-all duration-500 rounded group overflow-hidden flex flex-col justify-between relative ${isFeatured ? "lg:col-span-2" : ""}`}
+                className="bg-[#111111] border border-white/5 hover:border-secondary-container/50 transition-all duration-500 rounded group overflow-hidden flex flex-col justify-between relative"
               >
                 <div className="absolute top-0 left-0 w-1.5 h-full bg-secondary-container"></div>
                 
@@ -183,7 +229,7 @@ export default function Courses() {
                         <span className="material-symbols-outlined text-sm">schedule</span> 3 Months
                       </span>
                       <span className="text-on-surface-variant font-body font-bold text-[11px] flex items-center gap-1 uppercase">
-                        <span className="material-symbols-outlined text-sm">language</span> Online
+                        <span className="material-symbols-outlined text-sm">language</span> Online Live
                       </span>
                     </div>
                     
@@ -191,20 +237,28 @@ export default function Courses() {
                       {course.title}
                     </h2>
                     
-                    <p className="text-on-surface-variant font-body text-sm mb-2 leading-relaxed">
+                    <p className="text-on-surface-variant font-body text-xs leading-relaxed whitespace-pre-line mb-4">
                       {course.desc}
                     </p>
+                    
+                    <div className="flex justify-between items-center py-3 border-t border-white/5 mt-2">
+                      <span className="text-[10px] text-on-surface-variant uppercase font-body font-bold tracking-widest">Academic Fee</span>
+                      <span className="font-display font-black text-xl text-secondary-container">{course.price}</span>
+                    </div>
                   </div>
                 </div>
 
                 <div className="px-8 pb-8 mt-auto flex flex-col gap-4">
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <Link href="/cpt" className="flex-1 text-center bg-secondary-container text-white font-body font-bold text-xs py-4 px-6 uppercase tracking-widest red-glow-hover transition-all duration-300">
+                    <button 
+                      onClick={() => handleEnrollClick(course.title)}
+                      className="flex-1 text-center bg-secondary-container text-white font-body font-bold text-xs py-4 px-6 uppercase tracking-widest red-glow-hover transition-all duration-300 cursor-pointer"
+                    >
                       Enroll Now
-                    </Link>
+                    </button>
                     <button 
                       onClick={() => setExpandedSyllabusId(isExpanded ? null : course.id)}
-                      className="flex-1 text-center border-white/10 border font-body font-bold text-xs py-4 px-6 uppercase tracking-widest text-on-surface-variant hover:text-white hover:border-white transition-all duration-300"
+                      className="flex-1 text-center border-white/10 border font-body font-bold text-xs py-4 px-6 uppercase tracking-widest text-on-surface-variant hover:text-white hover:border-white transition-all duration-300 cursor-pointer"
                     >
                       {isExpanded ? "Hide Syllabus" : "View Syllabus"}
                     </button>
@@ -217,16 +271,16 @@ export default function Courses() {
                         Syllabus Modules
                       </h3>
                       <div className="space-y-4 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
-                        {syllabusModules.map((module, modIdx) => (
-                          <div key={modIdx} className="bg-black/40 p-4 border border-white/5 rounded-sm">
+                        {course.syllabus.map((module, modIdx) => (
+                          <div key={modIdx} className="bg-black/45 p-4 border border-white/5 rounded-sm">
                             <h4 className="font-display font-bold text-[11px] text-[#ffb4a8] uppercase mb-2">
                               {module.title}
                             </h4>
-                            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1">
+                            <ul className="grid grid-cols-1 gap-2 mt-1">
                               {module.items.map((item, itemIdx) => (
                                 <li key={itemIdx} className="flex items-center gap-2 text-xs text-on-surface-variant font-body">
-                                  <span className="h-1.5 w-1.5 rounded-full bg-secondary-container"></span>
-                                  {item}
+                                  <span className="h-1.5 w-1.5 rounded-full bg-secondary-container shrink-0"></span>
+                                  <span>{item}</span>
                                 </li>
                               ))}
                             </ul>
@@ -241,8 +295,165 @@ export default function Courses() {
           })}
         </section>
 
+        {/* What You Receive */}
+        <section className="bg-surface-container-low py-24 mt-24">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            <h2 className="font-display text-4xl font-black text-white mb-16 text-center uppercase">
+              What You <span className="text-secondary-container">Receive</span>
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                { icon: "book", title: "Study Material", desc: "Comprehensive IIFN proprietary research papers and textbooks." },
+                { icon: "workspace_premium", title: "Dual Certifications", desc: "Dual certifications recognized globally for your professional career." },
+                { icon: "badge", title: "Digital ID Card", desc: "Official IIFN Performance Laboratory credentials for verification." },
+                { icon: "description", title: "Official Marksheet", desc: "Detailed performance breakdown of your theoretical and practical scores." },
+                { icon: "support_agent", title: "Faculty Access", desc: "Direct mentorship from high-performance athletic coaches." },
+                { icon: "work", title: "Placement Portal", desc: "Access to our network of elite fitness clubs and sports organizations." }
+              ].map((item, index) => (
+                <div key={index} className="flex gap-6 items-start p-6 hover:bg-white/5 transition-all rounded">
+                  <div className="bg-secondary-container p-4 rounded-sm shrink-0">
+                    <span className="material-symbols-outlined text-white text-3xl">
+                      {item.icon}
+                    </span>
+                  </div>
+                  <div>
+                    <h4 className="font-body font-bold text-white uppercase mb-2 text-sm tracking-wider">{item.title}</h4>
+                    <p className="text-on-surface-variant text-sm font-body leading-relaxed">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Enrollment Form */}
+        <section className="py-24 bg-surface-container-lowest border-t-4 border-secondary-container relative overflow-hidden" id="enroll">
+          <div className="max-w-4xl mx-auto px-6 relative z-10">
+            <div className="text-center mb-12">
+              <h2 className="font-display text-4xl font-black text-white mb-4 uppercase">Enrollment <span className="text-secondary-container">Center</span></h2>
+              <p className="text-on-surface-variant font-body">Secure your spot in the next cohort. Batch starting soon.</p>
+            </div>
+            
+            <div className="glass-panel p-8 md:p-10 rounded-lg">
+              {enrollSubmitted ? (
+                <div className="py-12 text-center text-green-500 bg-green-500/10 border border-green-500/20 rounded">
+                  <span className="material-symbols-outlined text-5xl mb-4">check_circle</span>
+                  <h3 className="font-display font-black text-xl uppercase mb-2">Enrollment Requested Successfully!</h3>
+                  <p className="text-sm text-on-surface-variant font-body">Our academic registrar will reach out to you within 12 hours with payment invoices and LMS credentials.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleEnrollSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="font-body font-bold text-[10px] uppercase text-on-surface-variant tracking-widest block">Full Name</label>
+                      <input 
+                        name="name"
+                        value={formData.name}
+                        onChange={handleEnrollInputChange}
+                        required
+                        type="text" 
+                        className="w-full bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-white placeholder:text-white/20 text-sm rounded" 
+                        placeholder="John Doe" 
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="font-body font-bold text-[10px] uppercase text-on-surface-variant tracking-widest block">Email Address</label>
+                      <input 
+                        name="email"
+                        value={formData.email}
+                        onChange={handleEnrollInputChange}
+                        required
+                        type="email" 
+                        className="w-full bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-white placeholder:text-white/20 text-sm rounded" 
+                        placeholder="john@athlete.com" 
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="font-body font-bold text-[10px] uppercase text-on-surface-variant tracking-widest block">Phone Number</label>
+                      <input 
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleEnrollInputChange}
+                        required
+                        type="tel" 
+                        className="w-full bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-white placeholder:text-white/20 text-sm rounded" 
+                        placeholder="+91 00000 00000" 
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="font-body font-bold text-[10px] uppercase text-on-surface-variant tracking-widest block">Current Occupation</label>
+                      <select 
+                        name="occupation"
+                        value={formData.occupation}
+                        onChange={handleEnrollInputChange}
+                        className="w-full bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-white text-sm rounded cursor-pointer"
+                      >
+                        <option>Student</option>
+                        <option>Fitness Professional</option>
+                        <option>Working Professional</option>
+                        <option>Other</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <label className="font-body font-bold text-[10px] uppercase text-on-surface-variant tracking-widest block">Experience (if any)</label>
+                    <textarea 
+                      name="experience"
+                      value={formData.experience}
+                      onChange={handleEnrollInputChange}
+                      className="w-full bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-white placeholder:text-white/20 text-sm rounded font-body" 
+                      placeholder="Tell us about your fitness background..." 
+                      rows="4"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="font-body font-bold text-[10px] uppercase text-on-surface-variant tracking-widest block">Program Track</label>
+                    <select 
+                      name="course"
+                      value={formData.course}
+                      onChange={handleEnrollInputChange}
+                      className="w-full bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-white text-sm rounded cursor-pointer"
+                    >
+                      <option value="Certified Personal Trainer (CPT)">Certified Personal Trainer (CPT)</option>
+                      <option value="Certification in Nutrition & Dietetics">Certification in Nutrition & Dietetics</option>
+                      <option value="Combo Course (CPT + Nutrition & Dietetics)">Combo Course (CPT + Nutrition & Dietetics)</option>
+                    </select>
+                  </div>
+                  
+                  <div className="flex flex-wrap items-center gap-4 py-4 border-y border-white/5">
+                    <span className="text-on-surface-variant text-sm font-body">Selected Program:</span>
+                    <span className="font-body font-bold text-white uppercase border border-secondary-container/50 px-4 py-1 rounded-full text-xs">
+                      {formData.course}
+                    </span>
+                    <span className="ml-auto font-display font-black text-2xl text-secondary-container">
+                      {formData.course.includes("Combo") ? "₹9,999" : "₹5,999"}
+                    </span>
+                  </div>
+                  
+                  <button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="w-full bg-secondary-container text-white py-6 font-display font-black text-sm uppercase red-glow hover:scale-[1.01] active:scale-95 transition-all disabled:opacity-50 disabled:pointer-events-none cursor-pointer"
+                  >
+                    {isSubmitting ? "Processing..." : "Complete Enrollment"}
+                  </button>
+                  {submitError && (
+                    <p className="text-red-500 text-xs mt-2 font-body font-bold text-center">{submitError}</p>
+                  )}
+                  <p className="text-[9px] text-on-surface-variant text-center uppercase tracking-widest font-body mt-2">By clicking above, you agree to IIFN&apos;s Code of Conduct and Terms of Service.</p>
+                </form>
+              )}
+            </div>
+          </div>
+        </section>
+
         {/* Lab Advisor CTA Section */}
-        <section className="max-w-[1440px] mx-auto px-6 md:px-12 mt-24">
+        <section className="max-w-[1440px] mx-auto px-6 md:px-12">
           <div className="bg-[#0e0e0e] border border-white/5 p-12 md:p-24 flex flex-col items-center text-center relative overflow-hidden rounded">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-secondary-container to-transparent opacity-50"></div>
             <h3 className="font-display text-3xl font-black mb-6 uppercase tracking-tighter text-white">Not sure which path to take?</h3>
@@ -251,7 +462,7 @@ export default function Courses() {
             </p>
             <button 
               onClick={() => setShowAdvisorModal(true)}
-              className="border-2 border-white text-white px-10 py-5 font-body font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-500"
+              className="border-2 border-white text-white px-10 py-5 font-body font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-500 cursor-pointer"
             >
               Talk to an Advisor
             </button>
@@ -319,7 +530,7 @@ export default function Courses() {
                  <button 
                   type="submit" 
                   disabled={isSubmitting}
-                  className="w-full bg-secondary-container text-white py-4 font-body font-bold text-xs uppercase tracking-widest hover:scale-105 active:scale-95 red-glow-hover transition-all disabled:opacity-50 disabled:pointer-events-none"
+                  className="w-full bg-secondary-container text-white py-4 font-body font-bold text-xs uppercase tracking-widest hover:scale-105 active:scale-95 red-glow-hover transition-all disabled:opacity-50 disabled:pointer-events-none cursor-pointer"
                 >
                   {isSubmitting ? "Requesting..." : "Request Consultation"}
                 </button>
