@@ -314,7 +314,14 @@ export default function AdminDashboard() {
                                     {(item.name || "C")[0].toUpperCase()}
                                   </div>
                                   <div>
-                                    <p className="text-white font-bold font-body">{item.name || "N/A"}</p>
+                                    <p className="text-white font-bold font-body flex items-center gap-1.5">
+                                      {item.name || "N/A"}
+                                      {item.userId && (
+                                        <span className="material-symbols-outlined text-[11px] text-green-500 select-none cursor-help" title={`User ID: ${item.userId}`}>
+                                          verified_user
+                                        </span>
+                                      )}
+                                    </p>
                                     <p className="text-[10px] text-on-surface-variant font-body">{item.email || "N/A"} | {item.phone || "N/A"}</p>
                                   </div>
                                 </div>

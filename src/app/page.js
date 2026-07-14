@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import LoadingScreen from "@/components/LoadingScreen";
-import { addEnquiry, getReviews } from "@/service/firestore.service";
+import { addEnquiry, getApprovedReviews } from "@/service/firestore.service";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,8 +23,7 @@ export default function Home() {
   useEffect(() => {
     const fetchApprovedReviews = async () => {
       try {
-        const allReviews = await getReviews();
-        const approved = allReviews.filter(r => r.approved);
+        const approved = await getApprovedReviews();
         setApprovedReviews(approved);
       } catch (err) {
         console.error("Failed to fetch approved reviews:", err);

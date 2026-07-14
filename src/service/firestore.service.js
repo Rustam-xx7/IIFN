@@ -163,6 +163,21 @@ export async function getReviews() {
     throw error;
   }
 }
+// Fetch only approved reviews (for public landing page display)
+export async function getApprovedReviews() {
+  try {
+    const q = query(collection(db, "reviews"), where("approved", "==", true));
+    const querySnapshot = await getDocs(q);
+    const list = [];
+    querySnapshot.forEach((doc) => {
+      list.push({ id: doc.id, ...doc.data() });
+    });
+    return list;
+  } catch (error) {
+    console.error("Error fetching approved reviews: ", error);
+    throw error;
+  }
+}
 
 // Approve or reject review display status
 export async function approveReview(reviewId, approved) {

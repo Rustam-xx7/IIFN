@@ -34,6 +34,19 @@ export default function CPTCourse() {
     if (formData.name && formData.email && formData.phone) {
       setIsSubmitting(true);
       try {
+        let userId = null;
+        try {
+          const storedUser = localStorage.getItem("iifn_user");
+          if (storedUser) {
+            const user = JSON.parse(storedUser);
+            if (user && user.id) {
+              userId = user.id;
+            }
+          }
+        } catch (e) {
+          console.error("Error reading user session for enrollment", e);
+        }
+
         await addEnrollment({
           name: formData.name,
           email: formData.email,
@@ -42,6 +55,7 @@ export default function CPTCourse() {
           experience: formData.experience,
           course: "Certified Personal Trainer (CPT)",
           investment: "₹5,999",
+          ...(userId ? { userId } : {}),
         });
         setEnrollSubmitted(true);
         setFormData({

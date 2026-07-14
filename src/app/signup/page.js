@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { signupUser } from "@/service/firestore.service";
+import { signupUserWithAuth } from "@/service/firebaseAuth.service";
 
 export default function Signup() {
   const router = useRouter();
@@ -28,7 +28,7 @@ export default function Signup() {
     e.preventDefault();
     setError("");
 
-    // Simple validation mocks
+    // Validation
     if (formData.name.trim().length < 3) {
       setError("Name must be at least 3 characters.");
       return;
@@ -48,19 +48,23 @@ export default function Signup() {
 
     setIsSubmitting(true);
     try {
-      const user = await signupUser(
+      const user = await signupUserWithAuth(
         formData.name,
         formData.email,
         formData.phone,
         formData.password,
-        formData.course
+        formData.course,
       );
-      // Save user session in localStorage for local state check on admin page if needed
+      // Save user session in localStorage
       localStorage.setItem("iifn_user", JSON.stringify(user));
       setSuccess(true);
       setTimeout(() => {
-        // Redirect to student/admin dashboard
-        router.push("/admin");
+        // Redirect to main home page (or admin if role is admin)
+        if (user.role === "admin") {
+          router.push("/admin");
+        } else {
+          router.push("/");
+        }
       }, 2000);
     } catch (err) {
       console.error(err);
@@ -73,17 +77,24 @@ export default function Signup() {
   return (
     <main className="performance-grid bg-black min-h-screen flex items-center justify-center p-6 relative">
       <div className="absolute top-6 left-6">
-        <Link href="/" className="font-display font-black text-2xl text-white uppercase tracking-tighter hover:text-secondary-container transition-colors">
+        <Link
+          href="/"
+          className="font-display font-black text-2xl text-white uppercase tracking-tighter hover:text-secondary-container transition-colors"
+        >
           IIFN
         </Link>
       </div>
 
       <div className="w-full max-w-lg glass-panel p-8 md:p-10 rounded relative overflow-hidden my-12">
         <div className="absolute top-0 left-0 w-full h-1 bg-secondary-container"></div>
-        
+
         <div className="text-center mb-8">
-          <h1 className="font-display font-black text-2xl uppercase text-white">Create Account</h1>
-          <p className="text-on-surface-variant text-xs mt-1 font-body">Register for the performance learning campus</p>
+          <h1 className="font-display font-black text-2xl uppercase text-white">
+            Create Account
+          </h1>
+          <p className="text-on-surface-variant text-xs mt-1 font-body">
+            Register for the performance learning campus
+          </p>
         </div>
 
         {error && (
@@ -95,69 +106,85 @@ export default function Signup() {
 
         {success ? (
           <div className="p-8 bg-green-500/10 border border-green-500/20 rounded text-green-500 text-xs font-body text-center space-y-3 mb-6">
-            <span className="material-symbols-outlined text-5xl animate-bounce">task_alt</span>
-            <p className="font-bold uppercase tracking-wider text-sm">Account Created!</p>
-            <p className="text-on-surface-variant">Registering credentials and routing to admissions center...</p>
+            <span className="material-symbols-outlined text-5xl animate-bounce">
+              task_alt
+            </span>
+            <p className="font-bold uppercase tracking-wider text-sm">
+              Account Created!
+            </p>
+            <p className="text-on-surface-variant">
+              Registering credentials and routing to admissions center...
+            </p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="font-body font-bold text-[10px] uppercase text-on-surface/60 tracking-widest block">Full Name</label>
-                <input 
+                <label className="font-body font-bold text-[10px] uppercase text-on-surface/60 tracking-widest block">
+                  Full Name
+                </label>
+                <input
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  type="text" 
-                  className="w-full bg-black border border-white/10 p-3.5 focus:border-secondary-container text-white placeholder:text-white/20 text-sm rounded outline-none transition-all" 
-                  placeholder="e.g. Arjun Das" 
+                  type="text"
+                  className="w-full bg-black border border-white/10 p-3.5 focus:border-secondary-container text-white placeholder:text-white/20 text-sm rounded outline-none transition-all"
+                  placeholder="e.g. Arjun Das"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <label className="font-body font-bold text-[10px] uppercase text-on-surface/60 tracking-widest block">Mobile Number</label>
-                <input 
+                <label className="font-body font-bold text-[10px] uppercase text-on-surface/60 tracking-widest block">
+                  Mobile Number
+                </label>
+                <input
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
                   required
-                  type="tel" 
-                  className="w-full bg-black border border-white/10 p-3.5 focus:border-secondary-container text-white placeholder:text-white/20 text-sm rounded outline-none transition-all" 
-                  placeholder="+91 99999 88888" 
+                  type="tel"
+                  className="w-full bg-black border border-white/10 p-3.5 focus:border-secondary-container text-white placeholder:text-white/20 text-sm rounded outline-none transition-all"
+                  placeholder="+91 99999 88888"
                 />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <label className="font-body font-bold text-[10px] uppercase text-on-surface/60 tracking-widest block">Email Address</label>
-              <input 
+              <label className="font-body font-bold text-[10px] uppercase text-on-surface/60 tracking-widest block">
+                Email Address
+              </label>
+              <input
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-                type="email" 
-                className="w-full bg-black border border-white/10 p-3.5 focus:border-secondary-container text-white placeholder:text-white/20 text-sm rounded outline-none transition-all" 
-                placeholder="arjun@example.com" 
+                type="email"
+                className="w-full bg-black border border-white/10 p-3.5 focus:border-secondary-container text-white placeholder:text-white/20 text-sm rounded outline-none transition-all"
+                placeholder="arjun@example.com"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="font-body font-bold text-[10px] uppercase text-on-surface/60 tracking-widest block">Choose Password</label>
-              <input 
+              <label className="font-body font-bold text-[10px] uppercase text-on-surface/60 tracking-widest block">
+                Choose Password
+              </label>
+              <input
                 name="password"
                 value={formData.password}
                 onChange={handleInputChange}
                 required
-                type="password" 
-                className="w-full bg-black border border-white/10 p-3.5 focus:border-secondary-container text-white placeholder:text-white/20 text-sm rounded outline-none transition-all" 
-                placeholder="••••••••" 
+                type="password"
+                className="w-full bg-black border border-white/10 p-3.5 focus:border-secondary-container text-white placeholder:text-white/20 text-sm rounded outline-none transition-all"
+                placeholder="••••••••"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="font-body font-bold text-[10px] uppercase text-on-surface/60 tracking-widest block">Preferred Program Pathway</label>
-              <select 
+              <label className="font-body font-bold text-[10px] uppercase text-on-surface/60 tracking-widest block">
+                Preferred Program Pathway
+              </label>
+              <select
                 name="course"
                 value={formData.course}
                 onChange={handleInputChange}
@@ -169,8 +196,8 @@ export default function Signup() {
               </select>
             </div>
 
-             <button 
-              type="submit" 
+            <button
+              type="submit"
               disabled={isSubmitting}
               className="w-full bg-secondary-container text-white py-4 font-display font-black text-sm uppercase tracking-widest red-glow hover:scale-[1.01] active:scale-95 transition-all mt-6 disabled:opacity-50 disabled:pointer-events-none"
             >
@@ -182,7 +209,10 @@ export default function Signup() {
         <div className="mt-8 text-center pt-6 border-t border-white/5">
           <p className="text-xs text-on-surface-variant font-body">
             Already have credentials?{" "}
-            <Link href="/login" className="text-secondary-container font-bold hover:underline">
+            <Link
+              href="/login"
+              className="text-secondary-container font-bold hover:underline"
+            >
               Access student portal
             </Link>
           </p>
