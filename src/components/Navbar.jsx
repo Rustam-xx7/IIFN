@@ -39,6 +39,7 @@ export default function Navbar() {
     { name: "Home", path: "/" },
     { name: "Courses", path: "/courses" },
     { name: "Jewel Gym", path: "/gym" },
+    { name: "Dietitian", path: "/dietition" },
     { name: "About Us", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];

@@ -128,8 +128,8 @@ export default function Courses() {
 
   const courseList = [
     {
-      id: "cpt",
-      title: "Certified Personal Trainer (CPT)",
+      id: "dpt",
+      title: "Diploma in Personal Training (DPT)",
       tag: "Best Seller",
       price: "₹5,999",
       desc: "Learn: Human Anatomy & Physiology, Exercise Science, Strength & Conditioning, Fat Loss & Muscle Gain Training, Workout Programming, Client Assessment, Gym Floor Practical Training, Injury Prevention, Professional Ethics.",
@@ -146,7 +146,7 @@ export default function Courses() {
     },
     {
       id: "nutrition",
-      title: "Certification in Nutrition & Dietetics",
+      title: "Diploma in Nutrition & Dietetics",
       tag: "Advanced Specialty",
       price: "₹5,999",
       desc: "Learn: Fundamentals of Nutrition, Macronutrients & Micronutrients, Weight Loss & Weight Gain Diet Planning, Sports Nutrition, Clinical Nutrition Basics, Meal Planning, Supplement Basics, Client Diet Consultation.",
@@ -163,13 +163,13 @@ export default function Courses() {
     },
     {
       id: "combo",
-      title: "Combo Course (CPT + Nutrition & Dietetics)",
+      title: "Combo Course (DPT + Nutrition & Dietetics)",
       tag: "Best Value / Dual Degree",
       price: "₹9,999",
       desc: "✔ Complete Fitness Professional Certification\n✔ Personal Training + Nutrition Expertise\n✔ Practical Learning\n✔ Certificate on Successful Completion\n✔ Ideal for Aspiring Fitness Trainers, Gym Owners & Fitness Enthusiasts",
       img: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=2070&auto=format&fit=crop",
       syllabus: [
-        { title: "🏋️ Part A: Personal Trainer Core (CPT)", items: ["Human Anatomy & Physiology", "Strength & Conditioning Protocols", "Gym Floor Exercises Demonstration", "Injury Prevention & Posture Correction"] },
+        { title: "🏋️ Part A: Personal Trainer Core (DPT)", items: ["Human Anatomy & Physiology", "Strength & Conditioning Protocols", "Gym Floor Exercises Demonstration", "Injury Prevention & Posture Correction"] },
         { title: "🥗 Part B: Sports Nutritionist & Dietetics Core", items: ["Diet Design for Weight Loss/Gain", "Metabolic Profiling & Meal Planning", "Clinical Nutrition & Supplement Science", "Client Consultation Strategy"] },
         { title: "📈 Part C: Professional Fitness Entrepreneurship", items: ["Gym Management & Business Scaling", "Personal Branding & Digital Marketing", "Career & Placement Preparation"] }
       ]
