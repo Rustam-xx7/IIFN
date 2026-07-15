@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import AdminSidebar from "@/components/AdminSidebar";
 import { getEnquiries, getEnrollments, getUsers, getReviews, approveReview, deleteReview } from "@/service/firestore.service";
 
@@ -10,6 +11,7 @@ export default function AdminDashboard() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
   const [adminUser, setAdminUser] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Database States
   const [enquiries, setEnquiries] = useState([]);
@@ -130,16 +132,32 @@ export default function AdminDashboard() {
   return (
     <div className="flex h-screen overflow-hidden bg-black text-on-surface">
       
-      {/* Sidebar Navigation */}
-      <AdminSidebar />
+      {/* Sidebar Navigation overlay for mobile, static side menu for desktop */}
+      <AdminSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       {/* Main Content Area */}
       <main className="flex-1 flex flex-col min-w-0 bg-background overflow-y-auto relative">
         
         {/* Top App Bar */}
         <header className="sticky top-0 h-20 glass-panel z-30 flex items-center justify-between px-6 md:px-10 border-b border-white/10 shrink-0">
-          <div className="flex items-center gap-8">
-            <h2 className="font-display font-black text-lg md:text-xl text-white uppercase tracking-tight">Admin Portal</h2>
+          <div className="flex items-center gap-4 md:gap-8">
+            <button 
+              onClick={() => setSidebarOpen(true)}
+              className="material-symbols-outlined text-white hover:text-secondary-container text-2xl md:hidden cursor-pointer"
+            >
+              menu
+            </button>
+            <h2 className="font-display font-black text-base md:text-lg text-white uppercase tracking-tight">Admin Portal</h2>
+            
+            {/* Back to Home Link */}
+            <Link 
+              href="/" 
+              className="flex items-center gap-2 border border-white/15 px-3 py-1.5 text-[9px] font-body font-bold text-on-surface-variant hover:text-white hover:border-white transition-all uppercase tracking-widest rounded-sm cursor-pointer"
+            >
+              <span className="material-symbols-outlined text-xs">arrow_back</span>
+              <span className="hidden sm:inline">Back to Home</span>
+            </Link>
+
             <div className="hidden lg:flex items-center bg-surface-container-low px-4 py-2 rounded border border-white/5 min-w-[300px]">
               <span className="material-symbols-outlined text-on-surface-variant text-sm">search</span>
               <input 

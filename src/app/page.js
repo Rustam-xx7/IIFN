@@ -17,7 +17,7 @@ export default function Home() {
     phone: "",
     email: "",
     city: "",
-    course: "Certified Personal Trainer",
+    course: "Diploma in Personal Training (DPT)",
   });
 
   useEffect(() => {
@@ -59,7 +59,7 @@ export default function Home() {
           phone: "",
           email: "",
           city: "",
-          course: "Certified Personal Trainer",
+          course: "Diploma in Personal Training (DPT)",
         });
         setTimeout(() => {
           setFormSubmitted(false);
@@ -316,24 +316,24 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
-                title: "Personal Trainer Certification",
+                title: "Diploma in Personal Training (DPT)",
                 dur: "3 Months",
                 tag: "Best Seller",
-                desc: "Master the science of exercise physiology, biomechanics, and program design for elite results.",
+                desc: "Learn: Human Anatomy & Physiology, Exercise Science, Strength & Conditioning, Fat Loss & Muscle Gain Training, Workout Programming, Client Assessment, Gym Floor Practical Training, Injury Prevention, Professional Ethics.",
                 img: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069&auto=format&fit=crop"
               },
               {
-                title: "Certified Sports Nutritionist",
-                dur: "2 Months",
+                title: "Diploma in Nutrition & Dietetics",
+                dur: "3 Months",
                 tag: "Science-Based",
-                desc: "Understand biochemistry and performance nutrition to fuel athletes for maximum output.",
+                desc: "Learn: Fundamentals of Nutrition, Macronutrients & Micronutrients, Weight Loss & Weight Gain Diet Planning, Sports Nutrition, Clinical Nutrition Basics, Meal Planning, Supplement Basics, Client Diet Consultation.",
                 img: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2070&auto=format&fit=crop"
               },
               {
-                title: "Master Diploma in Fitness",
+                title: "Combo Course (DPT + Nutrition & Dietetics)",
                 dur: "6 Months",
-                tag: "Advanced",
-                desc: "Our most comprehensive program covering training, nutrition, and business management.",
+                tag: "Best Value",
+                desc: "✔ Complete Fitness Professional Certification ✔ Personal Training + Nutrition Expertise ✔ Practical Learning ✔ Certificate on Successful Completion ✔ Ideal for Aspiring Fitness Trainers, Gym Owners & Fitness Enthusiasts",
                 img: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=2070&auto=format&fit=crop"
               }
             ].map((course, index) => (
@@ -600,9 +600,9 @@ export default function Home() {
                       onChange={handleInputChange}
                       className="bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-on-surface rounded text-sm"
                     >
-                      <option>Certified Personal Trainer</option>
-                      <option>Certified Sports Nutritionist</option>
-                      <option>Master Diploma</option>
+                      <option value="Diploma in Personal Training (DPT)">Diploma in Personal Training (DPT)</option>
+                      <option value="Diploma in Nutrition & Dietetics">Diploma in Nutrition & Dietetics</option>
+                      <option value="Combo Course (DPT + Nutrition & Dietetics)">Combo Course (DPT + Nutrition & Dietetics)</option>
                     </select>
                   </div>
                 </div>

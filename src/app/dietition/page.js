@@ -210,7 +210,7 @@ export default function Dietitian() {
                 <img 
                   alt="Transformation Success 1" 
                   className="w-full h-full object-cover" 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_vsiMhVqbg3-5j3UbFmFk3QbbiYC2wYbU9Qr73HXKO4q2qkQ8rC08fb3-Y6H9iztNSn0c_tC1dnrBKc305veiml8eGCeoePVDDUPEims7_pvvAa62iKQTWQp2ORMJ49J-Und1vrhagHfbWCicPhe2ft95QQiyEZ25Qd52DCXDLLdeRCiZx_elTjg5kDIxjNKvKV_S8RJWrNT-93hhGz18_rmrTQyfb0SMGKOpbXLlSkozeoHYQqs2Ontgs6_SlH-RGw"
+                  src="/dietResult1.jpg"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -223,7 +223,7 @@ export default function Dietitian() {
                 <img 
                   alt="Transformation Success 2" 
                   className="w-full h-full object-cover" 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4J2nle3_0DRQ6v0VHp3u2mmp_H4t-Gy2iVwJ1J5tgMOrWzwsy-nQwbQHhFY3juXsV-3ZkxUBjF-0eTjgv1LdHdTIMYCUyMUf0DzaNtKqcc8vlHV3UtEwwk80hprOI4AbiC4lKLuaRrb1BDP7f6-n4pxQhNIl2VViR-MyrIfzCRn1SDM4GjJYX4T4qbZZ_Vgkr9gMCPLjiLn3zZlPcrN6zKkHPoaLT1aCNxtVM8RHbP2M7DiJ2ljfDyDDnwg0eV_SItQ"
+                  src="/dietResult2.jpg"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
