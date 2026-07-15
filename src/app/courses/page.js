@@ -21,7 +21,7 @@ export default function Courses() {
     phone: "",
     occupation: "Student",
     experience: "",
-    course: "Certified Personal Trainer (CPT)",
+    course: "Diploma in Personal Training (DPT)",
   });
 
   const handleInputChange = (e) => {
@@ -104,7 +104,7 @@ export default function Courses() {
           phone: "",
           occupation: "Student",
           experience: "",
-          course: "Certified Personal Trainer (CPT)",
+          course: "Diploma in Personal Training (DPT)",
         });
         setTimeout(() => {
           setEnrollSubmitted(false);
@@ -419,9 +419,9 @@ export default function Courses() {
                       onChange={handleEnrollInputChange}
                       className="w-full bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-white text-sm rounded cursor-pointer"
                     >
-                      <option value="Certified Personal Trainer (CPT)">Certified Personal Trainer (CPT)</option>
-                      <option value="Certification in Nutrition & Dietetics">Certification in Nutrition & Dietetics</option>
-                      <option value="Combo Course (CPT + Nutrition & Dietetics)">Combo Course (CPT + Nutrition & Dietetics)</option>
+                      <option value="Diploma in Personal Training (DPT)">Diploma in Personal Training (DPT)</option>
+                      <option value="Diploma in Nutrition & Dietetics">Diploma in Nutrition & Dietetics</option>
+                      <option value="Combo Course (DPT + Nutrition & Dietetics)">Combo Course (DPT + Nutrition & Dietetics)</option>
                     </select>
                   </div>
                   
