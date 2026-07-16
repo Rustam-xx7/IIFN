@@ -17,7 +17,7 @@ export default function Home() {
     phone: "",
     email: "",
     city: "",
-    course: "Diploma in Personal Training (DPT)",
+    course: "Certified Personal Trainer (CPT)",
   });
 
   useEffect(() => {
@@ -59,7 +59,7 @@ export default function Home() {
           phone: "",
           email: "",
           city: "",
-          course: "Diploma in Personal Training (DPT)",
+          course: "Certified Personal Trainer (CPT)",
         });
         setTimeout(() => {
           setFormSubmitted(false);
@@ -185,7 +185,7 @@ export default function Home() {
               <Link href="/courses" className="bg-secondary-container text-white px-8 py-4 font-body font-bold text-xs uppercase red-glow hover:scale-105 transition-all text-center">
                 Start Your Course
               </Link>
-              <a href="#" className="border-2 border-white text-white px-8 py-4 font-body font-bold text-xs uppercase hover:bg-white hover:text-black transition-all text-center">
+              <a href="/IIFN_Brochure.pdf" target="_blank" rel="noopener noreferrer" className="border-2 border-white text-white px-8 py-4 font-body font-bold text-xs uppercase hover:bg-white hover:text-black transition-all text-center">
                 Download Brochure
               </a>
             </div>
@@ -316,24 +316,24 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
-                title: "Diploma in Personal Training (DPT)",
-                dur: "3 Months",
+                title: "Certified Personal Trainer (CPT)",
+                dur: "1–3 Months",
                 tag: "Best Seller",
-                desc: "Learn: Human Anatomy & Physiology, Exercise Science, Strength & Conditioning, Fat Loss & Muscle Gain Training, Workout Programming, Client Assessment, Gym Floor Practical Training, Injury Prevention, Professional Ethics.",
+                desc: "Learn: Human Anatomy & Physiology, Exercise Science, Biomechanics, Workout Programme Design, Injury Prevention, Nutrition, Professional Practice.",
                 img: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069&auto=format&fit=crop"
               },
               {
-                title: "Diploma in Nutrition & Dietetics",
-                dur: "3 Months",
+                title: "Certification in Nutrition & Dietetics",
+                dur: "1–3 Months",
                 tag: "Science-Based",
-                desc: "Learn: Fundamentals of Nutrition, Macronutrients & Micronutrients, Weight Loss & Weight Gain Diet Planning, Sports Nutrition, Clinical Nutrition Basics, Meal Planning, Supplement Basics, Client Diet Consultation.",
+                desc: "Learn: Fundamentals of Nutrition, Macronutrients & Micronutrients, Diet Planning & Meal Management, Sports Nutrition, Clinical Nutrition Basics, Supplements, Client Consultation.",
                 img: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2070&auto=format&fit=crop"
               },
               {
-                title: "Combo Course (DPT + Nutrition & Dietetics)",
-                dur: "6 Months",
+                title: "Combo Course (CPT + Nutrition & Dietetics)",
+                dur: "2–4 Months",
                 tag: "Best Value",
-                desc: "✔ Complete Fitness Professional Certification ✔ Personal Training + Nutrition Expertise ✔ Practical Learning ✔ Certificate on Successful Completion ✔ Ideal for Aspiring Fitness Trainers, Gym Owners & Fitness Enthusiasts",
+                desc: "✔ Personal Trainer (CPT) + Nutrition & Dietetics in One Comprehensive Course ✔ Complete Fitness & Nutrition Education ✔ Live Online Interactive Classes ✔ NSDC Government Certificate ✔ Placement Support",
                 img: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=2070&auto=format&fit=crop"
               }
             ].map((course, index) => (
@@ -600,9 +600,9 @@ export default function Home() {
                       onChange={handleInputChange}
                       className="bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-on-surface rounded text-sm"
                     >
-                      <option value="Diploma in Personal Training (DPT)">Diploma in Personal Training (DPT)</option>
-                      <option value="Diploma in Nutrition & Dietetics">Diploma in Nutrition & Dietetics</option>
-                      <option value="Combo Course (DPT + Nutrition & Dietetics)">Combo Course (DPT + Nutrition & Dietetics)</option>
+                      <option value="Certified Personal Trainer (CPT)">Certified Personal Trainer (CPT)</option>
+                      <option value="Certification in Nutrition & Dietetics">Certification in Nutrition & Dietetics</option>
+                      <option value="Combo Course (CPT + Nutrition & Dietetics)">Combo Course (CPT + Nutrition & Dietetics)</option>
                     </select>
                   </div>
                 </div>

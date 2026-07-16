@@ -135,10 +135,11 @@ export default function Contact() {
                       onChange={handleInputChange}
                       className="w-full bg-black border border-white/10 focus:border-secondary-container text-white py-3 px-4 text-sm rounded outline-none transition-all"
                     >
-                      <option>Advanced Personal Training</option>
-                      <option>Sports Nutrition Specialist</option>
-                      <option>Master Diploma in Fitness</option>
-                      <option>Clinical Nutrition</option>
+                      <option>GYM Membership</option>
+                      <option>Diet Plans</option>
+                      <option>CERTIFIED PERSONAL TRAINER</option>
+                      <option>CERTIFICATION IN NUTRITION & DIETETICS</option>
+                      <option>Combo Courses</option>
                     </select>
                   </div>
                 </div>
@@ -196,10 +197,10 @@ export default function Contact() {
 
               {/* Call / Chat Shortcuts */}
               <div className="grid grid-cols-2 gap-4">
-                <a href="tel:+91999000111" className="flex items-center justify-center gap-2 py-3 border border-white/20 text-white font-body font-bold uppercase text-[10px] tracking-wider hover:bg-white hover:text-black transition-all rounded">
+                <a href="tel:+917001625285" className="flex items-center justify-center gap-2 py-3 border border-white/20 text-white font-body font-bold uppercase text-[10px] tracking-wider hover:bg-white hover:text-black transition-all rounded">
                   <span className="material-symbols-outlined text-sm">call</span> CALL NOW
                 </a>
-                <a href="#" className="flex items-center justify-center gap-2 py-3 border border-white/20 text-white font-body font-bold uppercase text-[10px] tracking-wider hover:bg-secondary-container hover:border-secondary-container transition-all rounded">
+                <a href="https://wa.me/917001625285" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 py-3 border border-white/20 text-white font-body font-bold uppercase text-[10px] tracking-wider hover:bg-secondary-container hover:border-secondary-container transition-all rounded">
                   <span className="material-symbols-outlined text-sm">chat</span> WHATSAPP
                 </a>
               </div>

@@ -611,6 +611,18 @@ export default function GymPage() {
                       Instagram
                     </a>
                   </div>
+                  
+                  <div className="space-y-1.5 mb-4 text-[10px] font-body font-bold text-on-surface-variant uppercase tracking-wider">
+                    <p className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-[#e00600] rounded-full shrink-0"></span>
+                      K11 Certified Health Coach
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-[#e00600] rounded-full shrink-0"></span>
+                      Registered Dietitian (Medhavi University)
+                    </p>
+                  </div>
+                  
                   <div className="grid grid-cols-3 gap-4 border-t border-white/10 pt-4 text-center">
                     <div>
                       <div className="text-[#ffb4a8] font-black text-xl">5+</div>
@@ -637,14 +649,14 @@ export default function GymPage() {
                       Strength Specialist
                     </span>
                   </div>
-                  <h4 className="font-display font-bold text-lg uppercase text-white">Vikram Singh</h4>
+                  {/* <h4 className="font-display font-bold text-lg uppercase text-white">Vikram Singh</h4> */}
                 </div>
                 <div className="bg-[#20201f] p-6 border border-white/5 rounded-sm flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="material-symbols-outlined text-[#ffb4a8] text-base">bolt</span>
                     <span className="text-on-surface/50 text-[10px] uppercase font-bold">HIIT Expert</span>
                   </div>
-                  <h4 className="font-display font-bold text-lg uppercase text-white">Sarah D&apos;Souza</h4>
+                  {/* <h4 className="font-display font-bold text-lg uppercase text-white">Sarah D&apos;Souza</h4> */}
                 </div>
                 <div className="bg-[#20201f] p-6 border border-white/5 rounded-sm flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-2">
@@ -653,7 +665,7 @@ export default function GymPage() {
                       Body Recomp
                     </span>
                   </div>
-                  <h4 className="font-display font-bold text-lg uppercase text-white">Arjun Khanna</h4>
+                  {/* <h4 className="font-display font-bold text-lg uppercase text-white">Arjun Khanna</h4> */}
                 </div>
                 <div className="bg-[#20201f]/30 p-6 border border-dashed border-white/20 rounded-sm flex items-center justify-center">
                   <span className="text-on-surface/30 font-body font-bold uppercase text-xs">

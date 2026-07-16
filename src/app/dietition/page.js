@@ -25,25 +25,41 @@ export default function Dietitian() {
                 Precision nutrition is the foundation of high performance. I translate complex biochemistry into sustainable, result-driven diet protocols for the serious athlete.
               </p>
               
-              <div className="flex flex-wrap gap-4 mb-10">
-                <a 
-                  href="https://wa.me/917001625285" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="flex items-center gap-2 bg-white/5 border border-white/10 px-6 py-3 hover:bg-secondary-container hover:border-secondary-container transition-all group rounded-sm cursor-pointer"
-                >
-                  <span className="material-symbols-outlined text-secondary-container group-hover:text-white">chat</span>
-                  <span className="font-body font-bold text-xs uppercase tracking-widest text-white">WhatsApp</span>
-                </a>
-                <a 
-                  href="https://www.instagram.com/jewelroy07/" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="flex items-center gap-2 bg-white/5 border border-white/10 px-6 py-3 hover:bg-secondary-container hover:border-secondary-container transition-all group rounded-sm cursor-pointer"
-                >
-                  <span className="material-symbols-outlined text-secondary-container group-hover:text-white">photo_camera</span>
-                  <span className="font-body font-bold text-xs uppercase tracking-widest text-white">Instagram</span>
-                </a>
+              <div className="flex flex-col gap-6 mb-10">
+                <div className="flex flex-wrap items-center gap-4">
+                  <a 
+                    href="#contact" 
+                    className="inline-flex items-center gap-2 bg-secondary-container text-white font-body font-bold text-xs px-8 py-4 uppercase tracking-widest hover:scale-105 active:scale-95 transition-all red-glow-hover cursor-pointer rounded-sm"
+                  >
+                    <span className="material-symbols-outlined text-sm">calendar_today</span>
+                    BOOK APPOINTMENT
+                  </a>
+                  <div className="flex flex-col">
+                    <span className="text-[9px] uppercase font-body font-bold tracking-widest text-[#ffb4a8]">Charge starts at</span>
+                    <span className="text-sm font-display font-black text-white">₹499/- Only</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-3">
+                  <a 
+                    href="https://wa.me/917001625285" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="flex items-center gap-2 bg-white/5 border border-white/10 px-5 py-2.5 hover:bg-secondary-container hover:border-secondary-container transition-all group rounded-sm cursor-pointer text-xs"
+                  >
+                    <span className="material-symbols-outlined text-secondary-container group-hover:text-white text-sm">chat</span>
+                    <span className="font-body font-bold uppercase tracking-widest text-[9px] text-white">WhatsApp</span>
+                  </a>
+                  <a 
+                    href="https://www.instagram.com/jewelroy07/" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="flex items-center gap-2 bg-white/5 border border-white/10 px-5 py-2.5 hover:bg-secondary-container hover:border-secondary-container transition-all group rounded-sm cursor-pointer text-xs"
+                  >
+                    <span className="material-symbols-outlined text-secondary-container group-hover:text-white text-sm">photo_camera</span>
+                    <span className="font-body font-bold uppercase tracking-widest text-[9px] text-white">Instagram</span>
+                  </a>
+                </div>
               </div>
 
               {/* Stats Grid */}
@@ -236,20 +252,27 @@ export default function Dietitian() {
         </section>
 
         {/* Ready to Transform CTA */}
-        <section className="py-24 bg-[#111111] relative overflow-hidden">
+        <section id="contact" className="py-24 bg-[#111111] relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-6 md:px-12 text-center relative z-10">
+            <div className="inline-block bg-secondary-container/10 border border-secondary-container/30 px-6 py-2 mb-6 rounded-full text-[10px] font-body font-bold tracking-widest text-[#ffb4a8] uppercase">
+              Appointment From 499/- Only
+            </div>
+            
             <h2 className="font-display text-4xl sm:text-5xl font-black text-white mb-6 uppercase">
               READY TO <span className="text-secondary-container">TRANSFORM?</span>
             </h2>
             <p className="font-body text-base text-on-surface-variant max-w-2xl mx-auto mb-10 leading-relaxed">
               I select only a limited number of clients per month to ensure 1:1 precision and guaranteed results. Start your journey today.
             </p>
-            <Link 
-              className="inline-block bg-secondary-container text-white font-body font-bold text-xs px-12 py-5 uppercase tracking-widest hover:scale-105 active:scale-95 transition-all red-glow-hover cursor-pointer" 
-              href="/contact"
+            <a 
+              className="inline-flex items-center gap-2 bg-secondary-container text-white font-body font-bold text-xs px-12 py-5 uppercase tracking-widest hover:scale-105 active:scale-95 transition-all red-glow-hover cursor-pointer rounded-sm" 
+              href="https://wa.me/917001625285"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              CONTACT ME
-            </Link>
+              <span className="material-symbols-outlined text-sm">chat</span>
+              CONTACT ME ON WHATSAPP
+            </a>
           </div>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-10 pointer-events-none flex items-center justify-center">
             <span className="material-symbols-outlined text-secondary-container select-none" style={{ fontSize: "400px", lineHeight: "1" }}>bolt</span>

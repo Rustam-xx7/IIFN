@@ -21,7 +21,7 @@ export default function Courses() {
     phone: "",
     occupation: "Student",
     experience: "",
-    course: "Diploma in Personal Training (DPT)",
+    course: "Certified Personal Trainer (CPT)",
   });
 
   const handleInputChange = (e) => {
@@ -104,7 +104,7 @@ export default function Courses() {
           phone: "",
           occupation: "Student",
           experience: "",
-          course: "Diploma in Personal Training (DPT)",
+          course: "Certified Personal Trainer (CPT)",
         });
         setTimeout(() => {
           setEnrollSubmitted(false);
@@ -128,50 +128,57 @@ export default function Courses() {
 
   const courseList = [
     {
-      id: "dpt",
-      title: "Diploma in Personal Training (DPT)",
+      id: "cpt",
+      title: "Certified Personal Trainer (CPT)",
       tag: "Best Seller",
       price: "₹5,999",
-      desc: "Learn: Human Anatomy & Physiology, Exercise Science, Strength & Conditioning, Fat Loss & Muscle Gain Training, Workout Programming, Client Assessment, Gym Floor Practical Training, Injury Prevention, Professional Ethics.",
+      dur: "1–3 Months",
+      desc: "Learn: Human Anatomy & Physiology, Exercise Science, Biomechanics, Workout Programme Design, Injury Prevention, Nutrition, Professional Practice.",
       img: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069&auto=format&fit=crop",
       syllabus: [
         { title: "🧠 MODULE 1: HUMAN ANATOMY & PHYSIOLOGY", items: ["Muscular System", "Skeletal System", "Joints & Movement Patterns", "Cardiovascular & Respiratory Basics"] },
         { title: "🏋️ MODULE 2: EXERCISE SCIENCE", items: ["Types of Exercises", "Resistance Training Principles", "Cardio & Endurance Training", "Warm-up, Cool-down & Stretching"] },
-        { title: "🔄 MODULE 3: PRACTICAL TRAINING (LIVE)", items: ["Exercise Demonstrations", "Correct Form & Posture", "Beginner to Advanced Progressions", "Common Gym Mistakes Correction"] },
-        { title: "🔥 MODULE 4: HUMAN BODY COMPONENTS", items: ["Training strategies", "Program Design Basics", "Lifestyle & Recovery Factors", "Client Transformation Approach"] },
+        { title: "🔄 MODULE 3: BIOMECHANICS, MOVEMENT & CORRECTIVE EXERCISES (PRACTICAL TRAINING)", items: ["Exercise Demonstrations", "Correct Form & Posture", "Beginner to Advanced Progressions", "Common Gym Mistakes Correction"] },
+        { title: "🔥 MODULE 4: HUMAN BODY COMPONENTS & WORKOUT PROGRAMME DESIGN", items: ["Training Strategies", "Program Design Basics", "Lifestyle & Recovery Factors", "Client Transformation Approach"] },
         { title: "🛡️ MODULE 5: INJURY PREVENTION & SAFETY", items: ["Common Gym Injuries", "Injury Prevention Techniques", "Safe Training Guidelines", "Client Risk Management"] },
         { title: "🥗 MODULE 6: NUTRITION", items: ["Macronutrients & Micronutrients", "Diet Planning Basics", "Fat Loss & Muscle Gain Nutrition", "Supplement Awareness"] },
-        { title: "◀️ MODULE 7: PROFESSIONAL PRACTICE & CAREER DEVELOPMENT", items: ["Exercise & Diet Samples", "Client Case Studies", "Introduction To CPR", "Trainer Job Role", "Marketing Your Skill"] }
+        { title: "◀️ MODULE 7: PROFESSIONAL PRACTICE & CAREER DEVELOPMENT", items: ["Exercise & Diet Samples", "Client Case Studies", "Introduction to CPR", "Trainer Job Role", "Marketing Your Skills"] }
       ]
     },
     {
       id: "nutrition",
-      title: "Diploma in Nutrition & Dietetics",
+      title: "Certification in Nutrition & Dietetics",
       tag: "Advanced Specialty",
       price: "₹5,999",
-      desc: "Learn: Fundamentals of Nutrition, Macronutrients & Micronutrients, Weight Loss & Weight Gain Diet Planning, Sports Nutrition, Clinical Nutrition Basics, Meal Planning, Supplement Basics, Client Diet Consultation.",
+      dur: "1–3 Months",
+      desc: "Learn: Fundamentals of Nutrition, Macronutrients & Micronutrients, Diet Planning & Meal Management, Sports Nutrition, Clinical Nutrition Basics, Supplements, Client Consultation.",
       img: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2070&auto=format&fit=crop",
       syllabus: [
-        { title: "🥗 MODULE 1: FUNDAMENTALS OF NUTRITION", items: ["Introduction to Nutrients", "Digestive System & Absorption", "Metabolism & Energy Balance", "Caloric Calculations"] },
-        { title: "🍎 MODULE 2: MACRONUTRIENTS & MICRONUTRIENTS", items: ["Proteins, Carbs & Fats Role", "Vitamins & Minerals Science", "Hydration Protocols", "Electrolyte Balancing"] },
-        { title: "⚖️ MODULE 3: WEIGHT MANAGEMENT DIET PLANNING", items: ["Fat Loss Diet Design", "Muscle Gain Nutrition Plans", "Caloric Deficit vs Surpluses", "Refeed & Cheat Meal Strategy"] },
-        { title: "🏃 MODULE 4: SPORTS NUTRITION", items: ["Pre/Intra/Post Workout Fueling", "Glycogen Supercompensation", "Supplement Selection (Creatine, Whey, Caffeine)", "Endurance vs Strength Fueling"] },
-        { title: "🩺 MODULE 5: CLINICAL NUTRITION BASICS", items: ["Dietary Approaches to Hypertension", "Diabetes Management Basics", "Thyroid & PCOS Support Diets", "Gastrointestinal Diet Adjustments"] },
-        { title: "🍽️ MODULE 6: MEAL PLANNING & APPLICATION", items: ["Grocery Tour & Food Selection", "Meal Prepping Guidelines", "Reading Nutrition Labels", "Menu Adjustments for Travel"] },
-        { title: "💬 MODULE 7: DIET CONSULTATION & ETHICS", items: ["Client Intake Assessments", "Tracking Progress Parameters", "Psychology of Food Habits", "Dietitian vs Coach Scope"] }
+        { title: "🥗 MODULE 1: FUNDAMENTALS OF NUTRITION", items: ["Introduction to Nutrition", "Functions of Nutrients", "Balanced Diet Principles", "Energy Requirements"] },
+        { title: "🍎 MODULE 2: MACRONUTRIENTS & MICRONUTRIENTS", items: ["Carbohydrates, Proteins & Fats", "Vitamins & Minerals", "Water & Hydration", "Nutrient Functions & Food Sources"] },
+        { title: "⚖️ MODULE 3: DIET PLANNING & MEAL MANAGEMENT", items: ["Weight Loss Diet Planning", "Weight Gain Diet Planning", "Meal Planning Techniques", "Portion Control & Food Exchange"] },
+        { title: "🏃 MODULE 4: SPORTS NUTRITION", items: ["Nutrition for Exercise & Performance", "Pre-, During & Post-Workout Nutrition", "Recovery Nutrition", "Hydration Strategies"] },
+        { title: "🩺 MODULE 5: CLINICAL NUTRITION BASICS", items: ["Nutrition for Diabetes", "Hypertension & Heart Health", "Obesity Management", "Basic Therapeutic Diets"] },
+        { title: "🍽️ MODULE 6: SUPPLEMENTS & NUTRITIONAL SUPPORT", items: ["Supplement Basics", "Protein, Creatine & Vitamins", "Safe Supplement Use", "Evidence-Based Recommendations"] },
+        { title: "💬 MODULE 7: CLIENT CONSULTATION & PROFESSIONAL PRACTICE", items: ["Client Assessment & Diet Consultation", "Diet History & Goal Setting", "Sample Diet Plans & Case Studies", "Professional Ethics & Career Guidance"] }
       ]
     },
     {
       id: "combo",
-      title: "Combo Course (DPT + Nutrition & Dietetics)",
+      title: "Combo Course (CPT + Nutrition & Dietetics)",
       tag: "Best Value / Dual Degree",
       price: "₹9,999",
-      desc: "✔ Complete Fitness Professional Certification\n✔ Personal Training + Nutrition Expertise\n✔ Practical Learning\n✔ Certificate on Successful Completion\n✔ Ideal for Aspiring Fitness Trainers, Gym Owners & Fitness Enthusiasts",
+      dur: "2–4 Months",
+      desc: "✔ Personal Trainer (CPT) + Nutrition & Dietetics in One Comprehensive Course\n✔ Complete Fitness & Nutrition Education\n✔ Live Online Interactive Classes\n✔ Practical Workout Demonstrations\n✔ Sample Workout & Diet Plans\n✔ Case Study-Based Learning\n✔ IIFN Certificate + NSDC Government Certificate + Student ID Card\n✔ Placement & Career Support\n✔ Career Opportunities as a Personal Trainer & Nutrition Coach",
       img: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=2070&auto=format&fit=crop",
       syllabus: [
-        { title: "🏋️ Part A: Personal Trainer Core (DPT)", items: ["Human Anatomy & Physiology", "Strength & Conditioning Protocols", "Gym Floor Exercises Demonstration", "Injury Prevention & Posture Correction"] },
-        { title: "🥗 Part B: Sports Nutritionist & Dietetics Core", items: ["Diet Design for Weight Loss/Gain", "Metabolic Profiling & Meal Planning", "Clinical Nutrition & Supplement Science", "Client Consultation Strategy"] },
-        { title: "📈 Part C: Professional Fitness Entrepreneurship", items: ["Gym Management & Business Scaling", "Personal Branding & Digital Marketing", "Career & Placement Preparation"] }
+        { title: "🧠 MODULE 1: HUMAN ANATOMY & PHYSIOLOGY", items: ["Muscular System", "Skeletal System", "Joints & Movement Patterns", "Cardiovascular & Respiratory Basics"] },
+        { title: "🏋️ MODULE 2: EXERCISE SCIENCE & BIOMECHANICS", items: ["Types of Exercises", "Resistance & Cardio Training Principles", "Correct Exercise Technique & Posture", "Corrective Exercises & Movement Analysis"] },
+        { title: "🔥 MODULE 3: WORKOUT PROGRAMME DESIGN", items: ["Beginner to Advanced Training Programs", "Fat Loss & Muscle Gain Programming", "Strength & Endurance Planning", "Recovery & Lifestyle Management"] },
+        { title: "🥗 MODULE 4: NUTRITION SCIENCE", items: ["Macronutrients & Micronutrients", "Balanced Diet & Energy Requirements", "Meal Planning & Portion Control", "Food Sources & Hydration"] },
+        { title: "🩺 MODULE 5: SPORTS & CLINICAL NUTRITION", items: ["Sports Performance Nutrition", "Weight Loss & Weight Gain Diet Planning", "Nutrition for Diabetes, Hypertension & Obesity", "Therapeutic Diet Basics"] },
+        { title: "🛡️ MODULE 6: SUPPLEMENTS & INJURY MANAGEMENT", items: ["Evidence-Based Supplementation", "Protein, Creatine & Vitamins", "Injury Prevention & Safe Exercise Guidelines", "Client Risk Assessment"] },
+        { title: "📈 MODULE 7: CLIENT CONSULTATION & PROFESSIONAL DEVELOPMENT", items: ["Fitness & Nutrition Assessment", "Workout & Diet Plan Preparation", "Client Case Studies", "Introduction to CPR", "Professional Ethics", "Trainer & Nutrition Coach Career Guidance", "Marketing Your Skills & Business Growth"] }
       ]
     }
   ];
@@ -215,7 +222,7 @@ export default function Courses() {
                 <div>
                   <div className="relative h-64 overflow-hidden">
                     <div 
-                      className="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-700" 
+                      className="absolute inset-0 bg-cover bg-center md:grayscale md:group-hover:grayscale-0 transition-all duration-700" 
                       style={{ backgroundImage: `url('${course.img}')` }}
                     />
                     <div className="absolute top-4 right-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-body font-bold text-[9px] text-white uppercase rounded-sm border border-white/5">
@@ -305,7 +312,7 @@ export default function Courses() {
               {[
                 { icon: "book", title: "Study Material", desc: "Comprehensive IIFN proprietary research papers and textbooks." },
                 { icon: "workspace_premium", title: "Dual Certifications", desc: "Dual certifications recognized globally for your professional career." },
-                { icon: "badge", title: "Digital ID Card", desc: "Official IIFN Performance Laboratory credentials for verification." },
+                { icon: "badge", title: "ID Card", desc: "Official IIFN Performance Laboratory credentials for verification." },
                 { icon: "description", title: "Official Marksheet", desc: "Detailed performance breakdown of your theoretical and practical scores." },
                 { icon: "support_agent", title: "Faculty Access", desc: "Direct mentorship from high-performance athletic coaches." },
                 { icon: "work", title: "Placement Portal", desc: "Access to our network of elite fitness clubs and sports organizations." }
@@ -419,9 +426,9 @@ export default function Courses() {
                       onChange={handleEnrollInputChange}
                       className="w-full bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-white text-sm rounded cursor-pointer"
                     >
-                      <option value="Diploma in Personal Training (DPT)">Diploma in Personal Training (DPT)</option>
-                      <option value="Diploma in Nutrition & Dietetics">Diploma in Nutrition & Dietetics</option>
-                      <option value="Combo Course (DPT + Nutrition & Dietetics)">Combo Course (DPT + Nutrition & Dietetics)</option>
+                      <option value="Certified Personal Trainer (CPT)">Certified Personal Trainer (CPT)</option>
+                      <option value="Certification in Nutrition & Dietetics">Certification in Nutrition & Dietetics</option>
+                      <option value="Combo Course (CPT + Nutrition & Dietetics)">Combo Course (CPT + Nutrition & Dietetics)</option>
                     </select>
                   </div>
                   
