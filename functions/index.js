@@ -9,8 +9,8 @@ async function sendWhatsApp(message) {
   await axios.get(url);
 }
 
-// Note: collection name is "enquary" (matches your Firestore spelling exactly)
-exports.notifyOnEnquiry = onDocumentCreated("enquary/{docId}", async (event) => {
+// Note: collection name is "enquiry" (matches your Firestore spelling exactly)
+exports.notifyOnEnquiry = onDocumentCreated("enquiry/{docId}", async (event) => {
   const data = event.data.data();
   const message =
     `📩 New Enquiry!\n` +

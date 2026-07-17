@@ -192,7 +192,7 @@ export default function AdminDashboard() {
               <p className="text-on-surface-variant font-body font-bold uppercase tracking-widest text-[10px] mb-4">Total Enquiries</p>
               <div className="flex items-end justify-between">
                 <h3 className="text-4xl md:text-5xl font-black text-white font-display">{enquiries.length}</h3>
-                <span className="text-secondary-container font-bold text-xs uppercase tracking-wider font-body">enquary</span>
+                <span className="text-secondary-container font-bold text-xs uppercase tracking-wider font-body">enquiry</span>
               </div>
             </div>
             

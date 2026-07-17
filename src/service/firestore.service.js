@@ -1,10 +1,10 @@
 import { db } from "@/lib/firebase";
 import { collection, addDoc, getDocs, query, where, serverTimestamp, doc, updateDoc, deleteDoc } from "firebase/firestore";
 
-// Add new enquiry to Firestore (collection: enquary)
+// Add new enquiry to Firestore (collection: enquiry)
 export async function addEnquiry(data) {
   try {
-    const docRef = await addDoc(collection(db, "enquary"), {
+    const docRef = await addDoc(collection(db, "enquiry"), {
       ...data,
       role: "user",
       createdAt: serverTimestamp(),
@@ -83,10 +83,10 @@ export async function loginUser(email, password) {
   }
 }
 
-// Fetch all enquiries from Firestore (collection: enquary)
+// Fetch all enquiries from Firestore (collection: enquiry)
 export async function getEnquiries() {
   try {
-    const querySnapshot = await getDocs(collection(db, "enquary"));
+    const querySnapshot = await getDocs(collection(db, "enquiry"));
     const list = [];
     querySnapshot.forEach((doc) => {
       list.push({ id: doc.id, ...doc.data() });

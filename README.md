@@ -141,7 +141,7 @@ Every enquiry, enrollment, signup, and review on the live site is written direct
 
 | Collection | Purpose | Written From |
 |---|---|---|
-| `enquary` | General enquiries (course, contact, gym membership, advisor requests) | Home, Courses, Gym, Contact pages |
+| `enquiry` | General enquiries (course, contact, gym membership, advisor requests) | Home, Courses, Gym, Contact pages |
 | `enrollment` | Direct course enrollments | CPT program page |
 | `users` | Registered accounts (`role: user \| admin`) | Signup page, read at Login |
 | `reviews` | Student testimonials (`approved: boolean` moderation flag) | Footer review form, moderated in Admin Dashboard |
