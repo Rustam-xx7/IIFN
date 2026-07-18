@@ -401,9 +401,9 @@ export default function Home() {
         
         <div className="flex gap-6 overflow-x-auto pb-8 custom-scrollbar px-6 max-w-7xl mx-auto">
           {[
-            { name: "Rahul Sharma", role: "Online CPT Graduate", comment: "IIFN&apos;s online CPT course completely changed my approach. The emphasis on scientific biomechanics gave me the edge I needed to work at elite gyms.", rating: 5 },
-            { name: "Ananya Gupta", role: "Nutrition Specialist", comment: "The bilingual support was a lifesaver. Being able to understand complex nutritional science online helped me score high in the certification.", rating: 5 },
-            { name: "Vikram Singh", role: "Master Diploma Graduate", comment: "I only hire IIFN certified trainers now. The quality of knowledge they bring from their online training is incomparable to other generic certifications.", rating: 5 }
+            { name: "Rahul Sharma", role: "Online CPT Graduate", comment: "IIFN online CPT course completely changed my approach. The emphasis on scientific biomechanics gave me the edge I needed to work at elite gyms.", rating: 5 },
+            { name: "Ananya Gupta", role: "Nutrition Specialist", comment: "The bilingual support was a lifesaver. Being able to understand complex nutritional science online helped me score high in the certification.", rating: 4 },
+            { name: "Vikram Dutta", role: "Master Diploma Graduate", comment: "I only hire IIFN certified trainers now. The quality of knowledge they bring from their online training is incomparable to other generic certifications.", rating: 4 }
           ].map((t, index) => (
             <div key={index} className="min-w-[300px] md:min-w-[400px] bg-surface-container-lowest p-8 border border-white/5 relative rounded flex flex-col justify-between">
               <div>
