@@ -117,18 +117,14 @@ export default function Home() {
   ];
 
   const candidates = [
-    { name: "Rupali", src: "/candidates/Rupali-testi.jpg.webp" },
-    { name: "Ankita", src: "/candidates/ankita-testi.jpg.webp" },
-    { name: "Dr. Moushumi G.", src: "/candidates/dr.-moushumi-g.jpg.webp" },
-    { name: "Dr. Moushumi", src: "/candidates/dr.-moushumi.jpg.webp" },
-    { name: "Kunal", src: "/candidates/kunal-testi.jpg.webp" },
-    { name: "Mahammad", src: "/candidates/mahammad-testi.jpg.webp" },
-    { name: "Nandita", src: "/candidates/nandita.jpg.webp" },
-    { name: "Priya", src: "/candidates/priya.jpg.webp" },
-    { name: "Rekha", src: "/candidates/rekha.jpg.webp" },
-    { name: "Sukriti", src: "/candidates/sukriti.jpg.webp" },
-    { name: "Suprio", src: "/candidates/suprio-testi.jpg.webp" },
-    { name: "Swapnil", src: "/candidates/swapnil.jpg.webp" },
+    { name: "Rupali", src: "/candidates/Rupali-testi.jpg.jpg" },
+    { name: "Kunal", src: "/candidates/kunal-testi.jpg" },
+    { name: "Mahammad", src: "/candidates/mahammad-testi.jpg.jpg" },
+    { name: "Nandita", src: "/candidates/nandita.jpg.jpg" },
+    { name: "Priya", src: "/candidates/priya.jpg.jpg" },
+    { name: "Rekha", src: "/candidates/rekha.jpg.jpg" },
+    { name: "Sukriti", src: "/candidates/sukriti.jpg.jpg" },
+    { name: "Tanupriya", src: "/candidates/tanupriya.jpg.jpg" },
   ];
 
   const stats = [
@@ -141,7 +137,7 @@ export default function Home() {
   const faqs = [
     {
       q: "Is the online certificate valid?",
-      a: "Yes, IIFN certificates are ISO 9001:2015 certified and recognized globally by premium fitness chains. They carry the same weight as offline certifications."
+      a: "Yes, IIFN certificates are ISO 9001:2015 certified and recognized globally by premium fitness chains. The certificates are NSDC SKILL INDIA and SPEFL-SC verified also, carrying the same weight as offline certifications."
     },
     {
       q: "How do online exams work?",
@@ -150,6 +146,10 @@ export default function Home() {
     {
       q: "Do I get practical training?",
       a: "Practical concepts are taught via high-definition video demonstrations and interactive live sessions where mentors correct your form virtually."
+    },
+    {
+      q: "Placement Support?",
+      a: "We provide 100% placement support to all students upon successful completion of their certification programs to jumpstart their career."
     }
   ];
 
@@ -435,6 +435,41 @@ export default function Home() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Certificate Verification Section */}
+      <section className="py-20 bg-[#111111] relative overflow-hidden border-t border-white/5">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-secondary-container/5 rounded-full blur-[120px] pointer-events-none"></div>
+        <div className="px-6 max-w-screen-xl mx-auto relative z-10">
+          <div className="bg-surface-container-lowest border border-white/5 p-8 md:p-12 flex flex-col lg:flex-row items-center justify-between gap-8 rounded relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-1 bg-secondary-container h-full"></div>
+            
+            <div className="flex items-start gap-5">
+              <div className="w-12 h-12 bg-secondary-container/10 rounded-full flex items-center justify-center shrink-0 border border-secondary-container/20">
+                <span className="material-symbols-outlined text-secondary-container text-2xl">verified_user</span>
+              </div>
+              <div className="space-y-2">
+                <span className="text-[10px] font-bold text-secondary-container uppercase tracking-widest block font-body">Government & NSDC Alignment</span>
+                <h3 className="font-display text-2xl md:text-3xl font-black uppercase text-white tracking-tight">Verify Your Credentials</h3>
+                <p className="font-body text-sm text-on-surface-variant max-w-2xl leading-relaxed">
+                  Every IIFN certificate is registered nationally. You can verify your credential authenticity instantly by inputting your enrollment number on the official **NCBSD Skill India** student portal.
+                </p>
+              </div>
+            </div>
+
+            <div className="shrink-0 w-full lg:w-auto">
+              <a 
+                href="https://www.ncbsdskillindia.com/student-result.php" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-full lg:w-auto inline-flex items-center justify-center gap-2 bg-secondary-container text-white px-8 py-4 font-body font-bold text-xs uppercase tracking-widest red-glow-hover hover:scale-105 active:scale-95 transition-all rounded-sm cursor-pointer"
+              >
+                <span className="material-symbols-outlined text-sm">open_in_new</span>
+                Verify Certificate
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 

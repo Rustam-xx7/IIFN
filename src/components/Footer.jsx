@@ -59,10 +59,10 @@ export default function Footer() {
             The Indian Institute of Fitness & Nutrition is a premier academic institution dedicated to high-performance fitness education and science-based research.
           </p>
           <div className="flex gap-4 mb-6">
-            <a href="#" className="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-secondary-container transition-all group">
+            <a href="https://maps.app.goo.gl/74q3wzBMj7w2HMam7" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-secondary-container transition-all group" aria-label="Location">
               <span className="material-symbols-outlined text-white text-base">share</span>
             </a>
-            <a href="#" className="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-secondary-container transition-all group">
+            <a href="mailto:iifnofficial@gmail.com" className="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-secondary-container transition-all group">
               <span className="material-symbols-outlined text-white text-base">mail</span>
             </a>
           </div>
@@ -126,9 +126,9 @@ export default function Footer() {
         <div>
           <h4 className="font-body font-bold uppercase text-white mb-6 tracking-widest text-xs">Legal</h4>
           <ul className="space-y-4 font-body text-on-surface-variant text-sm">
-            <li><a href="#" className="hover:text-secondary-container transition-colors">Privacy Policy</a></li>
-            <li><a href="#" className="hover:text-secondary-container transition-colors">Terms of Service</a></li>
-            <li><a href="#" className="hover:text-secondary-container transition-colors">Refund Policy</a></li>
+            <li><a href="/iifn_legal_policies.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-secondary-container transition-colors">Privacy Policy</a></li>
+            <li><a href="/iifn_legal_policies.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-secondary-container transition-colors">Terms of Service</a></li>
+            <li><a href="/iifn_legal_policies.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-secondary-container transition-colors">Refund Policy</a></li>
           </ul>
         </div>
 
@@ -142,6 +142,12 @@ export default function Footer() {
             <li className="flex gap-2">
               <span className="material-symbols-outlined text-secondary-container text-sm">call</span> 
               +91 7001625285(Jewel Roy)
+            </li>
+            <li className="flex gap-2">
+              <span className="material-symbols-outlined text-secondary-container text-sm">mail</span> 
+              <a href="mailto:iifnofficial@gmail.com" className="hover:text-secondary-container transition-colors">
+                iifnofficial@gmail.com
+              </a>
             </li>
             <li className="flex gap-2">
               <span className="material-symbols-outlined text-secondary-container text-sm">schedule</span> 

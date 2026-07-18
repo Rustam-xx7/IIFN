@@ -12,36 +12,44 @@ export default function About() {
   ];
 
   const affiliations = [
-    { entity: "Ministry of Corporate Affairs (MCA)", reg: "U85300DL2021PTC384952", status: "Verified" },
-    { entity: "ISO 9001:2015 Quality Management", reg: "21EQHV89", status: "Certified" },
-    { entity: "Skill India Mission (NSDC Partner)", reg: "TP064522", status: "Active" },
-    { entity: "FIT India Movement Registration", reg: "FI2022APP8829", status: "Registered" },
-    { entity: "MSME (Udyam Registration)", reg: "UDYAM-DL-08-0012943", status: "Active" },
-    { entity: "NITI Aayog (NGO Darpan)", reg: "DL/2021/0291484", status: "Active" },
-    { entity: "International Health & Fitness Association", reg: "IHFA-MEM-IIFN-2024", status: "Member" }
+    { entity: "Skill India / National Skill Development Corporation", reg: "NSDC Registered", status: "Active" },
+    { entity: "Ministry of Corporate Affairs (MCA), Govt of India", reg: "CIN: U88900WB2025NPL278347", status: "Verified" },
+    { entity: "Ministry of Statistics & Programme Implementation", reg: "Registered", status: "Active" },
+    { entity: "MHRD (CR Act, 1957), Government of India", reg: "Copyright Registration", status: "Registered" },
+    { entity: "ISO 9001:2015 Certified Organization", reg: "Cert No: TSNUK03490", status: "Certified" },
+    { entity: "Government of West Bengal (Labour & Employment)", reg: "Empanelled", status: "Active" },
+    { entity: "Ministry of MSME, Government of India", reg: "Udyam Registered", status: "Active" },
+    { entity: "Central Vigilance Commission (CVC), Govt of India", reg: "Registered Support", status: "Active" },
+    { entity: "All India Council for Technical Skill Development", reg: "Institutional Member", status: "Member" },
+    { entity: "National Safety Council", reg: "Institutional Member", status: "Member" },
+    { entity: "National Career Service (NCS)", reg: "Institutional Member", status: "Member" },
+    { entity: "IAF-Accredited ISO 9001:2015 Autonomous Body", reg: "Cert No: TSNUK03490", status: "Certified" },
+    { entity: "Rights Commission, Government of India", reg: "Registered", status: "Active" },
+    { entity: "NITI Aayog, Government of India", reg: "Reg No: WB/2025/0822241", status: "Registered" },
+    { entity: "National Certification Board of Skill Development", reg: "Autonomous Registered", status: "Active" }
   ];
 
   const faculty = [
     {
-      name: "Dr. Aryan Sharma",
+      name: "Aryan Sharma",
       role: "Master Diploma in Fitness",
       desc: "15+ Years Industry Experience, Specialist in Biomechanics.",
       img: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=2070&auto=format&fit=crop"
     },
     {
-      name: "Sneha Kapoor",
+      name: "Sneha Roy",
       role: "Sports Nutrition Head",
       desc: "Registered Dietitian, Performance Nutrition Expert.",
       img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2069&auto=format&fit=crop"
     },
     {
-      name: "Vikram Rathore",
+      name: "Vikram Bannerjee",
       role: "Strength Specialist",
       desc: "Olympic Weightlifting Coach, CSCS Certified.",
       img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2069&auto=format&fit=crop"
     },
     {
-      name: "Rajesh Mehra",
+      name: "Rajesh Ghosh",
       role: "Clinical Exercise",
       desc: "Physiotherapist & Advanced Personal Trainer.",
       img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop"

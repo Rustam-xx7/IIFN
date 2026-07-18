@@ -178,7 +178,14 @@ export default function Contact() {
                   <div>
                     <h3 className="font-body font-bold text-xs uppercase text-secondary-container tracking-wider">Headquarters</h3>
                     <p className="text-on-surface-variant text-sm mt-1 leading-relaxed">
-                      IIFN Performance Lab,<br/>Swastipally, Est Burdwan-713104, West Bengal, India
+                      <a 
+                        href="https://maps.app.goo.gl/74q3wzBMj7w2HMam7" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="hover:text-secondary-container transition-colors"
+                      >
+                        IIFN Performance Lab,<br/>Swastipally, Est Burdwan-713104, West Bengal, India
+                      </a>
                     </p>
                   </div>
                 </div>
@@ -191,6 +198,18 @@ export default function Contact() {
                       <span className="px-2 py-0.5 bg-secondary-container/20 text-secondary-container text-[9px] font-black uppercase rounded-sm border border-secondary-container/10">Classes Active</span>
                       <p className="text-on-surface text-xs font-bold font-body">Sat - Sun: 09:00 - 17:00</p>
                     </div>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <span className="material-symbols-outlined text-secondary-container text-3xl">mail</span>
+                  <div>
+                    <h3 className="font-body font-bold text-xs uppercase text-secondary-container tracking-wider">Official Email</h3>
+                    <p className="text-on-surface-variant text-sm mt-1 leading-relaxed">
+                      <a href="mailto:iifnofficial@gmail.com" className="hover:text-secondary-container transition-colors">
+                        iifnofficial@gmail.com
+                      </a>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -209,9 +228,19 @@ export default function Contact() {
               <div className="flex items-center gap-6 pt-6 border-t border-white/10">
                 <span className="font-body font-bold text-[9px] uppercase tracking-widest text-on-surface/40">Connect</span>
                 <div className="flex gap-3">
-                  {["photo_camera", "smart_display", "share"].map((icon, idx) => (
-                    <a key={idx} href="#" className="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-high text-secondary-container hover:bg-secondary-container hover:text-white transition-all">
-                      <span className="material-symbols-outlined text-base">{icon}</span>
+                  {[
+                    { icon: "photo_camera", href: "https://www.instagram.com/iifn.in/", label: "Instagram" },
+                    { icon: "smart_display", href: "https://www.youtube.com/@jewelroy07", label: "YouTube" }
+                  ].map((social, idx) => (
+                    <a 
+                      key={idx} 
+                      href={social.href} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      aria-label={social.label}
+                      className="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-high text-secondary-container hover:bg-secondary-container hover:text-white transition-all"
+                    >
+                      <span className="material-symbols-outlined text-base">{social.icon}</span>
                     </a>
                   ))}
                 </div>
@@ -219,17 +248,23 @@ export default function Contact() {
             </div>
 
             {/* Map Widget (Stylized dark representation) */}
-            <div className="h-64 w-full bg-surface-container-lowest border border-white/5 relative group overflow-hidden rounded grayscale hover:grayscale-0 transition-all duration-700">
-              <div className="w-full h-full flex items-center justify-center bg-[#0a0a0a]">
+            <a 
+              href="https://maps.app.goo.gl/74q3wzBMj7w2HMam7" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="block h-64 w-full bg-surface-container-lowest border border-white/5 relative group overflow-hidden rounded grayscale hover:grayscale-0 transition-all duration-700 cursor-pointer"
+            >
+              <div className="w-full h-full flex items-center justify-center bg-[#0a0a0a] group-hover:bg-[#111] transition-colors">
                 <div className="text-center p-8">
                   <span className="material-symbols-outlined text-secondary-container text-4xl mb-3 animate-bounce">
-                    map
+                    pin_drop
                   </span>
-                  <p className="font-body font-bold uppercase tracking-wider text-[10px] text-on-surface/40">Interactive Map Loading</p>
+                  <p className="font-body font-bold uppercase tracking-wider text-[10px] text-white">Find Us On Google Maps</p>
+                  <p className="font-body text-[9px] text-on-surface/40 uppercase tracking-widest mt-2">Click to open navigation</p>
                 </div>
               </div>
               <div className="absolute inset-0 pointer-events-none border-4 border-black/20"></div>
-            </div>
+            </a>
           </aside>
         </div>
 
