@@ -40,19 +40,22 @@ export default function Courses() {
     if (advisorForm.name && advisorForm.phone && advisorForm.email) {
       setIsSubmitting(true);
       try {
-        await addEnquiry({
+        const payload = {
           name: advisorForm.name,
           phone: advisorForm.phone,
           email: advisorForm.email,
           city: "",
           course: "Advisor Consultation Request",
-        });
+        };
+        await addEnquiry(payload);
         setCounselorSubmitted(true);
+
+        const message = `Hi IIFN, I would like to request an Advisor Consultation.\nMy details are:\n- Name: ${payload.name}\n- Email: ${payload.email}\n- Phone: ${payload.phone}`;
+        const whatsappUrl = `https://wa.me/917001625285?text=${encodeURIComponent(message)}`;
+
         setAdvisorForm({ name: "", phone: "", email: "" });
-        setTimeout(() => {
-          setCounselorSubmitted(false);
-          setShowAdvisorModal(false);
-        }, 4000);
+        
+        window.location.href = whatsappUrl;
       } catch (err) {
         console.error(err);
         setSubmitError("Failed to submit request. Please try again.");
@@ -87,7 +90,7 @@ export default function Courses() {
           investment = "₹9,999";
         }
 
-        await addEnrollment({
+        const payload = {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
@@ -96,8 +99,14 @@ export default function Courses() {
           course: formData.course,
           investment: investment,
           ...(userId ? { userId } : {}),
-        });
+        };
+
+        await addEnrollment(payload);
         setEnrollSubmitted(true);
+
+        const message = `Hi IIFN, I would like to enroll in a course.\nMy details are:\n- Name: ${payload.name}\n- Email: ${payload.email}\n- Phone: ${payload.phone}\n- Occupation: ${payload.occupation}\n- Experience: ${payload.experience || "N/A"}\n- Course: ${payload.course}\n- Investment: ${payload.investment}`;
+        const whatsappUrl = `https://wa.me/917001625285?text=${encodeURIComponent(message)}`;
+
         setFormData({
           name: "",
           email: "",
@@ -106,9 +115,8 @@ export default function Courses() {
           experience: "",
           course: "Certified Personal Trainer (CPT)",
         });
-        setTimeout(() => {
-          setEnrollSubmitted(false);
-        }, 5000);
+
+        window.location.href = whatsappUrl;
       } catch (err) {
         console.error(err);
         setSubmitError("Failed to enroll. Please check network connection.");

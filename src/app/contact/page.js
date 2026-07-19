@@ -29,14 +29,19 @@ export default function Contact() {
     if (form.name && form.email && form.phone) {
       setIsSubmitting(true);
       try {
-        await addEnquiry({
+        const payload = {
           name: form.name,
           email: form.email,
           phone: form.phone,
           course: form.course,
           experience: form.experience,
-        });
+        };
+        await addEnquiry(payload);
         setSubmitted(true);
+
+        const message = `Hi IIFN, I would like to submit a contact application.\nMy details are:\n- Name: ${payload.name}\n- Email: ${payload.email}\n- Phone: ${payload.phone}\n- Course: ${payload.course}\n- Experience: ${payload.experience || "N/A"}`;
+        const whatsappUrl = `https://wa.me/917001625285?text=${encodeURIComponent(message)}`;
+
         setForm({
           name: "",
           email: "",
@@ -44,9 +49,8 @@ export default function Contact() {
           course: "Advanced Personal Training",
           experience: "",
         });
-        setTimeout(() => {
-          setSubmitted(false);
-        }, 5000);
+        
+        window.location.href = whatsappUrl;
       } catch (err) {
         console.error(err);
         setSubmitError("Failed to submit application. Please try again.");

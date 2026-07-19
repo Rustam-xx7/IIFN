@@ -27,21 +27,25 @@ export default function GymPage() {
     if (formData.name && formData.phone) {
       setIsSubmitting(true);
       try {
-        await addEnquiry({
+        const payload = {
           name: formData.name,
           phone: formData.phone,
           unit: formData.unit,
           course: `Jewel Gym Membership Enquiry (${formData.unit})`,
-        });
+        };
+        await addEnquiry(payload);
         setFormSubmitted(true);
+
+        const message = `Hi Jewel GYM , I would like to enquire about Gym Membership.\nMy details are:\n- Name: ${payload.name}\n- Phone: ${payload.phone}\n- Gym Branch Unit: ${payload.unit}`;
+        const whatsappUrl = `https://wa.me/917001625285?text=${encodeURIComponent(message)}`;
+
         setFormData({
           name: "",
           unit: "UNIT 1 - GANGPUR",
           phone: "",
         });
-        setTimeout(() => {
-          setFormSubmitted(false);
-        }, 5000);
+        
+        window.location.href = whatsappUrl;
       } catch (err) {
         console.error(err);
         setSubmitError("Failed to submit membership request. Please try again.");

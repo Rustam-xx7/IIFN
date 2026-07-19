@@ -46,14 +46,19 @@ export default function Home() {
     if (enquiry.name && enquiry.phone && enquiry.email) {
       setIsSubmitting(true);
       try {
-        await addEnquiry({
+        const payload = {
           name: enquiry.name,
           phone: enquiry.phone,
           email: enquiry.email,
           city: enquiry.city,
           course: enquiry.course,
-        });
+        };
+        await addEnquiry(payload);
         setFormSubmitted(true);
+
+        const message = `Hi IIFN, I would like to submit an enquiry.\nMy details are:\n- Name: ${payload.name}\n- Email: ${payload.email}\n- Phone: ${payload.phone}\n- City: ${payload.city || "N/A"}\n- Course: ${payload.course}`;
+        const whatsappUrl = `https://wa.me/917001625285?text=${encodeURIComponent(message)}`;
+
         setEnquiry({
           name: "",
           phone: "",
@@ -61,9 +66,8 @@ export default function Home() {
           city: "",
           course: "Certified Personal Trainer (CPT)",
         });
-        setTimeout(() => {
-          setFormSubmitted(false);
-        }, 5000);
+        
+        window.location.href = whatsappUrl;
       } catch (err) {
         console.error(err);
         setSubmitError("Failed to submit enquiry. Please try again.");
