@@ -158,9 +158,38 @@ export default function Footer() {
       </div>
 
       <div className="mt-16 pt-8 border-t border-white/5 text-center px-6 flex flex-col sm:flex-row justify-between items-center gap-4 max-w-7xl mx-auto">
-        <p className="font-body text-xs text-on-surface-variant/50">
-          © 2026 Indian Institute of Fitness & Nutrition. All Rights Reserved.
-        </p>
+        <div className="flex flex-col items-center sm:items-start gap-2">
+          <p className="font-body text-xs text-on-surface-variant/50">
+            © 2026 Indian Institute of Fitness & Nutrition. All Rights Reserved.
+          </p>
+          <div className="flex items-center gap-2 text-xs text-on-surface-variant/40 font-body">
+            <span>Designed & Developed by</span>
+            <span className="font-bold text-white font-display text-[10px] uppercase tracking-wider">Kaizen_devs</span>
+            <span className="text-on-surface-variant/20">|</span>
+            <span className="text-[10px] font-mono">kaizen_rus</span>
+            <div className="flex items-center gap-2.5 ml-2">
+              <a 
+                href="https://www.instagram.com/kaizen_rus?igsh=cnR0YWlkb2dtdnE0" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-on-surface-variant/40 hover:text-[#e1306c] transition-colors flex items-center"
+                title="Instagram"
+              >
+                <span className="material-symbols-outlined text-xs">photo_camera</span>
+              </a>
+              <a 
+                href="https://wa.me/919641682925" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-on-surface-variant/40 hover:text-[#25d366] transition-colors flex items-center"
+                title="WhatsApp"
+              >
+                <span className="material-symbols-outlined text-xs">chat</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></div>
           <span className="text-[10px] uppercase font-bold tracking-widest text-on-surface-variant">Server Status: Optimal</span>

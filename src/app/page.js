@@ -443,7 +443,7 @@ export default function Home() {
       </section>
 
       {/* Certificate Verification Section */}
-      <section className="py-20 bg-[#111111] relative overflow-hidden border-t border-white/5">
+      <section className="py-20 bg-[#111111] relative overflow-hidden border-t border-white/5" id="verify-your-certificate">
         <div className="absolute top-0 right-0 w-96 h-96 bg-secondary-container/5 rounded-full blur-[120px] pointer-events-none"></div>
         <div className="px-6 max-w-screen-xl mx-auto relative z-10">
           <div className="bg-surface-container-lowest border border-white/5 p-8 md:p-12 flex flex-col lg:flex-row items-center justify-between gap-8 rounded relative overflow-hidden">

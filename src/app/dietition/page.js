@@ -127,7 +127,7 @@ export default function Dietitian() {
               {/* Cert 1 */}
               <div className="glass-panel p-8 text-center transition-all hover:-translate-y-2 rounded duration-300">
                 <span className="material-symbols-outlined text-[48px] text-secondary-container mb-4">verified</span>
-                <h3 className="font-display font-bold text-lg uppercase text-white mb-2">NFNA CERTIFIED</h3>
+                <h3 className="font-display font-bold text-lg uppercase text-white mb-2">IIFN CERTIFIED</h3>
                 <p className="font-body text-xs text-on-surface-variant mb-6">Master Practitioner in Fitness &amp; Nutrition Sciences.</p>
                 <div className="inline-block px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-[9px] font-body font-bold tracking-widest text-[#ffb4a8] uppercase">
                   License #99283-NF

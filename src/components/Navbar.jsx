@@ -42,6 +42,7 @@ export default function Navbar() {
     { name: "Dietitian", path: "/dietition" },
     { name: "About Us", path: "/about" },
     { name: "Contact", path: "/contact" },
+    { name: "Verify your Certificate", path: "/#verify-your-certificate" },
   ];
 
   const links =

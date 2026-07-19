@@ -320,7 +320,7 @@ export default function Courses() {
               {[
                 { icon: "book", title: "Study Material", desc: "Comprehensive IIFN proprietary research papers and textbooks." },
                 { icon: "workspace_premium", title: "Dual Certifications", desc: "Dual certifications recognized globally for your professional career." },
-                { icon: "badge", title: "ID Card", desc: "Official IIFN ID Card will delivered to your address for verification." },
+                { icon: "badge", title: "ID Card", desc: "Official IIFN ID Card will delivered to your address." },
                 { icon: "description", title: "Official Marksheet", desc: "Detailed performance breakdown of your theoretical and practical scores." },
                 { icon: "support_agent", title: "Faculty Access", desc: "Direct mentorship from high-performance athletic coaches." },
                 { icon: "work", title: "Placement Portal", desc: "Access to our network of elite fitness clubs and sports organizations." }

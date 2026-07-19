@@ -266,6 +266,15 @@ export default function GymPage() {
               >
                 EXPLORE GYM PLANS
               </a>
+              <a
+                href="https://www.instagram.com/jewelfitness.gym?igsh=MWRlN292eGhheThyYg=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 border-2 border-white/20 text-white px-10 py-4 font-body font-bold text-xs uppercase tracking-widest text-center hover:bg-white hover:text-black transition-all"
+              >
+                <span className="material-symbols-outlined text-sm">photo_camera</span>
+                INSTAGRAM
+              </a>
             </div>
           </div>
         </section>
