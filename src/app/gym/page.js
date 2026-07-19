@@ -45,7 +45,7 @@ export default function GymPage() {
           phone: "",
         });
         
-        window.location.href = whatsappUrl;
+        window.open(whatsappUrl, "_blank");
       } catch (err) {
         console.error(err);
         setSubmitError("Failed to submit membership request. Please try again.");

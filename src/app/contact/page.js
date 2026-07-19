@@ -50,7 +50,7 @@ export default function Contact() {
           experience: "",
         });
         
-        window.location.href = whatsappUrl;
+        window.open(whatsappUrl, "_blank");
       } catch (err) {
         console.error(err);
         setSubmitError("Failed to submit application. Please try again.");

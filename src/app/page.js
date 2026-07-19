@@ -67,7 +67,7 @@ export default function Home() {
           course: "Certified Personal Trainer (CPT)",
         });
         
-        window.location.href = whatsappUrl;
+        window.open(whatsappUrl, "_blank");
       } catch (err) {
         console.error(err);
         setSubmitError("Failed to submit enquiry. Please try again.");
