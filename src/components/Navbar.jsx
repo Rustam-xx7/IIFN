@@ -42,7 +42,6 @@ export default function Navbar() {
     { name: "Dietitian", path: "/dietition" },
     { name: "About Us", path: "/about" },
     { name: "Contact", path: "/contact" },
-    { name: "Verify your Certificate", path: "/#verify-your-certificate" },
   ];
 
   const links =
@@ -66,15 +65,22 @@ export default function Navbar() {
             <Link
               key={link.path}
               href={link.path}
-              className={`font-body font-bold text-xs uppercase tracking-widest transition-all duration-300 pb-1 border-b-2 hover:text-secondary-container ${
-                isActive(link.path)
-                  ? "text-secondary-container border-secondary-container"
-                  : "text-on-surface border-transparent"
-              }`}
+              className={`font-body font-bold text-xs uppercase tracking-widest transition-all duration-300 pb-1 border-b-2 hover:text-secondary-container ${isActive(link.path)
+                ? "text-secondary-container border-secondary-container"
+                : "text-on-surface border-transparent"
+                }`}
             >
               {link.name}
             </Link>
           ))}
+          <a
+            href="https://www.ncbsdskillindia.com/student-result.php"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-body font-bold text-xs uppercase tracking-widest transition-all duration-300 pb-1 hover:text-secondary-container"
+          >
+            Verify Certificate
+          </a>
         </div>
 
         {/* Action Buttons */}
@@ -141,17 +147,15 @@ export default function Navbar() {
 
       {/* Side drawer navigation for mobile */}
       <div
-        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] transition-opacity duration-300 ${
-          isOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] transition-opacity duration-300 ${isOpen
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
+          }`}
         onClick={() => setIsOpen(false)}
       />
       <aside
-        className={`fixed right-0 top-0 h-full w-full sm:w-80 z-[70] bg-background/95 backdrop-blur-2xl border-l border-white/10 shadow-[0_0_40px_rgba(224,6,0,0.15)] flex flex-col p-10 gap-8 transform transition-transform duration-500 ease-in-out ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed right-0 top-0 h-full w-full sm:w-80 z-[70] bg-background/95 backdrop-blur-2xl border-l border-white/10 shadow-[0_0_40px_rgba(224,6,0,0.15)] flex flex-col p-10 gap-8 transform transition-transform duration-500 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         <div className="flex justify-between items-center mb-6">
           <div>
@@ -176,15 +180,23 @@ export default function Navbar() {
               key={link.path}
               href={link.path}
               onClick={() => setIsOpen(false)}
-              className={`font-display text-lg uppercase font-bold tracking-wider hover:text-secondary-container transition-colors ${
-                isActive(link.path)
-                  ? "text-secondary-container scale-105 origin-left"
-                  : "text-on-surface/70"
-              }`}
+              className={`font-display text-lg uppercase font-bold tracking-wider hover:text-secondary-container transition-colors ${isActive(link.path)
+                ? "text-secondary-container scale-105 origin-left"
+                : "text-on-surface/70"
+                }`}
             >
               {link.name}
             </Link>
           ))}
+          <a
+            href="https://www.ncbsdskillindia.com/student-result.php"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full lg:w-auto inline-flex items-center justify-center gap-2 bg-secondary-container text-white px-6 py-2 font-body font-bold text-xs uppercase tracking-widest red-glow-hover hover:scale-105 active:scale-95 transition-all rounded-sm cursor-pointer"
+          >
+            <span className="material-symbols-outlined text-sm">open_in_new</span>
+            Verify Certificate
+          </a>
         </nav>
 
         <div className="mt-auto pt-8 border-t border-white/10 flex flex-col gap-4">
