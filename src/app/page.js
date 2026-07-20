@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
@@ -11,6 +11,14 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [approvedReviews, setApprovedReviews] = useState([]);
+  const galleryScrollRef = useRef(null);
+
+  const scrollGallery = (direction) => {
+    if (galleryScrollRef.current) {
+      const scrollAmount = direction === "left" ? -600 : 600;
+      galleryScrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
 
   const [enquiry, setEnquiry] = useState({
     name: "",
@@ -66,7 +74,7 @@ export default function Home() {
           city: "",
           course: "Certified Personal Trainer (CPT)",
         });
-        
+
         window.open(whatsappUrl, "_blank");
       } catch (err) {
         console.error(err);
@@ -121,14 +129,30 @@ export default function Home() {
   ];
 
   const candidates = [
-    { name: "Rupali", src: "/candidates/Rupali-testi.jpg.jpg" },
-    { name: "Kunal", src: "/candidates/kunal-testi.jpg" },
-    { name: "Mahammad", src: "/candidates/mahammad-testi.jpg.jpg" },
-    { name: "Nandita", src: "/candidates/nandita.jpg.jpg" },
-    { name: "Priya", src: "/candidates/priya.jpg.jpg" },
-    { name: "Rekha", src: "/candidates/rekha.jpg.jpg" },
-    { name: "Sukriti", src: "/candidates/sukriti.jpg.jpg" },
-    { name: "Tanupriya", src: "/candidates/tanupriya.jpg.jpg" },
+    { name: "SURYA BHAT", src: "/candidates/jgym1.jpeg" },
+    { name: "ANIL SHETTY", src: "/candidates/jgym2.jpeg" },
+    { name: "SURAJ MAAN", src: "/candidates/jgym3.jpeg" },
+    { name: "SURAJIT RANA", src: "/candidates/jgym4.jpeg" },
+    { name: "", src: "/candidates/jgym5.jpeg" },
+    { name: "Ananya Deshmukh", src: "/candidates/jgym6.jpeg" },
+    { name: "Kabir Malhotra", src: "/candidates/jgym7.jpeg" },
+    { name: "Deepika Rao", src: "/candidates/jgym8.jpeg" },
+    { name: "Siddharth Joshi", src: "/candidates/jgym9.jpeg" },
+    { name: "Meera Nair", src: "/candidates/jgym11.jpeg" },
+    { name: "Aman Agarwal", src: "/candidates/jgym12.jpeg" },
+    { name: "Ishita Saxena", src: "/candidates/jgym13.jpeg" },
+    { name: "Devendra Choudhury", src: "/candidates/jgym14.jpeg" },
+    { name: "Kavya Menon", src: "/candidates/jgym15.jpeg" },
+    { name: "Ritwik Majumdar", src: "/candidates/jgym16.jpeg" },
+    { name: "Shreya Pillai", src: "/candidates/jgym17.jpeg" },
+    { name: "Abhishek Pandey", src: "/candidates/jgym91.jpeg" },
+    { name: "Trisha Mukherjee", src: "/candidates/jgym92.jpeg" },
+    { name: "Varun Kulkarni", src: "/candidates/jgym93.jpeg" },
+    { name: "Neha Bhatia", src: "/candidates/jgym94.jpeg" },
+    { name: "Manish Reddy", src: "/candidates/jgym95.jpeg" },
+    { name: "Rhea Sen", src: "/candidates/jgym96.jpeg" },
+    { name: "Saurav Bose", src: "/candidates/jgym97.jpeg" },
+    { name: "Divya Nambiar", src: "/candidates/jgym98.jpeg" },
   ];
 
   const stats = [
@@ -165,9 +189,9 @@ export default function Home() {
       {/* Hero Section */}
       <header className="relative w-full h-[85vh] min-h-[600px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <div 
+          <div
             className="w-full h-full bg-cover bg-center opacity-70"
-            style={{ 
+            style={{
               backgroundImage: `url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=2070&auto=format&fit=crop')`,
             }}
           />
@@ -226,7 +250,7 @@ export default function Home() {
             <p className="text-secondary-container font-body font-bold uppercase tracking-[0.2em] text-[10px]">Internationally Recognized Accreditation &amp; Standards</p>
             <div className="w-16 h-1 bg-secondary-container mx-auto mt-4"></div>
           </div>
-          
+
           <div className="relative w-full flex overflow-x-hidden max-w-5xl">
             <div className="animate-marquee flex gap-12 items-center whitespace-nowrap py-4">
               {affiliationLogos.concat(affiliationLogos).map((logo, index) => (
@@ -274,34 +298,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Choose IIFN */}
-      <section className="py-24 px-6 max-w-screen-xl mx-auto">
-        <div className="flex flex-col items-center text-center mb-16">
-          <h2 className="font-display text-3xl font-black uppercase mb-3">Science-Based Online Excellence</h2>
-          <div className="w-24 h-1 bg-secondary-container"></div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            { icon: "laptop_chromebook", title: "100% Online Learning", desc: "Access world-class fitness education from anywhere, at any time, through our advanced LMS." },
-            { icon: "science", title: "Science-Based Pedagogy", desc: "Curriculum built on the latest research in exercise physiology, biomechanics, and nutrition science." },
-            { icon: "video_call", title: "Live Expert Mentorship", desc: "Weekly live interaction with industry veterans to clear concepts and discuss real-world case studies." },
-            { icon: "workspace_premium", title: "Verified Digital Creds", desc: "Receive blockchain-verified digital certificates instantly upon successful course completion." },
-            { icon: "groups", title: "Global Alumni Network", desc: "Join a community of 15,000+ professionals working across 20+ countries worldwide." },
-            { icon: "history_edu", title: "Lifetime Access", desc: "Keep your knowledge fresh with lifetime access to updated course materials and webinars." }
-          ].map((item, index) => (
-            <div key={index} className="bg-surface-container-low p-8 border border-white/5 hover:border-secondary-container/50 transition-all group rounded">
-              <div className="flex flex-col gap-4">
-                <span className="material-symbols-outlined text-secondary-container text-4xl">
-                  {item.icon}
-                </span>
-                <h3 className="font-display font-bold text-lg uppercase text-white">{item.title}</h3>
-                <p className="text-on-surface-variant text-sm leading-relaxed">{item.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Course Highlights */}
       <section className="py-24 bg-surface-container-lowest">
         <div className="px-6 max-w-screen-xl mx-auto">
@@ -312,7 +308,7 @@ export default function Home() {
               <div className="w-16 h-1 bg-secondary-container mt-4"></div>
             </div>
             <Link href="/courses" className="bg-transparent border-2 border-secondary-container text-on-surface hover:bg-secondary-container hover:text-white px-8 py-4 font-body font-bold text-xs uppercase transition-all flex items-center gap-2 group">
-              View All Courses 
+              View All Courses
               <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
             </Link>
           </div>
@@ -342,8 +338,8 @@ export default function Home() {
               }
             ].map((course, index) => (
               <div key={index} className="bg-black border border-white/10 group overflow-hidden rounded">
-                <div 
-                  className="h-56 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
+                <div
+                  className="h-56 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                   style={{ backgroundImage: `url('${course.img}')` }}
                 />
                 <div className="p-8">
@@ -360,6 +356,34 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Why Choose IIFN */}
+      <section className="py-24 px-6 max-w-screen-xl mx-auto">
+        <div className="flex flex-col items-center text-center mb-16">
+          <h2 className="font-display text-3xl font-black uppercase mb-3">Science-Based Online Excellence</h2>
+          <div className="w-24 h-1 bg-secondary-container"></div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            { icon: "laptop_chromebook", title: "100% Online Learning", desc: "Access world-class fitness education from anywhere, at any time, through our advanced LMS." },
+            { icon: "science", title: "Science-Based Pedagogy", desc: "Curriculum built on the latest research in exercise physiology, biomechanics, and nutrition science." },
+            { icon: "video_call", title: "Live Expert Mentorship", desc: "Weekly live interaction with industry veterans to clear concepts and discuss real-world case studies." },
+            { icon: "workspace_premium", title: "Verified Digital Creds", desc: "Receive blockchain-verified digital certificates instantly upon successful course completion." },
+            { icon: "groups", title: "Global Alumni Network", desc: "Join a community of 15,000+ professionals working across 20+ countries worldwide." },
+            { icon: "history_edu", title: "Lifetime Access", desc: "Keep your knowledge fresh with lifetime access to updated course materials and webinars." }
+          ].map((item, index) => (
+            <div key={index} className="bg-surface-container-low p-8 border border-white/5 hover:border-secondary-container/50 transition-all group rounded">
+              <div className="flex flex-col gap-4">
+                <span className="material-symbols-outlined text-secondary-container text-4xl">
+                  {item.icon}
+                </span>
+                <h3 className="font-display font-bold text-lg uppercase text-white">{item.title}</h3>
+                <p className="text-on-surface-variant text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -402,7 +426,7 @@ export default function Home() {
           <h2 className="font-display text-3xl font-black uppercase text-center">Graduate Success Stories</h2>
           <p className="text-on-surface/50 font-body font-bold uppercase text-[10px] mt-2 tracking-widest">Transformed through Science-Based Education</p>
         </div>
-        
+
         <div className="flex gap-6 overflow-x-auto pb-8 custom-scrollbar px-6 max-w-7xl mx-auto">
           {[
             { name: "Rahul Sharma", role: "Online CPT Graduate", comment: "IIFN online CPT course completely changed my approach. The emphasis on scientific biomechanics gave me the edge I needed to work at elite gyms.", rating: 5 },
@@ -423,11 +447,10 @@ export default function Home() {
                     <p className="text-secondary-container text-xs font-body">{t.role}</p>
                     <div className="flex gap-0.5 mt-1">
                       {[...Array(5)].map((_, i) => (
-                        <span 
-                          key={i} 
-                          className={`material-symbols-outlined text-[12px] leading-none ${
-                            i < t.rating ? "text-red-600" : "text-gray-500"
-                          }`}
+                        <span
+                          key={i}
+                          className={`material-symbols-outlined text-[12px] leading-none ${i < t.rating ? "text-red-600" : "text-gray-500"
+                            }`}
                         >
                           {i < t.rating ? "star" : "star_rate"}
                         </span>
@@ -448,7 +471,7 @@ export default function Home() {
         <div className="px-6 max-w-screen-xl mx-auto relative z-10">
           <div className="bg-surface-container-lowest border border-white/5 p-8 md:p-12 flex flex-col lg:flex-row items-center justify-between gap-8 rounded relative overflow-hidden">
             <div className="absolute top-0 left-0 w-1 bg-secondary-container h-full"></div>
-            
+
             <div className="flex items-start gap-5">
               <div className="w-12 h-12 bg-secondary-container/10 rounded-full flex items-center justify-center shrink-0 border border-secondary-container/20">
                 <span className="material-symbols-outlined text-secondary-container text-2xl">verified_user</span>
@@ -463,10 +486,10 @@ export default function Home() {
             </div>
 
             <div className="shrink-0 w-full lg:w-auto">
-              <a 
-                href="https://www.ncbsdskillindia.com/student-result.php" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.ncbsdskillindia.com/student-result.php"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full lg:w-auto inline-flex items-center justify-center gap-2 bg-secondary-container text-white px-8 py-4 font-body font-bold text-xs uppercase tracking-widest red-glow-hover hover:scale-105 active:scale-95 transition-all rounded-sm cursor-pointer"
               >
                 <span className="material-symbols-outlined text-sm">open_in_new</span>
@@ -478,36 +501,66 @@ export default function Home() {
       </section>
 
       {/* Candidate Gallery */}
-      <section className="py-24 bg-surface-container-low border-t border-white/5" id="gallery">
+      <section className="py-24 bg-surface-container-low border-t border-white/5 overflow-hidden" id="gallery">
         <div className="px-6 max-w-screen-xl mx-auto">
-          <div className="flex flex-col items-center text-center mb-16">
-            <h2 className="font-display text-3xl font-black uppercase mb-3">Our Certified Professionals</h2>
-            <p className="text-secondary-container font-body font-bold uppercase tracking-[0.2em] text-[10px]">IIFN Transformation &amp; Placement Gallery</p>
-            <div className="w-16 h-1 bg-secondary-container mx-auto mt-4"></div>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div>
+              <span className="text-secondary-container font-body font-bold uppercase tracking-[0.2em] text-[10px] block mb-2">
+                IIFN Transformation &amp; Placement Gallery
+              </span>
+              <h2 className="font-display text-3xl sm:text-4xl font-black uppercase text-white tracking-tight">
+                Our Certified Professionals
+              </h2>
+              <div className="w-16 h-1 bg-secondary-container mt-3"></div>
+            </div>
+
+            {/* Scroll Navigation Controls */}
+            <div className="flex items-center gap-3 shrink-0">
+              <button
+                onClick={() => scrollGallery("left")}
+                aria-label="Scroll Left"
+                className="w-10 h-10 rounded-full border border-white/10 bg-black/50 hover:bg-secondary-container hover:border-secondary-container text-white flex items-center justify-center transition-all cursor-pointer group shadow-md"
+              >
+                <span className="material-symbols-outlined text-lg group-hover:-translate-x-0.5 transition-transform">arrow_back</span>
+              </button>
+              <button
+                onClick={() => scrollGallery("right")}
+                aria-label="Scroll Right"
+                className="w-10 h-10 rounded-full border border-white/10 bg-black/50 hover:bg-secondary-container hover:border-secondary-container text-white flex items-center justify-center transition-all cursor-pointer group shadow-md"
+              >
+                <span className="material-symbols-outlined text-lg group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+              </button>
+            </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {candidates.map((candidate, index) => (
-              <div 
-                key={index} 
-                className="group relative overflow-hidden bg-black border border-white/10 rounded-sm hover:border-secondary-container/50 transition-all duration-300"
-              >
-                <div className="h-64 overflow-hidden relative">
-                  <img
-                    src={candidate.src}
-                    alt={candidate.name}
-                    className="w-full h-full object-cover scale-100 group-hover:scale-105 transition-all duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300"></div>
+          {/* 3-Row Side-Wise Scrollable Container */}
+          <div
+            ref={galleryScrollRef}
+            className="overflow-x-auto pb-6 pt-2 custom-scrollbar snap-x scroll-smooth select-none"
+          >
+            <div className="grid grid-rows-3 grid-flow-col auto-cols-[200px] sm:auto-cols-[240px] md:auto-cols-[260px] gap-5 w-max">
+              {candidates.map((candidate, index) => (
+                <div
+                  key={index}
+                  className="snap-start group relative overflow-hidden bg-black border border-white/10 rounded-sm hover:border-secondary-container/50 transition-all duration-300 flex flex-col justify-between"
+                >
+                  <div className="h-52 sm:h-56 md:h-60 overflow-hidden relative bg-[#141414] flex items-center justify-center p-2">
+                    <img
+                      src={candidate.src}
+                      alt={candidate.name}
+                      className="w-full h-full object-contain scale-100 group-hover:scale-105 transition-all duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-40 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none"></div>
+                  </div>
+                  <div className="p-3 text-center border-t border-white/5 bg-surface-container-lowest">
+                    <h4 className="font-display font-bold text-xs uppercase text-white tracking-wide group-hover:text-secondary-container transition-colors truncate">
+                      {candidate.name}
+                    </h4>
+                    <p className="text-[9px] text-on-surface/40 uppercase mt-0.5 tracking-wider font-body">Certified Specialist</p>
+                  </div>
                 </div>
-                <div className="p-4 text-center border-t border-white/5">
-                  <h4 className="font-display font-bold text-sm uppercase text-white tracking-wide group-hover:text-secondary-container transition-colors">
-                    {candidate.name}
-                  </h4>
-                  <p className="text-[10px] text-on-surface/40 uppercase mt-1">Certified Specialist</p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -535,11 +588,10 @@ export default function Home() {
                           <p className="text-white font-bold leading-none font-body">{rev.name}</p>
                           <div className="flex gap-0.5 mt-1">
                             {[...Array(5)].map((_, i) => (
-                              <span 
-                                key={i} 
-                                className={`material-symbols-outlined text-[10px] leading-none ${
-                                  i < Number(rev.rating || 0) ? "text-red-600" : "text-gray-500"
-                                }`}
+                              <span
+                                key={i}
+                                className={`material-symbols-outlined text-[10px] leading-none ${i < Number(rev.rating || 0) ? "text-red-600" : "text-gray-500"
+                                  }`}
                               >
                                 {i < Number(rev.rating || 0) ? "star" : "star_rate"}
                               </span>
@@ -570,7 +622,7 @@ export default function Home() {
           <div className="bg-surface-container-low p-8 border border-white/10 relative rounded">
             <div className="absolute top-0 left-0 w-1 h-full bg-secondary-container"></div>
             <h3 className="font-display text-2xl font-black uppercase mb-6 text-white">Start Your Online Journey</h3>
-            
+
             {formSubmitted ? (
               <div className="p-8 text-center bg-green-500/10 border border-green-500/30 rounded text-green-500">
                 <span className="material-symbols-outlined text-5xl mb-3">task_alt</span>
@@ -582,58 +634,58 @@ export default function Home() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-2">
                     <label className="text-[10px] uppercase text-on-surface/50 font-body font-bold tracking-widest">Full Name</label>
-                    <input 
+                    <input
                       name="name"
                       value={enquiry.name}
                       onChange={handleInputChange}
                       required
-                      type="text" 
-                      className="bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-on-surface rounded text-sm placeholder:text-white/20" 
-                      placeholder="John Doe" 
+                      type="text"
+                      className="bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-on-surface rounded text-sm placeholder:text-white/20"
+                      placeholder="John Doe"
                     />
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="text-[10px] uppercase text-on-surface/50 font-body font-bold tracking-widest">Phone Number</label>
-                    <input 
+                    <input
                       name="phone"
                       value={enquiry.phone}
                       onChange={handleInputChange}
                       required
-                      type="tel" 
-                      className="bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-on-surface rounded text-sm placeholder:text-white/20" 
-                      placeholder="+91 98765 43210" 
+                      type="tel"
+                      className="bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-on-surface rounded text-sm placeholder:text-white/20"
+                      placeholder="+91 98765 43210"
                     />
                   </div>
                 </div>
-                
+
                 <div className="flex flex-col gap-2">
                   <label className="text-[10px] uppercase text-on-surface/50 font-body font-bold tracking-widest">Email Address</label>
-                  <input 
+                  <input
                     name="email"
                     value={enquiry.email}
                     onChange={handleInputChange}
                     required
-                    type="email" 
-                    className="bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-on-surface rounded text-sm placeholder:text-white/20" 
-                    placeholder="john@example.com" 
+                    type="email"
+                    className="bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-on-surface rounded text-sm placeholder:text-white/20"
+                    placeholder="john@example.com"
                   />
                 </div>
-                
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-2">
                     <label className="text-[10px] uppercase text-on-surface/50 font-body font-bold tracking-widest">City</label>
-                    <input 
+                    <input
                       name="city"
                       value={enquiry.city}
                       onChange={handleInputChange}
-                      type="text" 
-                      className="bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-on-surface rounded text-sm placeholder:text-white/20" 
-                      placeholder="Mumbai" 
+                      type="text"
+                      className="bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-on-surface rounded text-sm placeholder:text-white/20"
+                      placeholder="Mumbai"
                     />
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="text-[10px] uppercase text-on-surface/50 font-body font-bold tracking-widest">Preferred Course</label>
-                    <select 
+                    <select
                       name="course"
                       value={enquiry.course}
                       onChange={handleInputChange}
@@ -645,9 +697,9 @@ export default function Home() {
                     </select>
                   </div>
                 </div>
-                
-                <button 
-                  type="submit" 
+
+                <button
+                  type="submit"
                   disabled={isSubmitting}
                   className="bg-secondary-container text-white py-4 font-display font-black text-sm uppercase red-glow mt-2 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50 disabled:pointer-events-none"
                 >
