@@ -73,13 +73,21 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
-          <a
+          {/* <a
             href="https://www.ncbsdskillindia.com/student-result.php"
             target="_blank"
             rel="noopener noreferrer"
             className="font-body font-bold text-xs uppercase tracking-widest transition-all duration-300 pb-1 hover:text-secondary-container"
           >
             Verify Certificate
+          </a> */}
+          <a
+            href="https://www.ncbsdskillindia.com/check-your-registration.php"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-body font-bold text-xs uppercase tracking-widest transition-all duration-300 pb-1 hover:text-secondary-container"
+          >
+            VERIFY STUDENT REGISTRATION
           </a>
         </div>
 
@@ -196,6 +204,15 @@ export default function Navbar() {
           >
             <span className="material-symbols-outlined text-sm">open_in_new</span>
             Verify Certificate
+          </a>
+          <a
+            href="https://www.ncbsdskillindia.com/check-your-registration.php"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full lg:w-auto inline-flex items-center justify-center gap-2 bg-secondary-container text-white px-6 py-2 font-body font-bold text-xs uppercase tracking-widest red-glow-hover hover:scale-105 active:scale-95 transition-all rounded-sm cursor-pointer"
+          >
+            <span className="material-symbols-outlined text-sm">open_in_new</span>
+            Verify Student Registration
           </a>
         </nav>
 
