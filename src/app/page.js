@@ -5,12 +5,13 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import LoadingScreen from "@/components/LoadingScreen";
-import { addEnquiry, getApprovedReviews } from "@/service/firestore.service";
+import { addEnquiry, getApprovedReviews, getCandidates, addCandidate } from "@/service/firestore.service";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [approvedReviews, setApprovedReviews] = useState([]);
+  const [candidates, setCandidates] = useState([]);
   const galleryScrollRef = useRef(null);
 
   const scrollGallery = (direction) => {
@@ -38,6 +39,47 @@ export default function Home() {
       }
     };
     fetchApprovedReviews();
+
+    const fetchCandidatesData = async () => {
+      try {
+        const list = await getCandidates();
+        if (list.length > 0) {
+          setCandidates(list);
+        } else {
+          // Seed the initial candidates list
+          const initialCandidates = [
+            { name: "SURYA BHAT", src: "/candidates/jgym1.jpeg" },
+            { name: "ANIL SHETTY", src: "/candidates/jgym2.jpeg" },
+            { name: "SURAJ MAAN", src: "/candidates/jgym3.jpeg" },
+            { name: "SURAJIT RANA", src: "/candidates/jgym4.jpeg" },
+            { name: "CIZHARUL ISLAM", src: "/candidates/jgym5.jpeg" },
+            { name: "PRIYA MISHRA", src: "/candidates/jgym6.jpeg" },
+            { name: "KULDIP SINGH", src: "/candidates/jgym7.jpeg" },
+            { name: "SAMPAT JCOB", src: "/candidates/jgym8.jpeg" },
+            { name: "IMRAN & IRFAN", src: "/candidates/jgym12.jpeg" },
+            { name: "SILPA BHAGAT", src: "/candidates/jgym13.jpeg" },
+            { name: "SURYA BHAT", src: "/candidates/jgym14.jpeg" },
+            { name: "ROSAHAN THAKKAR", src: "/candidates/jgym15.jpeg" },
+            { name: "RAHUL MISHRA", src: "/candidates/jgym16.jpeg" },
+            { name: "RONALD PETER PALLIVILA", src: "/candidates/jgym92.jpeg" },
+            { name: "NIKESH SHRESTHA", src: "/candidates/jgym93.jpeg" },
+            { name: "AMIT KUMAR", src: "/candidates/jgym94.jpeg" },
+            { name: "GUNJALI HARISH YADAV", src: "/candidates/jgym95.jpeg" },
+            { name: "PRADEEP SINGH RAJPUT", src: "/candidates/jgym96.jpeg" },
+            { name: "MUHAMED SAMEER M.S", src: "/candidates/jgym97.jpeg" },
+            { name: "PRATIKSHA RAJENDRA KALE", src: "/candidates/jgym98.jpeg" },
+          ];
+          for (const c of initialCandidates) {
+            await addCandidate(c.name, c.src);
+          }
+          const seeded = await getCandidates();
+          setCandidates(seeded);
+        }
+      } catch (err) {
+        console.error("Failed to fetch candidates:", err);
+      }
+    };
+    fetchCandidatesData();
   }, []);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -128,29 +170,7 @@ export default function Home() {
     { name: "SPFL", src: "/affilations/spfl.png.webp" },
   ];
 
-  const candidates = [
-    { name: "SURYA BHAT", src: "/candidates/jgym1.jpeg" },
-    { name: "ANIL SHETTY", src: "/candidates/jgym2.jpeg" },
-    { name: "SURAJ MAAN", src: "/candidates/jgym3.jpeg" },
-    { name: "SURAJIT RANA", src: "/candidates/jgym4.jpeg" },
-    { name: "CIZHARUL ISLAM", src: "/candidates/jgym5.jpeg" },
-    { name: "PRIYA MISHRA", src: "/candidates/jgym6.jpeg" },
-    { name: "KULDIP SINGH", src: "/candidates/jgym7.jpeg" },
-    { name: "SAMPAT JCOB", src: "/candidates/jgym8.jpeg" },
-    { name: "", src: "/candidates/jgym11.jpeg" },
-    { name: "IMRAN & IRFAN", src: "/candidates/jgym12.jpeg" },
-    { name: "SILPA BHAGAT", src: "/candidates/jgym13.jpeg" },
-    { name: "SURYA BHAT", src: "/candidates/jgym14.jpeg" },
-    { name: "ROSAHAN THAKKAR", src: "/candidates/jgym15.jpeg" },
-    { name: "RAHUL MISHRA", src: "/candidates/jgym16.jpeg" },
-    { name: "RONALD PETER PALLIVILA", src: "/candidates/jgym92.jpeg" },
-    { name: "NIKESH SHRESTHA", src: "/candidates/jgym93.jpeg" },
-    { name: "AMIT KUMAR", src: "/candidates/jgym94.jpeg" },
-    { name: "GUNJALI HARISH YADAV", src: "/candidates/jgym95.jpeg" },
-    { name: "PRADEEP SINGH RAJPUT", src: "/candidates/jgym96.jpeg" },
-    { name: "MUHAMED SAMEER M.S", src: "/candidates/jgym97.jpeg" },
-    { name: "PRATIKSHA RAJENDRA KALE", src: "/candidates/jgym98.jpeg" },
-  ];
+
 
   const stats = [
     { value: "15K+", label: "Certified Online" },

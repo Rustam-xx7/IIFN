@@ -200,3 +200,51 @@ export async function deleteReview(reviewId) {
     throw error;
   }
 }
+
+// Add a new candidate (collection: candidates)
+export async function addCandidate(name, src) {
+  try {
+    const docRef = await addDoc(collection(db, "candidates"), {
+      name,
+      src,
+      createdAt: serverTimestamp(),
+    });
+    return docRef.id;
+  } catch (error) {
+    console.error("Error adding candidate: ", error);
+    throw error;
+  }
+}
+
+// Fetch all candidates from Firestore (collection: candidates)
+export async function getCandidates() {
+  try {
+    const querySnapshot = await getDocs(collection(db, "candidates"));
+    const list = [];
+    querySnapshot.forEach((doc) => {
+      list.push({ id: doc.id, ...doc.data() });
+    });
+    
+    // Sort by createdAt or fallback
+    return list.sort((a, b) => {
+      const aTime = a.createdAt?.seconds || 0;
+      const bTime = b.createdAt?.seconds || 0;
+      return bTime - aTime; // Newest first
+    });
+  } catch (error) {
+    console.error("Error fetching candidates: ", error);
+    throw error;
+  }
+}
+
+// Delete a candidate record from Firestore
+export async function deleteCandidate(candidateId) {
+  try {
+    const candidateRef = doc(db, "candidates", candidateId);
+    await deleteDoc(candidateRef);
+  } catch (error) {
+    console.error("Error deleting candidate: ", error);
+    throw error;
+  }
+}
+

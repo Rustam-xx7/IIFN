@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import AdminSidebar from "@/components/AdminSidebar";
-import { getEnquiries, getEnrollments, getUsers, getReviews, approveReview, deleteReview } from "@/service/firestore.service";
+import { getEnquiries, getEnrollments, getUsers, getReviews, approveReview, deleteReview, getCandidates, addCandidate, deleteCandidate } from "@/service/firestore.service";
 
 export default function AdminDashboard() {
   const router = useRouter();
@@ -18,8 +18,15 @@ export default function AdminDashboard() {
   const [enrollments, setEnrollments] = useState([]);
   const [users, setUsers] = useState([]);
   const [reviews, setReviews] = useState([]);
-  const [activeTab, setActiveTab] = useState("enquiries"); // 'enquiries' | 'enrollments' | 'users' | 'reviews'
+  const [candidates, setCandidates] = useState([]);
+  const [activeTab, setActiveTab] = useState("enquiries"); // 'enquiries' | 'enrollments' | 'users' | 'reviews' | 'candidates'
   const [searchQuery, setSearchQuery] = useState("");
+
+  // Upload candidates states
+  const [newCandidateName, setNewCandidateName] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState("");
 
   // Verification & Loading Session Check
   useEffect(() => {
@@ -45,10 +52,12 @@ export default function AdminDashboard() {
         const enr = await getEnrollments();
         const usr = await getUsers();
         const rev = await getReviews();
+        const cand = await getCandidates();
         setEnquiries(enq);
         setEnrollments(enr);
         setUsers(usr);
         setReviews(rev);
+        setCandidates(cand);
       } catch (err) {
         console.error("Error fetching admin data:", err);
       } finally {
@@ -88,6 +97,95 @@ export default function AdminDashboard() {
     }
   };
 
+  // Handlers for candidate gallery upload / management
+  const handleFileChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setSelectedFile(e.target.files[0]);
+    }
+  };
+
+  const handleAddCandidate = async (e) => {
+    e.preventDefault();
+    setUploadError("");
+    if (!newCandidateName.trim()) {
+      setUploadError("Please provide a name for the candidate.");
+      return;
+    }
+    if (!selectedFile) {
+      setUploadError("Please select an image file to upload.");
+      return;
+    }
+
+    setIsUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append("file", selectedFile);
+
+      // 1. Upload file to local Next.js Route Handler API
+      const res = await fetch("/api/candidates", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.error || "Failed to upload image.");
+      }
+
+      const uploadResult = await res.json();
+
+      // 2. Add metadata record to Firestore
+      await addCandidate(newCandidateName.trim(), uploadResult.src);
+
+      // 3. Fetch latest list to ensure UI matches Firestore
+      const updatedList = await getCandidates();
+      setCandidates(updatedList);
+
+      // Reset form fields
+      setNewCandidateName("");
+      setSelectedFile(null);
+      // Clear file input
+      const fileInput = document.getElementById("candidate-file-input");
+      if (fileInput) fileInput.value = "";
+    } catch (err) {
+      console.error(err);
+      setUploadError(err.message || "Failed to add candidate. Please try again.");
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  const handleDeleteCandidate = async (candidate) => {
+    if (!window.confirm(`Are you sure you want to delete ${candidate.name}? This will remove the image file and Firestore record.`)) {
+      return;
+    }
+
+    try {
+      // 1. Call API Route to delete image file from public/candidates/
+      const res = await fetch("/api/candidates", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ src: candidate.src }),
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        console.warn("API route file deletion issue:", errorData.error);
+      }
+
+      // 2. Delete Firestore record
+      await deleteCandidate(candidate.id);
+
+      // 3. Update local state
+      setCandidates((prev) => prev.filter((c) => c.id !== candidate.id));
+    } catch (err) {
+      console.error(err);
+      alert("Failed to delete candidate.");
+    }
+  };
+
   if (loading || !isAdmin) {
     return (
       <div className="flex h-screen items-center justify-center bg-black text-white font-body font-bold text-sm uppercase tracking-widest">
@@ -118,6 +216,10 @@ export default function AdminDashboard() {
         (item.name || "").toLowerCase().includes(query) || 
         (item.email || "").toLowerCase().includes(query) ||
         (item.comment || "").toLowerCase().includes(query)
+      );
+    } else if (activeTab === "candidates") {
+      return candidates.filter(item => 
+        (item.name || "").toLowerCase().includes(query)
       );
     } else {
       return users.filter(item => 
@@ -235,7 +337,8 @@ export default function AdminDashboard() {
                   { id: "enquiries", label: "Enquiries", count: enquiries.length },
                   { id: "enrollments", label: "Enrollments", count: enrollments.length },
                   { id: "reviews", label: "Reviews", count: reviews.length },
-                  { id: "users", label: "Users", count: users.length }
+                  { id: "users", label: "Users", count: users.length },
+                  { id: "candidates", label: "Candidates", count: candidates.length }
                 ].map((tab) => (
                   <button
                     key={tab.id}
@@ -254,6 +357,52 @@ export default function AdminDashboard() {
                 ))}
               </div>
             </div>
+
+            {activeTab === "candidates" && (
+              <div className="bg-surface-container-low border border-white/5 p-6 rounded mb-6 max-w-2xl">
+                <h4 className="font-display font-black text-sm uppercase text-white tracking-wider mb-2">Upload New Candidate</h4>
+                <p className="text-on-surface-variant text-xs font-body mb-4">Provide a name and choose an image to store locally in the public/candidates folder</p>
+                
+                <form onSubmit={handleAddCandidate} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="font-body font-bold text-[9px] uppercase text-on-surface/60 tracking-wider block">Candidate Name</label>
+                      <input 
+                        type="text" 
+                        value={newCandidateName}
+                        onChange={(e) => setNewCandidateName(e.target.value)}
+                        required
+                        className="w-full bg-black border border-white/10 focus:border-secondary-container text-white py-2.5 px-3 text-xs rounded outline-none transition-all placeholder:text-white/20" 
+                        placeholder="e.g. SNEHA SHARMA" 
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="font-body font-bold text-[9px] uppercase text-on-surface/60 tracking-wider block">Candidate Photo</label>
+                      <input 
+                        id="candidate-file-input"
+                        type="file" 
+                        accept="image/*"
+                        onChange={handleFileChange}
+                        required
+                        className="w-full bg-black border border-white/10 text-white py-1.5 px-3 text-xs rounded outline-none transition-all file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-[10px] file:font-semibold file:bg-secondary-container file:text-white hover:file:bg-red-700 cursor-pointer"
+                      />
+                    </div>
+                  </div>
+
+                  {uploadError && (
+                    <p className="text-xs font-body text-red-500 font-bold uppercase tracking-wider">{uploadError}</p>
+                  )}
+
+                  <button 
+                    type="submit" 
+                    disabled={isUploading}
+                    className="bg-secondary-container text-white px-6 py-2.5 font-body font-bold text-[10px] uppercase tracking-widest red-glow-hover hover:scale-105 active:scale-95 transition-all rounded-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isUploading ? "Uploading..." : "Add & Upload Candidate"}
+                  </button>
+                </form>
+              </div>
+            )}
 
             {/* Collection Table */}
             <div className="bg-surface-container-low border border-white/5 overflow-hidden rounded">
@@ -293,6 +442,15 @@ export default function AdminDashboard() {
                         <>
                           <th className="px-6 py-4 font-body font-bold uppercase text-[10px] tracking-widest text-on-surface-variant">Full Name</th>
                           <th className="px-6 py-4 font-body font-bold uppercase text-[10px] tracking-widest text-on-surface-variant">Email Address</th>
+                        </>
+                      )}
+                      {activeTab === "candidates" && (
+                        <>
+                          <th className="px-6 py-4 font-body font-bold uppercase text-[10px] tracking-widest text-on-surface-variant">Image</th>
+                          <th className="px-6 py-4 font-body font-bold uppercase text-[10px] tracking-widest text-on-surface-variant">Candidate Name</th>
+                          <th className="px-6 py-4 font-body font-bold uppercase text-[10px] tracking-widest text-on-surface-variant">Image Source</th>
+                          <th className="px-6 py-4 font-body font-bold uppercase text-[10px] tracking-widest text-on-surface-variant">Date Added</th>
+                          <th className="px-6 py-4 font-body font-bold uppercase text-[10px] tracking-widest text-on-surface-variant text-right">Actions</th>
                         </>
                       )}
                     </tr>
@@ -425,6 +583,31 @@ export default function AdminDashboard() {
                                 </div>
                               </td>
                               <td className="px-6 py-4 text-on-surface-variant font-body text-xs">{item.email || "N/A"}</td>
+                            </>
+                          )}
+                          {activeTab === "candidates" && (
+                            <>
+                              <td className="px-6 py-4">
+                                <div className="w-12 h-12 bg-[#141414] rounded overflow-hidden flex items-center justify-center p-1 border border-white/5 relative">
+                                  <img 
+                                    src={item.src} 
+                                    alt={item.name} 
+                                    className="w-full h-full object-contain"
+                                  />
+                                </div>
+                              </td>
+                              <td className="px-6 py-4 text-white font-body font-bold uppercase text-xs">{item.name || "N/A"}</td>
+                              <td className="px-6 py-4 text-on-surface-variant font-mono text-[10px] select-all truncate max-w-[200px]" title={item.src}>{item.src || "N/A"}</td>
+                              <td className="px-6 py-4 text-on-surface-variant font-body text-xs">{formatDate(item.createdAt)}</td>
+                              <td className="px-6 py-4 text-right">
+                                <button 
+                                  onClick={() => handleDeleteCandidate(item)}
+                                  title="Delete Candidate"
+                                  className="p-1 text-on-surface-variant hover:text-secondary-container transition-colors cursor-pointer"
+                                >
+                                  <span className="material-symbols-outlined text-base">delete</span>
+                                </button>
+                              </td>
                             </>
                           )}
                         </tr>
