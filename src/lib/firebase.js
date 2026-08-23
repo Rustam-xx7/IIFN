@@ -21,5 +21,8 @@ const analytics = typeof window !== "undefined" ? getAnalytics(app) : null;
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-export { db, analytics, auth };
+import { getStorage } from "firebase/storage";
+const storage = getStorage(app);
+
+export { db, analytics, auth, storage };
 export default app;

@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import AdminSidebar from "@/components/AdminSidebar";
 import { getEnquiries, getEnrollments, getUsers, getReviews, approveReview, deleteReview, getCandidates, addCandidate, deleteCandidate } from "@/service/firestore.service";
+import { storage } from "@/lib/firebase";
+import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 
 export default function AdminDashboard() {
   const router = useRouter();
@@ -118,26 +120,19 @@ export default function AdminDashboard() {
 
     setIsUploading(true);
     try {
-      const formData = new FormData();
-      formData.append("file", selectedFile);
+      // 1. Create a unique filename
+      const fileExtension = selectedFile.name.split('.').pop();
+      const filename = `candidate_${Date.now()}_${Math.random().toString(36).substr(2, 9)}.${fileExtension}`;
+      
+      // 2. Upload to Firebase Storage
+      const storageRef = ref(storage, `candidates/${filename}`);
+      const uploadResult = await uploadBytes(storageRef, selectedFile);
+      const downloadUrl = await getDownloadURL(uploadResult.ref);
 
-      // 1. Upload file to local Next.js Route Handler API
-      const res = await fetch("/api/candidates", {
-        method: "POST",
-        body: formData,
-      });
+      // 3. Add metadata record to Firestore
+      await addCandidate(newCandidateName.trim(), downloadUrl);
 
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.error || "Failed to upload image.");
-      }
-
-      const uploadResult = await res.json();
-
-      // 2. Add metadata record to Firestore
-      await addCandidate(newCandidateName.trim(), uploadResult.src);
-
-      // 3. Fetch latest list to ensure UI matches Firestore
+      // 4. Fetch latest list to ensure UI matches Firestore
       const updatedList = await getCandidates();
       setCandidates(updatedList);
 
@@ -156,23 +151,24 @@ export default function AdminDashboard() {
   };
 
   const handleDeleteCandidate = async (candidate) => {
-    if (!window.confirm(`Are you sure you want to delete ${candidate.name}? This will remove the image file and Firestore record.`)) {
+    if (!window.confirm(`Are you sure you want to delete ${candidate.name}? This will remove the image and the database record.`)) {
       return;
     }
 
     try {
-      // 1. Call API Route to delete image file from public/candidates/
-      const res = await fetch("/api/candidates", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ src: candidate.src }),
-      });
-
-      if (!res.ok) {
-        const errorData = await res.json();
-        console.warn("API route file deletion issue:", errorData.error);
+      // 1. If it's a Firebase Storage URL, delete the object from Storage
+      if (candidate.src && candidate.src.includes("firebasestorage.googleapis.com")) {
+        try {
+          const fileRef = ref(storage, candidate.src);
+          await deleteObject(fileRef);
+        } catch (storageErr) {
+          console.warn("Storage deletion error (it might have already been deleted):", storageErr);
+        }
+      } else {
+        // If it's a local static file (from the seed data), we do NOT delete the local file
+        // since we cannot write/delete from the read-only build image under /var/task.
+        // We just delete its Firestore record, which removes it from the list.
+        console.log("Local static file metadata removed from Firestore:", candidate.src);
       }
 
       // 2. Delete Firestore record
