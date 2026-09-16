@@ -33,6 +33,7 @@ export default function RootLayout({ children }) {
         className={`${montserrat.variable} ${inter.variable} min-h-full flex flex-col bg-background text-on-surface font-body overflow-x-hidden`}
       >
         {children}
+        <Analytics />
         {/* <div className="h-screen w-full bg-neutral-900 text-shadow-white  flex flex-col justify-center items-center">
           <span className="text-2xl font-semibold">SERVER UNDER MAINTENANCE</span>
           <span className="text-sm text-red-600">error 503</span>
