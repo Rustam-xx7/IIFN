@@ -26,7 +26,7 @@ export default function Home() {
     phone: "",
     email: "",
     city: "",
-    course: "Certified Personal Trainer (CPT)",
+    course: "Certified Personal Trainer",
   });
 
   useEffect(() => {
@@ -333,42 +333,151 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
-                title: "Certified Personal Trainer (CPT)",
+                title: "Certified Personal Trainer",
+                price: "₹5,999/-",
                 dur: "1–3 Months",
                 tag: "Best Seller",
-                desc: "Learn: Human Anatomy & Physiology, Exercise Science, Biomechanics, Workout Programme Design, Injury Prevention, Nutrition, Professional Practice.",
+                desc: "Comprehensive certification program mastering human anatomy, exercise science, program design, injury prevention, and client management.",
                 img: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069&auto=format&fit=crop"
               },
               {
-                title: "Certification in Nutrition & Dietetics",
+                title: "Certified Nutritionist & Dietetics",
+                price: "₹5,999/-",
                 dur: "1–3 Months",
                 tag: "Science-Based",
-                desc: "Learn: Fundamentals of Nutrition, Macronutrients & Micronutrients, Diet Planning & Meal Management, Sports Nutrition, Clinical Nutrition Basics, Supplements, Client Consultation.",
+                desc: "Science-based nutrition and dietetics education covering macronutrients, digestion, meal planning, sports & clinical nutrition, and supplementation.",
                 img: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2070&auto=format&fit=crop"
               },
               {
-                title: "Combo Course (CPT + Nutrition & Dietetics)",
+                title: "Diploma in Personal Trainer & Dietetics",
+                price: "₹9,999/-",
                 dur: "2–4 Months",
-                tag: "Best Value",
-                desc: "✔ Personal Trainer (CPT) + Nutrition & Dietetics in One Comprehensive Course ✔ Complete Fitness & Nutrition Education ✔ Live Online Interactive Classes ✔ NSDC Government Certificate ✔ Placement Support",
+                tag: "Best Value / Dual Degree",
+                desc: "Master-level dual qualification combining personal training & dietetics for complete fitness and nutrition career dominance.",
                 img: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=2070&auto=format&fit=crop"
               }
             ].map((course, index) => (
-              <div key={index} className="bg-black border border-white/10 group overflow-hidden rounded">
-                <div
-                  className="h-56 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                  style={{ backgroundImage: `url('${course.img}')` }}
-                />
-                <div className="p-8">
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="text-[9px] bg-secondary-container/20 text-secondary-container px-2 py-1 font-bold uppercase">{course.tag}</span>
-                    <span className="text-on-surface/50 text-[10px] uppercase font-bold">{course.dur}</span>
+              <div key={index} className="bg-black border border-white/10 group overflow-hidden rounded flex flex-col justify-between">
+                <div>
+                  <div
+                    className="h-56 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                    style={{ backgroundImage: `url('${course.img}')` }}
+                  />
+                  <div className="p-8">
+                    <div className="flex justify-between items-center mb-4">
+                      <span className="text-[9px] bg-secondary-container/20 text-secondary-container px-2 py-1 font-bold uppercase">{course.tag}</span>
+                      <span className="text-on-surface/50 text-[10px] uppercase font-bold">{course.dur}</span>
+                    </div>
+                    <h3 className="font-display font-bold text-lg uppercase mb-2 text-white">{course.title}</h3>
+                    <p className="text-on-surface/60 text-sm mb-4 leading-relaxed line-clamp-2">{course.desc}</p>
                   </div>
-                  <h3 className="font-display font-bold text-lg uppercase mb-2 text-white">{course.title}</h3>
-                  <p className="text-on-surface/60 text-sm mb-6 leading-relaxed line-clamp-2">{course.desc}</p>
-                  <Link href="/courses" className="block text-center w-full py-3 border border-white/20 text-white font-body font-bold text-xs uppercase hover:bg-white hover:text-black transition-all">
-                    Course Details
+                </div>
+                <div className="px-8 pb-8 pt-0">
+                  <div className="flex justify-between items-center py-3 border-t border-white/10 mb-4">
+                    <span className="text-[10px] text-on-surface-variant uppercase font-body font-bold tracking-widest">Course Fee</span>
+                    <span className="font-display font-black text-xl text-secondary-container">{course.price}</span>
+                  </div>
+                  <Link href="/courses" className="block text-center w-full py-3 bg-secondary-container text-white font-body font-bold text-xs uppercase red-glow-hover transition-all">
+                    Course Details &amp; Syllabus
                   </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Official Partnerships & Network Section */}
+      <section className="py-24 bg-black border-t border-white/10 relative overflow-hidden" id="partnerships">
+        <div className="px-6 max-w-screen-xl mx-auto">
+          <div className="flex flex-col items-center text-center mb-16">
+            <span className="text-secondary-container font-body font-bold uppercase tracking-[0.3em] text-[10px] mb-2">
+              Trusted Educational &amp; Career Ecosystem
+            </span>
+            <h2 className="font-display text-3xl sm:text-5xl font-black uppercase text-white tracking-tight">
+              Official <span className="text-secondary-container">Partnerships</span> &amp; Recognitions
+            </h2>
+            <p className="text-on-surface-variant font-body text-xs sm:text-sm mt-3 max-w-2xl">
+              IIFN is proudly affiliated with premier global sports science bodies, top online diet &amp; fitness platforms, and leading gym networks.
+            </p>
+            <div className="w-20 h-1 bg-secondary-container mt-4"></div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {[
+              {
+                title: "IHFA & ISSA Global Accreditation",
+                tag: "International Standards",
+                desc: "World-class fitness, nutrition, and sports science certifications with global recognition.",
+                partners: ["IHFA", "ISSA", "BRICS SPORT", "GPNi", "IIDCA", "CPD (IHFA CPD)"],
+                highlights: "International Health & Fitness Association | International Sports Sciences Association",
+                img: "/affilations/ihfaissa.jpeg"
+              },
+              {
+                title: "Work From Home Online Platforms",
+                tag: "Remote Career Opportunities",
+                desc: "Work with India's top online health & diet platforms for flexible work-from-home employment.",
+                partners: ["HealthifyMe", "Lifesum", "Fitelo", "MyFitnessPal", "Everfit", "Coachway"],
+                highlights: "Online Personal Trainer | Nutritionist | Fitness Coach | Freelance Consultant",
+                img: "/affilations/onlinePlatforms.jpeg"
+              },
+              {
+                title: "Global Partnered Organisations",
+                tag: "Professional Advancement",
+                desc: "Working together with international bodies to advance professional fitness development worldwide.",
+                partners: ["IHFA CPD", "ISSA", "GPNi", "BRICS Sport", "IIDCA Institute"],
+                highlights: "Stronger Together. Empowering Professionals Worldwide.",
+                img: "/affilations/partnerWith.jpeg"
+              },
+              {
+                title: "Placement Partner Gyms & Chains",
+                tag: "100% Career & Employment",
+                desc: "Direct gym placement assistance through our expansive network of elite fitness clubs and health hubs.",
+                partners: ["Cult.fit", "Black Cat Fitness Lounge", "Fuerza", "Kranos Fitness Hub", "My Core", "Rocks Fitness", "Staunch", "Barbell Cartel", "Indus Hospitality"],
+                highlights: "Guaranteed Placement Assistance | Gym & Fitness Center Employment",
+                img: "/affilations/placementPartner.jpeg"
+              }
+            ].map((section, index) => (
+              <div 
+                key={index} 
+                className="flex flex-col gap-6 group"
+              >
+                {/* Section Header & Information (Frameless) */}
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="bg-secondary-container/20 text-secondary-container text-[10px] font-bold px-3 py-1 uppercase tracking-widest rounded border border-secondary-container/30">
+                      {section.tag}
+                    </span>
+                    <span className="material-symbols-outlined text-secondary-container text-xl">verified</span>
+                  </div>
+                  <h3 className="font-display font-black text-2xl text-white uppercase tracking-tight group-hover:text-secondary-container transition-colors">
+                    {section.title}
+                  </h3>
+                  <p className="text-on-surface-variant font-body text-xs leading-relaxed">
+                    {section.desc}
+                  </p>
+                  
+                  {/* Extracted Partner Badges */}
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    {section.partners.map((partnerName, pIdx) => (
+                      <span key={pIdx} className="bg-white/10 text-white font-body font-bold text-[11px] px-3 py-1 rounded-sm border border-white/10 hover:border-secondary-container transition-colors">
+                        {partnerName}
+                      </span>
+                    ))}
+                  </div>
+
+                  <p className="text-[11px] text-on-surface/50 font-body font-semibold italic pt-1">
+                    {section.highlights}
+                  </p>
+                </div>
+
+                {/* Clean Frameless Full Image Display */}
+                <div className="overflow-hidden rounded-xl shadow-2xl hover:shadow-secondary-container/20 transition-all duration-500">
+                  <img 
+                    src={section.img} 
+                    alt={section.title}
+                    className="w-full h-auto object-contain rounded-xl transition-transform duration-700 group-hover:scale-[1.01]"
+                  />
                 </div>
               </div>
             ))}
@@ -708,9 +817,10 @@ export default function Home() {
                       onChange={handleInputChange}
                       className="bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-on-surface rounded text-sm"
                     >
-                      <option value="Certified Personal Trainer (CPT)">Certified Personal Trainer (CPT)</option>
-                      <option value="Certification in Nutrition & Dietetics">Certification in Nutrition & Dietetics</option>
-                      <option value="Combo Course (CPT + Nutrition & Dietetics)">Combo Course (CPT + Nutrition & Dietetics)</option>
+                      <option value="Certified Personal Trainer">Certified Personal Trainer — ₹5,999/-</option>
+                      <option value="Certified Nutritionist & Dietetics">Certified Nutritionist & Dietetics — ₹5,999/-</option>
+                      <option value="Diploma in Personal Trainer & Dietetics">Diploma in Personal Trainer & Dietetics — ₹9,999/-</option>
+                      <option value="Clinical Dietetics (Special Population)">Clinical Dietetics (Special Population) — ₹5,999/-</option>
                     </select>
                   </div>
                 </div>

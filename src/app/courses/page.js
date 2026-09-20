@@ -21,7 +21,7 @@ export default function Courses() {
     phone: "",
     occupation: "Student",
     experience: "",
-    course: "Certified Personal Trainer (CPT)",
+    course: "Certified Personal Trainer",
   });
 
   const handleInputChange = (e) => {
@@ -85,9 +85,9 @@ export default function Courses() {
         }
 
         // Determine price based on course
-        let investment = "₹5,999";
-        if (formData.course.includes("Combo")) {
-          investment = "₹9,999";
+        let investment = "₹5,999/-";
+        if (formData.course.includes("Diploma")) {
+          investment = "₹9,999/-";
         }
 
         const payload = {
@@ -137,56 +137,116 @@ export default function Courses() {
   const courseList = [
     {
       id: "cpt",
-      title: "Certified Personal Trainer (CPT)",
+      title: "Certified Personal Trainer",
       tag: "Best Seller",
-      price: "₹5,999",
+      price: "₹5,999/-",
       dur: "1–3 Months",
-      desc: "Learn: Human Anatomy & Physiology, Exercise Science, Biomechanics, Workout Programme Design, Injury Prevention, Nutrition, Professional Practice.",
+      desc: "Comprehensive certification program mastering human anatomy, exercise science, program design, injury prevention, and client management.",
       img: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069&auto=format&fit=crop",
       syllabus: [
-        { title: "🧠 MODULE 1: HUMAN ANATOMY & PHYSIOLOGY", items: ["Muscular System", "Skeletal System", "Joints & Movement Patterns", "Cardiovascular & Respiratory Basics"] },
-        { title: "🏋️ MODULE 2: EXERCISE SCIENCE", items: ["Types of Exercises", "Resistance Training Principles", "Cardio & Endurance Training", "Warm-up, Cool-down & Stretching"] },
-        { title: "🔄 MODULE 3: BIOMECHANICS, MOVEMENT & CORRECTIVE EXERCISES (PRACTICAL TRAINING)", items: ["Exercise Demonstrations", "Correct Form & Posture", "Beginner to Advanced Progressions", "Common Gym Mistakes Correction"] },
-        { title: "🔥 MODULE 4: HUMAN BODY COMPONENTS & WORKOUT PROGRAMME DESIGN", items: ["Training Strategies", "Program Design Basics", "Lifestyle & Recovery Factors", "Client Transformation Approach"] },
-        { title: "🛡️ MODULE 5: INJURY PREVENTION & SAFETY", items: ["Common Gym Injuries", "Injury Prevention Techniques", "Safe Training Guidelines", "Client Risk Management"] },
-        { title: "🥗 MODULE 6: NUTRITION", items: ["Macronutrients & Micronutrients", "Diet Planning Basics", "Fat Loss & Muscle Gain Nutrition", "Supplement Awareness"] },
-        { title: "◀️ MODULE 7: PROFESSIONAL PRACTICE & CAREER DEVELOPMENT", items: ["Exercise & Diet Samples", "Client Case Studies", "Introduction to CPR", "Trainer Job Role", "Marketing Your Skills"] }
+        "1. Anatomy & Physiology",
+        "2. Kinesiology & Biomechanics",
+        "3. Fitness Assessment",
+        "4. Exercise Science",
+        "5. Resistance Training",
+        "6. Cardiovascular Training",
+        "7. Strength & Hypertrophy Training",
+        "8. Fat Loss & Body Transformation",
+        "9. Exercise Programming",
+        "10. Nutrition Fundamentals",
+        "11. Special Population Training",
+        "12. Injury Prevention & Safety",
+        "13. Client Management & Communication",
+        "14. Practical Personal Training",
+        "15. Professional Ethics & Career Development"
       ]
     },
     {
       id: "nutrition",
-      title: "Certification in Nutrition & Dietetics",
+      title: "Certified Nutritionist & Dietetics",
       tag: "Advanced Specialty",
-      price: "₹5,999",
+      price: "₹5,999/-",
       dur: "1–3 Months",
-      desc: "Learn: Fundamentals of Nutrition, Macronutrients & Micronutrients, Diet Planning & Meal Management, Sports Nutrition, Clinical Nutrition Basics, Supplements, Client Consultation.",
+      desc: "Science-based nutrition and dietetics education covering macronutrients, digestion, meal planning, sports & clinical nutrition, and supplementation.",
       img: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2070&auto=format&fit=crop",
       syllabus: [
-        { title: "🥗 MODULE 1: FUNDAMENTALS OF NUTRITION", items: ["Introduction to Nutrition", "Functions of Nutrients", "Balanced Diet Principles", "Energy Requirements"] },
-        { title: "🍎 MODULE 2: MACRONUTRIENTS & MICRONUTRIENTS", items: ["Carbohydrates, Proteins & Fats", "Vitamins & Minerals", "Water & Hydration", "Nutrient Functions & Food Sources"] },
-        { title: "⚖️ MODULE 3: DIET PLANNING & MEAL MANAGEMENT", items: ["Weight Loss Diet Planning", "Weight Gain Diet Planning", "Meal Planning Techniques", "Portion Control & Food Exchange"] },
-        { title: "🏃 MODULE 4: SPORTS NUTRITION", items: ["Nutrition for Exercise & Performance", "Pre-, During & Post-Workout Nutrition", "Recovery Nutrition", "Hydration Strategies"] },
-        { title: "🩺 MODULE 5: CLINICAL NUTRITION BASICS", items: ["Nutrition for Diabetes", "Hypertension & Heart Health", "Obesity Management", "Basic Therapeutic Diets"] },
-        { title: "🍽️ MODULE 6: SUPPLEMENTS & NUTRITIONAL SUPPORT", items: ["Supplement Basics", "Protein, Creatine & Vitamins", "Safe Supplement Use", "Evidence-Based Recommendations"] },
-        { title: "💬 MODULE 7: CLIENT CONSULTATION & PROFESSIONAL PRACTICE", items: ["Client Assessment & Diet Consultation", "Diet History & Goal Setting", "Sample Diet Plans & Case Studies", "Professional Ethics & Career Guidance"] }
+        "1. Fundamentals of Nutrition",
+        "2. Human Anatomy & Physiology",
+        "3. Macronutrients",
+        "4. Micronutrients",
+        "5. Digestion & Metabolism",
+        "6. Meal Planning & Diet Planning",
+        "7. Therapeutic Nutrition",
+        "8. Weight Management",
+        "9. Sports Nutrition",
+        "10. Clinical Nutrition",
+        "11. Nutrition Across the Life Cycle",
+        "12. Food Science & Food Safety",
+        "13. Nutritional Assessment",
+        "14. Supplementation",
+        "15. Practical Dietetics & Case Studies"
       ]
     },
     {
-      id: "combo",
-      title: "Combo Course (CPT + Nutrition & Dietetics)",
+      id: "diploma",
+      title: "Diploma in Personal Trainer & Dietetics",
       tag: "Best Value / Dual Degree",
-      price: "₹9,999",
+      price: "₹9,999/-",
       dur: "2–4 Months",
-      desc: "✔ Personal Trainer (CPT) + Nutrition & Dietetics in One Comprehensive Course\n✔ Complete Fitness & Nutrition Education\n✔ Live Online Interactive Classes\n✔ Practical Workout Demonstrations\n✔ Sample Workout & Diet Plans\n✔ Case Study-Based Learning\n✔ IIFN Certificate + NSDC Government Certificate + Student ID Card\n✔ Placement & Career Support\n✔ Career Opportunities as a Personal Trainer & Nutrition Coach",
+      desc: "Master-level dual qualification combining personal training & dietetics for complete fitness and nutrition career dominance.",
       img: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=2070&auto=format&fit=crop",
       syllabus: [
-        { title: "🧠 MODULE 1: HUMAN ANATOMY & PHYSIOLOGY", items: ["Muscular System", "Skeletal System", "Joints & Movement Patterns", "Cardiovascular & Respiratory Basics"] },
-        { title: "🏋️ MODULE 2: EXERCISE SCIENCE & BIOMECHANICS", items: ["Types of Exercises", "Resistance & Cardio Training Principles", "Correct Exercise Technique & Posture", "Corrective Exercises & Movement Analysis"] },
-        { title: "🔥 MODULE 3: WORKOUT PROGRAMME DESIGN", items: ["Beginner to Advanced Training Programs", "Fat Loss & Muscle Gain Programming", "Strength & Endurance Planning", "Recovery & Lifestyle Management"] },
-        { title: "🥗 MODULE 4: NUTRITION SCIENCE", items: ["Macronutrients & Micronutrients", "Balanced Diet & Energy Requirements", "Meal Planning & Portion Control", "Food Sources & Hydration"] },
-        { title: "🩺 MODULE 5: SPORTS & CLINICAL NUTRITION", items: ["Sports Performance Nutrition", "Weight Loss & Weight Gain Diet Planning", "Nutrition for Diabetes, Hypertension & Obesity", "Therapeutic Diet Basics"] },
-        { title: "🛡️ MODULE 6: SUPPLEMENTS & INJURY MANAGEMENT", items: ["Evidence-Based Supplementation", "Protein, Creatine & Vitamins", "Injury Prevention & Safe Exercise Guidelines", "Client Risk Assessment"] },
-        { title: "📈 MODULE 7: CLIENT CONSULTATION & PROFESSIONAL DEVELOPMENT", items: ["Fitness & Nutrition Assessment", "Workout & Diet Plan Preparation", "Client Case Studies", "Introduction to CPR", "Professional Ethics", "Trainer & Nutrition Coach Career Guidance", "Marketing Your Skills & Business Growth"] }
+        "1. Anatomy & Physiology",
+        "2. Kinesiology & Biomechanics",
+        "3. Fundamentals of Nutrition",
+        "4. Macronutrients & Micronutrients",
+        "5. Digestion & Metabolism",
+        "6. Exercise Science",
+        "7. Fitness Assessment",
+        "8. Nutritional Assessment",
+        "9. Resistance Training",
+        "10. Cardiovascular Training",
+        "11. Strength & Hypertrophy",
+        "12. Fat Loss & Body Transformation",
+        "13. Exercise Programming",
+        "14. Meal Planning & Diet Planning",
+        "15. Weight Management",
+        "16. Sports Nutrition",
+        "17. Clinical & Therapeutic Nutrition",
+        "18. Special Population Training",
+        "19. Supplementation",
+        "20. Injury Prevention & Safety",
+        "21. Client Management & Communication",
+        "22. Practical Personal Training",
+        "23. Practical Dietetics & Case Studies",
+        "24. Professional Ethics & Career Development"
+      ]
+    },
+    {
+      id: "clinical",
+      title: "Clinical Dietetics (Special Population)",
+      tag: "Clinical Specialty",
+      price: "₹5,999/-",
+      dur: "1–3 Months",
+      desc: "Specialized therapeutic nutrition for medical conditions including diabetes, PCOS, thyroid disorders, cardiovascular health, pregnancy, and clinical case studies.",
+      img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop",
+      syllabus: [
+        "1. Clinical Nutrition Fundamentals",
+        "2. Nutritional Assessment",
+        "3. Therapeutic Diet Planning",
+        "4. Diabetes & Insulin Resistance",
+        "5. Obesity & Weight Management",
+        "6. Cardiovascular Health",
+        "7. Gastrointestinal Disorders",
+        "8. Renal & Liver Disorders",
+        "9. Thyroid & Endocrine Disorders",
+        "10. PCOS & Women’s Health",
+        "11. Pregnancy & Lactation Nutrition",
+        "12. Pediatric Nutrition",
+        "13. Geriatric Nutrition",
+        "14. Sports & Athletic Nutrition",
+        "15. Food Allergies & Intolerances",
+        "16. Clinical Case Studies & Diet Planning"
       ]
     }
   ];
@@ -198,7 +258,7 @@ export default function Courses() {
       <main className="pt-32 pb-24 bg-black min-h-screen">
         
         {/* Hero Title Section */}
-        <section className="max-w-[1440px] mx-auto px-6 md:px-12 mb-16">
+        <section className="max-w-[1440px] mx-auto px-6 md:px-12 mb-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 border-l-4 border-secondary-container pl-8">
             <div>
               <span className="font-body font-bold text-[10px] text-secondary-container tracking-[0.3em] uppercase block mb-2">Academic Offerings</span>
@@ -216,8 +276,57 @@ export default function Courses() {
           </div>
         </section>
 
+        {/* ONLINE LIVE CLASSES Banner */}
+        <section className="max-w-[1440px] mx-auto px-6 md:px-12 mb-16">
+          <div className="bg-gradient-to-r from-surface-container-low via-black to-surface-container-low border border-secondary-container/30 p-6 md:p-8 rounded-lg shadow-[0_0_30px_rgba(224,6,0,0.12)] flex flex-col lg:flex-row items-center justify-between gap-6">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded bg-secondary-container flex items-center justify-center shrink-0 shadow-lg mt-1">
+                <span className="material-symbols-outlined text-white text-2xl">laptop_chromebook</span>
+              </div>
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="bg-secondary-container text-white font-body font-bold text-[9px] uppercase px-2.5 py-0.5 rounded tracking-widest animate-pulse">
+                    Interactive Schedule
+                  </span>
+                  <h3 className="font-display font-black text-lg md:text-xl text-white uppercase tracking-tight">
+                    💻 ONLINE LIVE CLASSES
+                  </h3>
+                </div>
+                <p className="text-on-surface-variant font-body text-xs leading-relaxed max-w-xl">
+                  Real-time interactive lectures, practical exercise demonstrations, and clinical case study reviews with dedicated faculty support.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap sm:flex-nowrap items-center gap-6 bg-black/80 p-5 border border-white/10 rounded-md w-full lg:w-auto shrink-0 justify-between sm:justify-start">
+              <div className="border-r border-white/10 pr-6">
+                <span className="text-[10px] text-on-surface-variant uppercase font-body font-bold block mb-0.5">Saturday Class</span>
+                <span className="font-display font-black text-base text-secondary-container">6:30 – 8:00 PM</span>
+              </div>
+              <div className="border-r border-white/10 pr-6">
+                <span className="text-[10px] text-on-surface-variant uppercase font-body font-bold block mb-0.5">Sunday Class</span>
+                <span className="font-display font-black text-base text-secondary-container">2:30 – 5:00 PM</span>
+              </div>
+              <div className="space-y-1.5 text-[11px] font-body text-white font-medium">
+                <div className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-green-400 text-sm">check_circle</span>
+                  <span>Live + Recorded Classes</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-green-400 text-sm">check_circle</span>
+                  <span>Doubt-Clearing Support</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-secondary-container text-sm">translate</span>
+                  <span className="text-secondary-container font-bold">English | Hindi</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Bento Course Grid */}
-        <section className="max-w-[1440px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <section className="max-w-[1440px] mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-8">
           {courseList.map((course) => {
             const isExpanded = expandedSyllabusId === course.id;
             return (
@@ -241,7 +350,7 @@ export default function Courses() {
                   <div className="p-8 md:p-10 flex flex-col">
                     <div className="flex items-center gap-4 mb-6">
                       <span className="text-on-surface-variant font-body font-bold text-[11px] flex items-center gap-1 uppercase">
-                        <span className="material-symbols-outlined text-sm">schedule</span> 3 Months
+                        <span className="material-symbols-outlined text-sm">schedule</span> {course.dur}
                       </span>
                       <span className="text-on-surface-variant font-body font-bold text-[11px] flex items-center gap-1 uppercase">
                         <span className="material-symbols-outlined text-sm">language</span> Online Live
@@ -282,23 +391,21 @@ export default function Courses() {
                   {/* Expandable Syllabus Section */}
                   {isExpanded && (
                     <div className="mt-6 border-t border-white/10 pt-6 animate-fadeIn">
-                      <h3 className="font-display font-bold text-xs uppercase text-white mb-4 tracking-wider">
-                        Syllabus Modules
-                      </h3>
-                      <div className="space-y-4 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
-                        {course.syllabus.map((module, modIdx) => (
-                          <div key={modIdx} className="bg-black/45 p-4 border border-white/5 rounded-sm">
-                            <h4 className="font-display font-bold text-[11px] text-[#ffb4a8] uppercase mb-2">
-                              {module.title}
-                            </h4>
-                            <ul className="grid grid-cols-1 gap-2 mt-1">
-                              {module.items.map((item, itemIdx) => (
-                                <li key={itemIdx} className="flex items-center gap-2 text-xs text-on-surface-variant font-body">
-                                  <span className="h-1.5 w-1.5 rounded-full bg-secondary-container shrink-0"></span>
-                                  <span>{item}</span>
-                                </li>
-                              ))}
-                            </ul>
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="font-display font-bold text-xs uppercase text-white tracking-wider">
+                          Syllabus Modules ({course.syllabus.length} Modules)
+                        </h3>
+                        <span className="text-[10px] text-secondary-container font-body font-bold uppercase">Certified Curriculum</span>
+                      </div>
+                      <div className="space-y-2 max-h-[340px] overflow-y-auto pr-2 custom-scrollbar">
+                        {course.syllabus.map((moduleItem, modIdx) => (
+                          <div key={modIdx} className="bg-black/60 p-3 border border-white/5 rounded-sm flex items-center gap-3 hover:border-white/20 transition-colors">
+                            <span className="w-6 h-6 rounded-full bg-secondary-container/20 text-secondary-container font-display font-bold text-[10px] flex items-center justify-center shrink-0 border border-secondary-container/30">
+                              {modIdx + 1}
+                            </span>
+                            <span className="text-xs text-white font-body font-semibold">
+                              {typeof moduleItem === 'string' ? moduleItem.replace(/^\d+\.\s*/, '') : moduleItem.title}
+                            </span>
                           </div>
                         ))}
                       </div>
@@ -434,9 +541,10 @@ export default function Courses() {
                       onChange={handleEnrollInputChange}
                       className="w-full bg-black border border-white/10 p-4 focus:border-secondary-container outline-none transition-all text-white text-sm rounded cursor-pointer"
                     >
-                      <option value="Certified Personal Trainer (CPT)">Certified Personal Trainer (CPT)</option>
-                      <option value="Certification in Nutrition & Dietetics">Certification in Nutrition & Dietetics</option>
-                      <option value="Combo Course (CPT + Nutrition & Dietetics)">Combo Course (CPT + Nutrition & Dietetics)</option>
+                      <option value="Certified Personal Trainer">Certified Personal Trainer — ₹5,999/-</option>
+                      <option value="Certified Nutritionist & Dietetics">Certified Nutritionist & Dietetics — ₹5,999/-</option>
+                      <option value="Diploma in Personal Trainer & Dietetics">Diploma in Personal Trainer & Dietetics — ₹9,999/-</option>
+                      <option value="Clinical Dietetics (Special Population)">Clinical Dietetics (Special Population) — ₹5,999/-</option>
                     </select>
                   </div>
                   
