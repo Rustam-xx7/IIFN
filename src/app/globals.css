@@ -49,8 +49,8 @@
   --color-on-background: #e5e2e1;
   --color-surface-variant: #353535;
 
-  --font-display: var(--font-display);
-  --font-body: var(--font-body);
+  --font-display: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
 
   --spacing-section-gap-mobile: 64px;
   --spacing-section-gap-desktop: 120px;
@@ -75,6 +75,8 @@
 }
 
 :root {
+  --font-display: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
   background-color: #131313;
   color: #e5e2e1;
 }
@@ -82,7 +84,7 @@
 body {
   background-color: #131313;
   color: #e5e2e1;
-  font-family: var(--font-body), sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .glass-nav {
