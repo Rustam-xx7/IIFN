@@ -120,19 +120,25 @@ export default function AdminDashboard() {
 
     setIsUploading(true);
     try {
-      // 1. Create a unique filename
-      const fileExtension = selectedFile.name.split('.').pop();
-      const filename = `candidate_${Date.now()}_${Math.random().toString(36).substr(2, 9)}.${fileExtension}`;
-      
-      // 2. Upload to Firebase Storage
-      const storageRef = ref(storage, `candidates/${filename}`);
-      const uploadResult = await uploadBytes(storageRef, selectedFile);
-      const downloadUrl = await getDownloadURL(uploadResult.ref);
+      // 1. Upload to Cloudinary via server API Route
+      const formData = new FormData();
+      formData.append("file", selectedFile);
+      formData.append("name", newCandidateName.trim());
 
-      // 3. Add metadata record to Firestore
-      await addCandidate(newCandidateName.trim(), downloadUrl);
+      const res = await fetch("/api/candidates/upload", {
+        method: "POST",
+        body: formData,
+      });
 
-      // 4. Fetch latest list to ensure UI matches Firestore
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || "Failed to upload image to Cloudinary.");
+      }
+
+      // 2. Add metadata record to Firestore with Cloudinary URL & publicId
+      await addCandidate(newCandidateName.trim(), data.url, data.publicId);
+
+      // 3. Fetch latest list to ensure UI matches Firestore
       const updatedList = await getCandidates();
       setCandidates(updatedList);
 
@@ -156,19 +162,24 @@ export default function AdminDashboard() {
     }
 
     try {
-      // 1. If it's a Firebase Storage URL, delete the object from Storage
-      if (candidate.src && candidate.src.includes("firebasestorage.googleapis.com")) {
+      // 1. If publicId is stored or if URL is from Cloudinary, call delete API endpoint
+      if (candidate.publicId) {
+        try {
+          await fetch("/api/candidates/upload", {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ publicId: candidate.publicId }),
+          });
+        } catch (cloudinaryErr) {
+          console.warn("Cloudinary asset deletion error:", cloudinaryErr);
+        }
+      } else if (candidate.src && candidate.src.includes("firebasestorage.googleapis.com")) {
         try {
           const fileRef = ref(storage, candidate.src);
           await deleteObject(fileRef);
         } catch (storageErr) {
-          console.warn("Storage deletion error (it might have already been deleted):", storageErr);
+          console.warn("Storage deletion error:", storageErr);
         }
-      } else {
-        // If it's a local static file (from the seed data), we do NOT delete the local file
-        // since we cannot write/delete from the read-only build image under /var/task.
-        // We just delete its Firestore record, which removes it from the list.
-        console.log("Local static file metadata removed from Firestore:", candidate.src);
       }
 
       // 2. Delete Firestore record
@@ -357,7 +368,7 @@ export default function AdminDashboard() {
             {activeTab === "candidates" && (
               <div className="bg-surface-container-low border border-white/5 p-6 rounded mb-6 max-w-2xl">
                 <h4 className="font-display font-black text-sm uppercase text-white tracking-wider mb-2">Upload New Candidate</h4>
-                <p className="text-on-surface-variant text-xs font-body mb-4">Provide a name and choose an image to store locally in the public/candidates folder</p>
+                <p className="text-on-surface-variant text-xs font-body mb-4">Provide a name and choose an image to upload directly to Cloudinary</p>
                 
                 <form onSubmit={handleAddCandidate} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

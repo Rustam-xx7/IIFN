@@ -202,11 +202,12 @@ export async function deleteReview(reviewId) {
 }
 
 // Add a new candidate (collection: candidates)
-export async function addCandidate(name, src) {
+export async function addCandidate(name, src, publicId = "") {
   try {
     const docRef = await addDoc(collection(db, "candidates"), {
       name,
       src,
+      publicId: publicId || "",
       createdAt: serverTimestamp(),
     });
     return docRef.id;
