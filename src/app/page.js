@@ -436,6 +436,22 @@ export default function Home() {
                 partners: ["Cult.fit", "Black Cat Fitness Lounge", "Fuerza", "Kranos Fitness Hub", "My Core", "Rocks Fitness", "Staunch", "Barbell Cartel", "Indus Hospitality"],
                 highlights: "Guaranteed Placement Assistance | Gym & Fitness Center Employment",
                 img: "/affilations/placementPartner.jpeg"
+              },
+              {
+                title: "NSDC & Skill India Accreditation",
+                tag: "Government Recognition",
+                desc: "Nationally recognized, skill-aligned fitness and nutrition certifications with government portal verification.",
+                partners: ["NSDC", "Skill India", "NCBSD", "SPEFL-SC", "MSME", "ISO 9001:2015"],
+                highlights: "National Skill Development Corporation | SPEFL Skill Council Verified",
+                img: "/affilations/nsdc.jpeg"
+              },
+              {
+                title: "IIFN Career & Excellence Ecosystem",
+                tag: "Professional Leadership",
+                desc: "Comprehensive career development, practical mentorship, and live online learning across India.",
+                partners: ["IIFN Academy", "Certified Personal Trainer", "Clinical Dietetics", "Live + Recorded", "Career Support"],
+                highlights: "Empowering Next-Generation Certified Fitness & Nutrition Professionals",
+                img: "/affilations/iifnposter1.jpeg"
               }
             ].map((section, index) => (
               <div 
