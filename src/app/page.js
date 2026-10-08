@@ -643,7 +643,8 @@ export default function Home() {
       </section>
 
       {/* Candidate Gallery */}
-      <section className="py-24 bg-surface-container-low border-t border-white/5 overflow-hidden" id="gallery">
+
+       {/* <section className="py-24 bg-surface-container-low border-t border-white/5 overflow-hidden" id="gallery">
         <div className="px-6 max-w-screen-xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div>
@@ -656,7 +657,6 @@ export default function Home() {
               <div className="w-16 h-1 bg-secondary-container mt-3"></div>
             </div>
 
-            {/* Scroll Navigation Controls */}
             <div className="flex items-center gap-3 shrink-0">
               <button
                 onClick={() => scrollGallery("left")}
@@ -675,7 +675,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* 3-Row Side-Wise Scrollable Container */}
           <div
             ref={galleryScrollRef}
             className="overflow-x-auto pb-6 pt-2 custom-scrollbar snap-x scroll-smooth select-none"
@@ -705,7 +704,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Verified Student Reviews Section */}
       {approvedReviews.length > 0 && (
