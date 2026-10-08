@@ -19,11 +19,11 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="min-h-full flex flex-col bg-background text-on-surface font-body overflow-x-hidden">
-        <div className="h-screen w-full bg-nutral-850 flex justify-center items-center">
+        {/* <div className="h-screen w-full bg-nutral-850 flex justify-center items-center">
           <span className="text-white font-bold">Website is currently under maintenance.</span>
-        </div>
-        {/* {children} */}
-        {/* <Analytics /> */}
+        </div> */}
+        {children}
+        <Analytics />
       </body>
     </html>
   );
