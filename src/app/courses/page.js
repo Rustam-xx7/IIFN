@@ -289,7 +289,7 @@ export default function Courses() {
                     Interactive Schedule
                   </span>
                   <h3 className="font-display font-black text-lg md:text-xl text-white uppercase tracking-tight">
-                    💻 ONLINE LIVE CLASSES
+                     ONLINE LIVE CLASSES
                   </h3>
                 </div>
                 <p className="text-on-surface-variant font-body text-xs leading-relaxed max-w-xl">
