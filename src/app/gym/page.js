@@ -600,7 +600,7 @@ export default function GymPage() {
               <div className="bg-[#20201f] border-2 border-[#e00600] p-8 flex flex-col sm:flex-row gap-8 items-center shadow-[0_0_30px_rgba(224,6,0,0.1)] rounded-sm">
                 <div className="w-40 h-40 border border-white/10 shrink-0 rounded-sm overflow-hidden bg-[#1a1a19]">
                   <img
-                    src="/jewel.jpg"
+                    src="/dietitian.png"
                     alt="Jewel Roy"
                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
                   />
@@ -628,7 +628,7 @@ export default function GymPage() {
                   <div className="space-y-1.5 mb-4 text-[10px] font-body font-bold text-on-surface-variant uppercase tracking-wider">
                     <p className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 bg-[#e00600] rounded-full shrink-0"></span>
-                      K11 Certified Health Coach
+                      EREPS PROFESSIONAL
                     </p>
                     <p className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 bg-[#e00600] rounded-full shrink-0"></span>
